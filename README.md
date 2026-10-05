@@ -9,30 +9,44 @@
 | ▶ Run / test | Actions → **AURA signals** → Run workflow |
 
 
-Everything runs on **your GitHub account**: no server, no monthly bill, no paid TradingView plan.
+## Two engines, one app
+
+| | ⚡ **MT5 live engine** (main) | ☁️ **Cloud backup** (this repo) |
+|---|---|---|
+| Runs on | Your Windows PC, inside HFM MT5 | GitHub Actions, free |
+| Prices | **HFM's own live feed** | Twelve Data / Yahoo |
+| Speed | **Real time**: first tick after the candle closes; SL/TP on the tick | Every ~15 min, often a few minutes late |
+| Timeframes | M5 · M15 · D1 | M5 · M15 · D1 (dashboard), alerts only when the PC is off |
+| News | MT5 calendar: 07:00 digest, 60/15/5-min warnings, **actual number instantly**, breakout plan + breakout alert | Weekly calendar in the app + backup warning before high-impact news |
+| Lots | From your **live MT5 balance** and HFM contract specs | From `config.json` balance |
+| Alerts | MT5 phone push + ntfy + PC pop-up | ntfy / Telegram |
+
+The MT5 engine posts a heartbeat every 5 min. While it's online, the cloud engine **mutes its alerts**, so you never get doubles. The app shows which engine is active.
+
+👉 **Set up the live engine first: [`mt5/AURA_MT5_Setup.md`](mt5/AURA_MT5_Setup.md)**
 
 ```
- every 15 min                                     your phone
-┌─────────────────┐   new signal?   ┌───────────┐   🔔 push (locked screen too)
-│ GitHub Actions  │ ──────────────► │ ntfy /    │ ─────────────────────────────►
-│ (free cron)     │                 │ Telegram  │
-│ runs AURA       │                 └───────────┘
-│ engine (Python) │   commits JSON   ┌───────────────────────────┐
-│                 │ ───────────────► │ GitHub Pages (free)       │  ◄── AURA app on
-└────────┬────────┘                  │ yourname.github.io/aura   │      your home screen
-         │ free gold prices          └───────────────────────────┘
-   Twelve Data (spot) / Yahoo
+ HFM MT5 (your PC) ── AURA_RealTime EA ──► 🔔 MT5 app push + ntfy  (real time)
+        │ heartbeat
+        ▼
+ GitHub Actions (every 15 min) ── aura_engine.py ──► 🔔 ntfy (only if the PC is off)
+        │ commits JSON
+        ▼
+ GitHub Pages ── AURA app on your phone (trades, news, lot sizes, track record)
 ```
 
 | Piece | Service | Cost |
 |---|---|---|
-| Signal engine (same rules as the TradingView indicator) | GitHub Actions, public repo | **R0** |
-| App / dashboard (installable on phone) | GitHub Pages | **R0** |
-| Gold prices | Twelve Data free key (spot XAU/USD), Yahoo as backup | **R0** |
-| Phone push notifications | ntfy app and/or Telegram bot | **R0** |
-| Charts with the indicator | TradingView Basic (free; it just can't send alerts) | **R0** |
+| Real-time engine + news | HFM MT5 on your PC | **R0** |
+| Cloud backup engine | GitHub Actions, public repo | **R0** |
+| App / dashboard | GitHub Pages | **R0** |
+| Phone push | MT5 app, ntfy app and/or Telegram | **R0** |
+| Charts | TradingView Basic (free) | **R0** |
 
-> **Why not TradingView alerts?** On the free TradingView plan, indicators can't trigger alerts at all (only 3 simple price alerts are allowed), and webhooks need the paid Essential plan + 2FA. So this repo runs the AURA rules itself, and you keep TradingView only for looking at charts.
+> **Why not TradingView alerts?** On the free plan, indicators can't trigger alerts at all, webhooks need a paid plan, and TradingView adds its own delay. AURA runs the rules itself, on HFM's prices.
+
+### Cloud backup setup (already done for waizyk/aura)
+The steps below are only needed if you ever set the cloud backup up again in a new repo.
 
 ---
 
@@ -84,7 +98,7 @@ Edit **`config.json`** on GitHub (pencil icon) → Commit. The next run uses the
 |---|---|---|
 | `account` | `cent` (HFM USC), `zar` or `usd` | `cent` |
 | `balance` | Balance **exactly as MT5 shows it** (USC for cent). **Update weekly.** | `6000` |
-| `timeframes` | `["15min","1h"]`, `["15min"]` or `["1h"]` | both |
+| `timeframes` | any of `"5min"`, `"15min"`, `"1h"`, `"1day"` | `["5min","15min","1day"]` |
 | `rr` | Final take profit in R | `3.0` |
 | `exit_mode` | `hold` (tested best) or `smart` (auto-exit on rejection / slow-EMA break) | `hold` |
 | `be_after_tp1` | Move SL to breakeven after TP1 (tested worse) | `false` |
@@ -112,16 +126,16 @@ Then **✅ TP1 / ✅ TP2 / 🎯 TP / 🛑 SL / ⚠️ WARNING / 🔄 REVERSE** a
 ---
 
 ## Honest limitations
-- **GitHub's timer isn't exact.** Scheduled runs are often 3–15 minutes late and can occasionally be skipped at busy times. That's fine for H1, and acceptable for M15 because every alert says how long ago the candle closed and whether it's **still enterable**. Never chase a trade marked ❌.
+- **GitHub's timer isn't exact.** Scheduled runs are often 3–15 minutes late and can occasionally be skipped at busy times. That's why the **MT5 live engine** is the main engine. The cloud is a backup, acceptable for M15/D1 because every alert says how long ago the candle closed and whether it's **still enterable**. Never chase a trade marked ❌.
 - **Public repo:** anyone with the link can see your signals and `config.json` balance. Your keys/tokens (secrets) are **never** visible.
 - **60-day rule:** GitHub pauses scheduled workflows in repos with no activity for 60 days. The bot's hourly commits normally keep it active. If you ever get an email saying the workflow was disabled, just click **Enable**.
 - **Limits used:** about 2 Twelve Data requests per run (~200/day of the free 800), and well under GitHub's free limits for public repos.
 - Prices from Twelve Data / Yahoo can differ from HFM by a few cents to a dollar. Place your SL/TP from the alert and adjust slightly to your broker's quote if needed.
-- The engine's stats are a rolling backtest of the last ~2 months (M15) and ~10 months (H1) on the same rules. They're not a promise of future results.
+- The engine's stats are a rolling backtest (M5/M15 ~60 days, D1 ~10 years) on the same rules, with a $0.35 spread subtracted. They're not a promise of future results.
 
 ## TradingView (charts only)
 Alerts come from **this app**, not TradingView. `AURA_Gold_Signals.pine` is a chart-only indicator that uses the same rules, so you can see the setups on your chart:
-Pine Editor → paste → Save → **Add to chart** → OANDA:XAUUSD, M15 or H1. It works on the free TradingView plan.
+Pine Editor → paste → Save → **Add to chart** → OANDA:XAUUSD, M5, M15 or D1 (M5 switches to its own settings automatically). It works on the free TradingView plan.
 
 ## Files
 ```
@@ -129,6 +143,8 @@ config.json                          ← your settings
 engine/aura_engine.py             ← signal engine (pure Python, no installs)
 .github/workflows/aura-signals.yml   ← the free 15-minute timer
 docs/                                ← the AURA app (GitHub Pages)
+mt5/AURA_RealTime.mq5                ← ⚡ real-time MT5 engine + news (compiled: 0 errors, 0 warnings)
+mt5/AURA_MT5_Setup.md                ← how to install it
 docs/data/state.json, signals.json   ← written by the engine
 AURA_Gold_Signals.pine            ← TradingView chart indicator (no alerts)
 AURA_Playbook.md                     ← the AURA trading playbook

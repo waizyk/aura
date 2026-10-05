@@ -1,13 +1,14 @@
 //@version=6
 // ═══════════════════════════════════════════════════════════════════════════
-//  AURA · Gold Signals v1.2 (chart edition)
+//  AURA · Gold Signals v1.3 (chart edition: M5 · M15 · D1)
 //  AURA by ACE TECH · a product of ACE OPS · built by Ace Khan
 //  Trend-following entries with confirmed SL / TP, HOLD-vs-EXIT guidance,
 //  and Kelly-criterion lot sizing for HFM accounts (USC cent, ZAR or USD).
 //
-//  Alerts come from the AURA app (GitHub engine), which uses the same rules.
-//  Default settings were chosen from a backtest on gold (2 years of H1 and
-//  ~2.5 months of M15 data). See AURA_Playbook.md for the numbers.
+//  Alerts come from the AURA MT5 live engine (real time) and the AURA app
+//  (cloud backup). Both use the same rules. News alerts live in the MT5 EA.
+//  Defaults come from backtests on gold (M5: 60 days, M15: 2.5 months,
+//  D1: 20 years). See AURA_Playbook.md for the numbers.
 //  Nothing here is financial advice. Past results do not guarantee future results.
 // ═══════════════════════════════════════════════════════════════════════════
 indicator("AURA · Gold Signals by ACE TECH", shorttitle="AURA", overlay=true,
@@ -32,11 +33,13 @@ const string S_LONNY    = "London + NY opens"
 const string S_CUSTOM   = "Custom (SA time)"
 
 // 1 · Signal engine
-emaFastLen    = input.int(9,   "Fast EMA",  minval=1, group=G_SIG)
-emaSlowLen    = input.int(21,  "Slow EMA",  minval=1, group=G_SIG)
+autoPreset    = input.bool(true, "Auto settings by timeframe (same as the AURA app)", group=G_SIG,
+     tooltip="ON: M5 uses EMA 13/34, trend EMA 2400 (= H1 200 EMA) and a 2.5R target, which is what the backtest showed works on M5. M15 and D1 use the values below.")
+emaFastIn     = input.int(9,   "Fast EMA",  minval=1, group=G_SIG)
+emaSlowIn     = input.int(21,  "Slow EMA",  minval=1, group=G_SIG)
 useTrend      = input.bool(true, "Only trade WITH the trend EMA", group=G_SIG,
      tooltip="Buys only above the trend EMA, sells only below it. This was the biggest improvement in testing.")
-emaTrendLen   = input.int(200, "Trend EMA", minval=1, group=G_SIG)
+emaTrendIn    = input.int(200, "Trend EMA", minval=1, group=G_SIG)
 confirmCandle = input.bool(true, "Require confirmation candle", group=G_SIG,
      tooltip="BUY only if the cross candle closes green, SELL only if it closes red.")
 useHtf        = input.bool(false, "Extra filter: higher-timeframe EMA 50", group=G_SIG)
@@ -49,7 +52,7 @@ adxMin        = input.int(20, "Min ADX", minval=1, group=G_SIG)
 atrLen     = input.int(14, "ATR period", minval=1, group=G_RISK)
 atrMultSL  = input.float(0.3, "SL buffer beyond signal candle (x ATR)", minval=0.0, step=0.1, group=G_RISK,
      tooltip="SL sits below the signal candle's low (BUY) or above its high (SELL), plus this ATR buffer.")
-riskReward = input.float(3.0, "Final take profit (R:R)", minval=1.0, step=0.5, group=G_RISK)
+riskRewardIn = input.float(3.0, "Final take profit (R:R)", minval=1.0, step=0.5, group=G_RISK)
 maxSlAtr   = input.float(0.0, "Skip signal if SL is wider than x ATR (0 = off)", minval=0.0, step=0.5, group=G_RISK)
 lateEntryR = input.float(0.25, "Late-entry limit (R)", minval=0.0, step=0.05, group=G_RISK,
      tooltip="If price has already moved this many R past the entry, the table tells you not to chase.")
@@ -96,6 +99,12 @@ compactTbl = input.bool(false, "Compact dashboard (phones)", group=G_VIS)
 tblPos     = input.string("Top right", "Dashboard position", options=["Top right", "Top left", "Bottom right", "Bottom left"], group=G_VIS)
 
 // ───────────────────────────── CORE CALCULATIONS ────────────────────────────
+// M5 preset (simple values, so the EMA lengths stay "simple int")
+isM5        = autoPreset and timeframe.period == "5"
+emaFastLen  = isM5 ? 13 : emaFastIn
+emaSlowLen  = isM5 ? 34 : emaSlowIn
+emaTrendLen = isM5 ? 2400 : emaTrendIn
+riskReward  = isM5 ? 2.5 : riskRewardIn
 emaFast  = ta.ema(close, emaFastLen)
 emaSlow  = ta.ema(close, emaSlowLen)
 emaTrend = ta.ema(close, emaTrendLen)

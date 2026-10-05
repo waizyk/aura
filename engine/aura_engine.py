@@ -24,16 +24,17 @@ DATA_DIR = os.path.join(ROOT, "docs", "data")
 CONFIG_PATH = os.path.join(ROOT, "config.json")
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126 Safari/537.36"
 TZ_SA, TZ_NY, TZ_LDN = ZoneInfo("Africa/Johannesburg"), ZoneInfo("America/New_York"), ZoneInfo("Europe/London")
-TF_MIN = {"15min": 15, "1h": 60}
+TF_MIN = {"5min": 5, "15min": 15, "1h": 60, "1day": 1440}
+TF_LABEL = {"5min": "M5", "15min": "M15", "1h": "H1", "1day": "D1"}
 
 DEFAULTS = {
-    "account": "cent", "balance": 6000, "timeframes": ["15min", "1h"], "symbol_label": "XAUUSD",
+    "account": "cent", "balance": 6000, "timeframes": ["5min", "15min", "1day"], "tf_overrides": {}, "symbol_label": "XAUUSD",
     "ema_fast": 9, "ema_slow": 21, "ema_trend": 200, "use_trend": True, "confirm_candle": True,
     "atr_len": 14, "sl_atr_buffer": 0.3, "rr": 3.0, "max_sl_atr": 0,
     "exit_mode": "hold", "be_after_tp1": False, "rej_wick_pct": 60, "rej_min_atr": 0.8,
     "kelly_fraction": 0.25, "max_risk_pct": 2.0, "start_risk_pct": 1.0, "min_trades_kelly": 30,
     "session": "all", "late_entry_r": 0.25, "notify_warnings": True, "notify_milestones": True,
-    "usdzar_fallback": 16.6,
+    "usdzar_fallback": 16.6, "news_pause_before": 30, "news_pause_after": 15, "news_warn_minutes": 75, "stats_spread": 0.35,
 }
 
 # ───────────────────────────── helpers ─────────────────────────────
@@ -60,13 +61,14 @@ def fetch_twelvedata(tf, key):
     if j.get("status") != "ok": raise RuntimeError(f"Twelve Data: {j.get('message', j)}")
     bars = []
     for v in j["values"]:
-        t = datetime.strptime(v["datetime"], "%Y-%m-%d %H:%M:%S").replace(tzinfo=timezone.utc)
+        fmt = "%Y-%m-%d %H:%M:%S" if " " in v["datetime"] else "%Y-%m-%d"
+        t = datetime.strptime(v["datetime"], fmt).replace(tzinfo=timezone.utc)
         bars.append((t, float(v["open"]), float(v["high"]), float(v["low"]), float(v["close"])))
     bars.sort(key=lambda b: b[0])
     return bars, "Twelve Data · spot XAU/USD"
 
 def fetch_yahoo(tf):
-    interval, rng = ("15m", "60d") if tf == "15min" else ("60m", "730d")
+    interval, rng = {"5min": ("5m", "60d"), "15min": ("15m", "60d"), "1h": ("60m", "730d"), "1day": ("1d", "10y")}[tf]
     j = http_json(f"https://query1.finance.yahoo.com/v8/finance/chart/GC=F?interval={interval}&range={rng}", timeout=30)
     res = j["chart"]["result"][0]; q = res["indicators"]["quote"][0]
     bars = []
@@ -233,10 +235,11 @@ def run_engine(bars, tf, cfg, usdzar):
         # ---- record close
         if close_px is not None and pos:
             R = (close_px - entry) / risk * pos
+            Rn = R - cfg["stats_spread"] / risk          # track record counts the spread (same as the MT5 EA)
             nT += 1
-            if R > 0: nW += 1; sumW += R
-            else: sumL += -R
-            eqR += R; peak = max(peak, eqR); maxdd = max(maxdd, peak - eqR)
+            if Rn > 0: nW += 1; sumW += Rn
+            else: sumL += -Rn
+            eqR += Rn; peak = max(peak, eqR); maxdd = max(maxdd, peak - eqR)
             names = {"TP": ("TP", "Final take profit hit"), "SL": ("SL", "Stop loss hit"), "BE": ("BE", "Closed at breakeven"),
                      "EXIT": ("EXIT", "Smart exit: close the trade now"), "REV": ("REVERSE", "Opposite signal: old trade invalidated, close it")}
             ev(i, names[why][0], r=r2(R), side="LONG" if pos == 1 else "SHORT", entry=r2(entry), note=names[why][1])
@@ -281,13 +284,60 @@ def run_engine(bars, tf, cfg, usdzar):
                     bars=n, from_=T[0].isoformat())
     return events, snapshot
 
+# ───────────────────────────── news + live-engine status ───────────
+def fetch_news():
+    """This week's economic calendar (ForexFactory feed). Times converted to UTC."""
+    try:
+        req = urllib.request.Request("https://nfs.faireconomy.media/ff_calendar_thisweek.json", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=20) as r: raw = json.loads(r.read().decode())
+    except Exception as ex:
+        log("news calendar failed:", ex); return []
+    out = []
+    for e in raw:
+        if e.get("country") != "USD" or e.get("impact") not in ("High", "Medium"): continue
+        try: t = datetime.fromisoformat(e["date"]).astimezone(timezone.utc)
+        except Exception: continue
+        out.append(dict(title=e.get("title", ""), impact=e["impact"], time=t.isoformat(),
+                        forecast=e.get("forecast") or None, previous=e.get("previous") or None))
+    out.sort(key=lambda x: x["time"])
+    return out
+
+def news_window(t, news, cfg):
+    """High-impact news event whose pause window contains time t (UTC), else None."""
+    for n in news:
+        if n["impact"] != "High": continue
+        nt = datetime.fromisoformat(n["time"])
+        if nt - timedelta(minutes=cfg["news_pause_before"]) <= t <= nt + timedelta(minutes=cfg["news_pause_after"]): return n
+    return None
+
+def gold_hint(title):
+    s = title.lower()
+    inverse = any(k in s for k in ("unemployment", "jobless", "claims"))
+    return ("higher → USD down → GOLD likely UP 🟢 · lower → GOLD likely DOWN 🔴" if inverse
+            else "higher → USD up → GOLD likely DOWN 🔴 · lower → GOLD likely UP 🟢")
+
+def live_engine_status():
+    """The MT5 live engine posts a heartbeat to <topic>-hb every 5 min. Online = seen in the last 12 min."""
+    topic = os.environ.get("NTFY_TOPIC", "").strip()
+    if not topic: return {"online": False, "last_seen": None}
+    try:
+        req = urllib.request.Request(f"https://ntfy.sh/{topic}-hb/json?poll=1&since=12h", headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=15) as r: lines = r.read().decode().strip().splitlines()
+        times = [json.loads(l).get("time") for l in lines if l.strip()]
+        times = [t for t in times if t]
+        if not times: return {"online": False, "last_seen": None}
+        last = datetime.fromtimestamp(max(times), timezone.utc)
+        return {"online": datetime.now(timezone.utc) - last <= timedelta(minutes=12), "last_seen": last.isoformat()}
+    except Exception as ex:
+        log("heartbeat check failed:", ex); return {"online": False, "last_seen": None}
+
 # ───────────────────────────── notifications ────────────────────────
 EMOJI = {"BUY": "🟢", "SELL": "🔴", "TP1": "✅", "TP2": "✅", "TP": "🎯", "SL": "🛑", "BE": "⚪", "EXIT": "🟡", "REVERSE": "🔄", "WARNING": "⚠️"}
-NTFY_TAGS = {"BUY": "green_circle", "SELL": "red_circle", "TP1": "white_check_mark", "TP2": "white_check_mark", "TP": "dart",
+NTFY_TAGS = {"NEWS": "calendar", "BUY": "green_circle", "SELL": "red_circle", "TP1": "white_check_mark", "TP2": "white_check_mark", "TP": "dart",
              "SL": "octagonal_sign", "BE": "white_circle", "EXIT": "yellow_circle", "REVERSE": "arrows_counterclockwise", "WARNING": "warning"}
 
 def fmt_msg(e, cfg, snap, now):
-    tfl = {"15min": "M15", "1h": "H1"}[e["tf"]]
+    tfl = TF_LABEL[e["tf"]]
     close_t = datetime.fromisoformat(e["bar_close"]); mins = int((now - close_t).total_seconds() // 60)
     lines = [f"{EMOJI.get(e['event'], '•')} AURA · {e['event']} · {cfg['symbol_label']} {tfl}"]
     if e["event"] in ("BUY", "SELL"):
@@ -304,6 +354,8 @@ def fmt_msg(e, cfg, snap, now):
         lines.append(f"Result: {e['r']:+.2f}R")
     if e.get("note"): lines.append(e["note"])
     lines.append(f"Candle closed {close_t.astimezone(TZ_SA):%H:%M} SA ({mins} min ago)")
+    if e.get("news_note"): lines.append(e["news_note"])
+    lines.append("☁️ Cloud backup (your MT5 live engine is offline)")
     return "\n".join(lines)
 
 def send_telegram(text):
@@ -347,7 +399,10 @@ def main():
     sess_code, sess_label = session_name(now)
     usdzar, fx_src = fetch_usdzar(cfg["usdzar_fallback"])
     snaps, all_events, sources, sent = {}, [], {}, 0
-    fresh_window = {"15min": timedelta(minutes=90), "1h": timedelta(hours=3)}
+    fresh_window = {"5min": timedelta(minutes=30), "15min": timedelta(minutes=90), "1h": timedelta(hours=3), "1day": timedelta(hours=30)}
+    news = fetch_news()
+    live = live_engine_status()
+    if live["online"]: log("MT5 live engine is ONLINE: cloud alerts muted (dashboard still updated)")
 
     for tf in cfg["timeframes"]:
         try:
@@ -355,21 +410,40 @@ def main():
         except Exception as ex:
             log(f"{tf}: data download failed: {ex}"); continue
         bars = drop_open_bar(bars, tf, now)
-        if len(bars) < cfg["ema_trend"] + 50: log(f"{tf}: not enough bars ({len(bars)})"); continue
-        events, snap = run_engine(bars, tf, dict(cfg), usdzar)
+        tcfg = {**cfg, **(cfg.get("tf_overrides") or {}).get(tf, {})}
+        if len(bars) < tcfg["ema_trend"] + 50: log(f"{tf}: not enough bars ({len(bars)})"); continue
+        events, snap = run_engine(bars, tf, dict(tcfg), usdzar)
         snaps[tf] = snap; sources[tf] = src
         for e in events:
             all_events.append(e)
             if e["key"] in seen: continue
             seen.add(e["key"])
             age = now - datetime.fromisoformat(e["bar_close"])
-            if not first_run and age <= fresh_window[tf]:
-                if notify(fmt_msg(e, cfg, snap, now), e["event"]): sent += 1
+            if not first_run and age <= fresh_window[tf] and not live["online"]:
+                nw = news_window(datetime.fromisoformat(e["bar_close"]), news, cfg) if e["event"] in ("BUY", "SELL") and tf != "1day" else None
+                if nw: e["news_note"] = f"⏸ NEWS WINDOW ({nw['title']}): skip this entry, spreads/slippage too big"
+                if notify(fmt_msg(e, tcfg, snap, now), e["event"]): sent += 1
                 e["notified"] = now.isoformat()
         log(f"{tf}: {len(bars)} bars via {src} · last {snap['last_price']} · trades {snap['stats']['trades']} · pos {snap['position']['side'] if snap['position'] else 'FLAT'}")
 
     if first_run and snaps:
-        notify(f"✅ AURA engine connected.\nWatching {cfg['symbol_label']} on {', '.join({'15min':'M15','1h':'H1'}[t] for t in snaps)}.\nAccount: HFM {cfg['account'].upper()} · balance {cfg['balance']:,}.\nYou'll be notified of new signals from now on.\nAURA by ACE TECH · a product of ACE OPS · built by Ace Khan", "TEST")
+        notify(f"✅ AURA engine connected.\nWatching {cfg['symbol_label']} on {', '.join(TF_LABEL[t] for t in snaps)}.\nAccount: HFM {cfg['account'].upper()} · balance {cfg['balance']:,}.\nYou'll be notified of new signals from now on.\nAURA by ACE TECH · a product of ACE OPS · built by Ace Khan", "TEST")
+
+    # backup news warnings (only when the MT5 live engine is offline)
+    for n in news:
+        if n["impact"] != "High": continue
+        nt = datetime.fromisoformat(n["time"]); left = nt - now
+        key = f"news|{n['title']}|{n['time']}"
+        if timedelta(0) < left <= timedelta(minutes=cfg["news_warn_minutes"]) and key not in seen:
+            seen.add(key)
+            if live["online"] or first_run: continue
+            msg = (f"📅 AURA NEWS in {int(left.total_seconds() // 60)} min\nUSD · {n['title']} (HIGH impact)\n"
+                   f"Time: {nt.astimezone(TZ_SA):%H:%M} SA\n"
+                   + (f"Forecast {n['forecast']}" + (f" · Previous {n['previous']}" if n['previous'] else "") + "\n" if n["forecast"] else "No forecast number\n")
+                   + f"Actual vs forecast: {gold_hint(n['title'])}\n"
+                   f"Don't open new trades {cfg['news_pause_before']} min before to {cfg['news_pause_after']} min after. Bank profit or move SL to entry on open trades.\n"
+                   "☁️ Cloud backup: start MT5 + AURA EA for real-time news alerts and the breakout plan.")
+            if notify(msg, "NEWS"): sent += 1
 
     # merge event history (newest first), keep last 300 for the dashboard
     merged = {e["key"]: e for e in store["events"]}
@@ -380,6 +454,9 @@ def main():
     state = {"generated": now.isoformat(), "session": {"code": sess_code, "label": sess_label},
              "usdzar": r2(usdzar, 4), "usdzar_source": fx_src, "sources": sources,
              "config": {k: cfg[k] for k in ("account", "balance", "timeframes", "rr", "exit_mode", "kelly_fraction", "max_risk_pct", "session", "symbol_label")},
+             "tf_settings": {tf: {k: {**cfg, **(cfg.get("tf_overrides") or {}).get(tf, {})}[k] for k in ("ema_fast", "ema_slow", "ema_trend", "rr")} for tf in cfg["timeframes"]},
+             "news": [n for n in news if datetime.fromisoformat(n["time"]) >= now - timedelta(hours=2)][:30],
+             "live_engine": live,
              "timeframes": snaps}
 
     # only rewrite files when something meaningful changed, or hourly (keeps the repo history small)
@@ -387,8 +464,9 @@ def main():
     def core(s): return json.dumps({tf: {k: v for k, v in (s.get("timeframes", {}).get(tf) or {}).items() if k in ("position", "advice", "stats", "trend")} for tf in cfg["timeframes"]}, sort_keys=True)
     old_gen = old_state.get("generated")
     stale = not old_gen or (now - datetime.fromisoformat(old_gen)) > timedelta(minutes=55)
-    events_changed = store_new["events"] != store["events"]
-    if events_changed or stale or core(state) != core(old_state):
+    events_changed = store_new["events"] != store["events"] or store_new["seen"] != store["seen"]
+    live_changed = (old_state.get("live_engine") or {}).get("online") != live["online"]
+    if events_changed or stale or live_changed or core(state) != core(old_state):
         with open(state_path, "w") as f: json.dump(state, f, indent=1)
         with open(sig_path, "w") as f: json.dump(store_new, f, indent=1)
         log("data files updated")

@@ -1,8 +1,12 @@
 {
-  "_help": "Edit these values, then commit. account: cent | zar | usd. balance: exactly as MT5 shows it (USC for cent).",
+  "_help": "Edit these values, then commit. account: cent | zar | usd. balance: exactly as MT5 shows it (USC for cent). timeframes: any of 5min, 15min, 1h, 1day.",
   "account": "cent",
   "balance": 6000,
-  "timeframes": ["15min", "1h"],
+  "timeframes": [
+    "5min",
+    "15min",
+    "1day"
+  ],
   "symbol_label": "XAUUSD",
   "rr": 3.0,
   "sl_atr_buffer": 0.3,
@@ -14,5 +18,15 @@
   "session": "all",
   "notify_warnings": true,
   "notify_milestones": true,
-  "usdzar_fallback": 16.6
+  "usdzar_fallback": 16.6,
+  "tf_overrides": {
+    "5min": {
+      "ema_fast": 13,
+      "ema_slow": 34,
+      "ema_trend": 2400,
+      "rr": 2.5
+    }
+  },
+  "news_pause_before": 30,
+  "news_pause_after": 15
 }

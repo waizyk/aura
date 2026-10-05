@@ -167,8 +167,9 @@ Lots = Risk in Rand ÷ (SL distance in $ × ounces per lot × USD/ZAR)
 |---|---|---|---|
 | Balance shows as | US cents (100 USC = $1) | Rand | Dollars |
 | 0.01 lot of gold = per $1 move | **1 US cent (~R0.17)** | $1 (~R16.60), booked in rand | $1 |
-| Smallest trade with a typical H1 stop ($16) | **~R2.66 = 0.27% of R1,000** ✓ | ~R266 = **27%** ✗ | ~R266 = **27%** ✗ |
+| Smallest trade with a typical M5 stop ($5) | **~R0.83 = 0.08% of R1,000** ✓ | ~R83 = **8%** ✗ | ~R83 = **8%** ✗ |
 | Smallest trade with a typical M15 stop ($10) | **~R1.66 = 0.17%** ✓ | ~R166 = **17%** ✗ | ~R166 = **17%** ✗ |
+| Smallest trade with a typical D1 stop ($60) | **~R10 = 1%** ✓ | ~R1,000 = **100%** ✗✗ | ~R1,000 = **100%** ✗✗ |
 | Use it… | **NOW, for all AURA gold trades** | Later, from ~R15,000–R20,000 | Optional, not needed |
 
 **What to do:**
@@ -177,30 +178,40 @@ Lots = Risk in Rand ÷ (SL distance in $ × ounces per lot × USD/ZAR)
 3. **Do a 30-second check before your first real trade:** open 0.01 lot of gold on the cent account, watch for a few seconds, then close it. A $1 move in gold should change your profit by about **1 USC** (one US cent). If it moves 100 USC per $1 instead, tell me and I'll adjust the contract size setting.
 4. Your gold symbol on the cent account may have a suffix (e.g. `XAUUSD.c` or similar). Use whatever your cent account's Market Watch shows. On TradingView keep the chart on **OANDA:XAUUSD**.
 
-**When to move up to the ZAR account:** 0.01 lot on the ZAR account risks about R266 with an H1 stop (about R166 with an M15 stop). To keep that at 2% or less you need at least **~R13,300** (H1) or **~R8,300** (M15). To have room to size properly (0.02+ lots), switch around **R15,000–R20,000**. The ZAR account is the nicest long-term because profits and withdrawals are in rand with no conversion. The USD account isn't needed for this plan.
+**When to move up to the ZAR account:** 0.01 lot on the ZAR account risks about R166 with an M15 stop (about R1,000 with a D1 stop). To keep that at 2% or less you need at least **~R8,300** for M15 and **~R50,000** for D1. To have room to size properly (0.02+ lots), switch around **R15,000–R20,000**. The ZAR account is the nicest long-term because profits and withdrawals are in rand with no conversion. The USD account isn't needed for this plan.
 
 **Lot size examples on the cent account (R1,000 ≈ 6,000 USC):**
 
-| Risk | H1 stop ~$16 | M15 stop ~$10 |
-|---|---|---|
-| 1% (first 30 trades) = R10 ≈ 60 USC | **0.03** cent lots | **0.06** cent lots |
-| 1.75% (¼ Kelly) = R17.50 ≈ 105 USC | **0.06** cent lots | **0.10** cent lots |
+| Risk | M5 stop ~$5 | M15 stop ~$10 | D1 stop ~$60 |
+|---|---|---|---|
+| 1% (first 30 trades) = R10 ≈ 60 USC | **0.12** cent lots | **0.06** cent lots | **0.01** cent lots |
+| 1.75% (¼ Kelly) = R17.50 ≈ 105 USC | **0.21** cent lots | **0.10** cent lots | **0.01** cent lots |
 
-The indicator and the app's **Lot size** tab work this out for every trade. These are just examples.
+Same risk in rand on every timeframe: only the lot changes. The MT5 EA works this out from your live balance and HFM's contract specs for every alert. These are just examples.
 
 ---
 
-## 7. Which charts to follow
+## 7. Which charts to follow (M5 · M15 · D1)
 
-| Priority | Chart | Why |
-|---|---|---|
-| ⭐ **1** | **XAUUSD 15-minute** | Main chart. ~35 signals/month, highest expectancy in testing. Use during the NY open. |
-| ⭐ **2** | **XAUUSD 1-hour** | "Set-and-forget" chart. ~7 signals/month, 2.4 years of proof. Best for evenings/nights: place SL/TP and sleep. |
-| 3 | XAUUSD 4-hour (check only) | Look once a day: is the 4H trend up or down? You can switch on "Extra filter: HTF EMA 50" to force alignment. |
-| ✗ | 1-min / 5-min | Spread eats the edge. Don't. |
-| ✗ | Other markets (EURUSD, NAS100, V75…) | **Not tested.** Before trading another market, run the indicator on it and check the dashboard. You need at least 30 trades with positive expectancy. |
+Backtest on gold, same rules, **after a $0.35 spread** (October 2026):
 
-On TradingView use **OANDA:XAUUSD** or your broker's feed if listed. Prices differ by a few cents, so always place SL/TP from the alert values and adjust slightly for your broker's quote if needed.
+| Chart | Settings | Trades / month | Win rate | Avg per trade | Worst drawdown | Longest losing run | Verdict |
+|---|---|---|---|---|---|---|---|
+| **M15** ⭐ | EMA 9/21, trend 200, 3R | ~34 | 32.9% | **+0.27R** | 8.9R | 6 | **Main chart** |
+| **M5** | EMA 13/34, trend 2400 (= H1 200 EMA), 2.5R | ~50 | 36.0% | +0.17R | 16.4R | 8 | Experimental: only with the stricter M5 settings |
+| M5 (old 9/21 rules) | | ~100 | 26.3% | −0.03R ✗ | 20.4R | 14 | Loses money: that's why M5 has its own settings |
+| M1 | | ~580 | 20.9% | −0.34R ✗ | 51R | 12 | ❌ Never: the spread eats everything |
+| **D1** | EMA 9/21, trend 200, 3R | ~0.3 (4 a year) | 34.1% (20 yrs) | +0.36R (20 yrs), **~0R since 2020** | 11.9R | 11 | **Big-picture bias**, rare trades |
+
+**How to use them together**
+1. **D1 = direction.** Every M5/M15 alert says whether the trade is *with* or *against* the daily trend. With it: normal. Against it: be extra strict or skip.
+2. **M15 = your main entries.** Best expectancy, smallest drawdowns.
+3. **M5 = extra entries for when you're at the screen during 14:00–18:00 SA.** It's noisier (8 losses in a row happened in testing), and only 60 days of data exist, so treat it as experimental. AURA's Kelly check switches it to "SKIP (no edge)" automatically if it starts losing.
+
+### "Doesn't H1 / a bigger timeframe blow the account faster?"
+No. AURA sizes every lot so that **a stop-loss costs the same 1–2% of your balance on every timeframe**. A bigger timeframe just means a wider stop with a *smaller* lot. What blows accounts is **risk per trade** (and over-trading), not the timeframe. Smaller timeframes are actually *riskier* for a small account: the spread is a bigger share of a tight stop, news spikes jump straight through it, and you take far more trades.
+
+On TradingView use **OANDA:XAUUSD**. The indicator switches to the M5 settings by itself on the 5-minute chart. The **MT5 EA uses HFM's own prices**, so its levels match your broker exactly.
 
 **One market, mastered, beats five markets done badly.** Stick to gold for your first 3–6 months.
 
@@ -213,47 +224,78 @@ Gold moves when London and New York are awake. These are **SA times while the US
 | SA time | Session | Tested result | Verdict |
 |---|---|---|---|
 | **14:00 – 18:00** | **New York open** | +0.34R to +0.48R per trade | ⭐ **BEST: trade here** |
-| 09:00 – 12:00 | London | slightly positive on H1, negative on M15 | OK on H1, be picky on M15 |
+| 09:00 – 12:00 | London | mixed, negative on M15 | Be picky: only with the daily trend |
 | 12:00 – 14:00 | Lunch | mixed / negative on M15 | Avoid |
-| 18:00 – 20:00 | NY afternoon | negative (H1) / flat (M15) | ❌ Avoid |
+| 18:00 – 20:00 | NY afternoon | flat (M15) | ❌ Avoid |
 | **20:00 – 23:00** | Late NY (**your "night"**) | flat to negative | ❌ Weak: plan, don't trade |
 | 23:00 – 00:00 | Daily close / break | | Closed |
-| 00:00 – 08:00 | Asia | positive on both (but small samples) | OK for H1 set-and-forget |
+| 00:00 – 08:00 | Asia | small samples | M15 only, never M5 |
 
 ### "I'd rather trade at night." My honest advice:
 Night (20:00–23:00) is gold's weakest window. The volume has left and price chops around. Three better options:
 1. **Best:** use the **M15 chart during 14:00–18:00**. If you work, even 15:30–17:30 catches the core of the NY open.
-2. **Night-friendly:** use the **H1 chart**. When an alert comes in the evening, place SL + TP and go to bed. The system is built to *hold*, so you don't need to watch it.
-3. **Use the night to study:** review your trades, mark key levels and check tomorrow's news calendar.
+2. **Night-friendly:** only take **M15 alerts that agree with the daily trend** (the alert tells you). Place SL + TP and go to bed. The system is built to *hold*. Never scalp M5 at night.
+3. **Use the night to study:** review your trades, check the D1 bias and read tomorrow's news in the AURA app or the 07:00 news digest.
 
 ### High-impact news (SA time, US summer)
 - **NFP (jobs):** 1st Friday of the month, **14:30**
 - **CPI (inflation):** mid-month, **14:30**
 - **FOMC (interest rates):** ~8 times a year, **20:00**, plus press conference at 20:30
 
-Don't open new trades 30 min before or after these. Gold can move $30+ in seconds.
+Gold can move $30+ in seconds. See section 8b for exactly how AURA handles news.
+
+---
+
+## 8b. News trading with AURA
+
+**The honest truth first:** nobody can know the number before it's released. Anyone who "knows" it is guessing, or breaking the law. What AURA gives you *before* the release is everything you need to be ready, and what it gives you *at* the release is speed.
+
+| When | What the MT5 EA sends you |
+|---|---|
+| 07:00 SA | 📅 **Today's news digest**: every high-impact USD event with forecast and previous |
+| 60 min before | 📅 Warning, forecast vs previous, **"if actual > forecast → gold likely DOWN"** (and the opposite), and what the market already expects |
+| 15 min before | Same + the **pre-news range** and the breakout plan: BUY above X / SELL below Y with SL, TP and lot size |
+| 5 min before | Final levels. Spreads are widening, open trades get a "bank profit or move SL to entry" reminder |
+| **0 sec** | 🔴 **NEWS LIVE**: range frozen, breakout levels drawn on your chart |
+| **The second MT5 receives the number** | 📰 **Result**: actual vs forecast → "GOLD BEARISH / BULLISH" |
+| **The tick price breaks out** | 🟢/🔴 **NEWS TRADE**: entry, SL, TP, lot (1% risk), spread warning, and whether the **data agrees** with the move |
+| 20 min after, no breakout | ⏹ No trade |
+
+**Rules**
+- Normal AURA signals are **paused 30 min before to 15 min after** every high-impact event (they would be hit by the spread blow-out).
+- News trades risk **1%** (half the normal maximum), because slippage at news can make a 1R loss into 1.5R.
+- If the alert says **"⚠️ Data DISAGREES"**, skip. Those are the classic fake-outs.
+- Spread above $0.80? Wait 10–30 seconds for it to come back in, then enter only if price is still beyond the level.
+- **Fastest option:** at the 5-min warning, place the two stop orders from the plan (buy stop + sell stop) and delete the other one when one fills.
+- The result usually arrives in MT5 within a second or two of the release. Price moves in milliseconds, which is why AURA also alerts the **price breakout** itself, not only the number.
+
+**Real-time vs TradingView:** the EA runs inside your HFM MT5, on HFM's own price feed. Signals fire on the first tick after a candle closes, and SL/TP alerts fire on the tick that touches the level. There's no TradingView in the loop, so no TradingView delay. The phone push itself usually takes 1–3 seconds.
 
 ---
 
 ## 9. Setup, step by step
 
-### A. Phone alerts (from the AURA app, not TradingView)
-1. Install the free **ntfy** app (Play Store / App Store) → **+** → subscribe to your private AURA topic.
-2. That's it. The AURA engine checks gold every 15 minutes (Sun–Fri) and pushes BUY/SELL with entry, SL, TP and lot size, then TP / SL / warnings as the trade plays out.
-3. Optional: add a Telegram bot as well (see `README.md`).
+### A. The real-time engine (MT5 on your Windows PC). Start here.
+Full guide with pictures-in-words: **`mt5/AURA_MT5_Setup.md`**. Short version:
+1. Install **HFM MT5** on your PC and log in to your account.
+2. MT5 → File → Open Data Folder → `MQL5/Experts` → copy **`AURA_RealTime.mq5`** there → in MetaEditor press **F7** (Compile).
+3. Tools → Options → **Expert Advisors**: tick *Allow WebRequest* and add `https://ntfy.sh`.
+4. Tools → Options → **Notifications**: enter your **MetaQuotes ID** from the MT5 phone app.
+5. Open an **XAUUSD** chart → drag **AURA_RealTime** onto it → Inputs: paste your ntfy topic → OK. Click **Algo Trading** so it's green.
+6. You'll get "⚡ AURA live engine ONLINE" on your phone. Keep the PC on (sleep off) while you trade.
 
-### B. The AURA app
-Open **https://waizyk.github.io/aura/** → Chrome ⋮ → **Add to Home screen** (iPhone: Share → Add to Home Screen).
-It shows the session clock, the live trade, lot sizes, the track record and the growth calculator.
+### B. Phone alerts
+- **ntfy app** → subscribe to your AURA topic (full alerts, AURA icon).
+- **MT5 phone app** → push notifications arrive automatically (short version).
 
-### C. TradingView indicator (charts only)
-1. TradingView → **Pine Editor** → paste `AURA_Gold_Signals.pine` → **Save** → **Add to chart**.
-2. Open **OANDA:XAUUSD, 15-minute** (or 1-hour).
-3. Settings → **4 · Account**: HFM account = **Cent (USC)**, balance = what MT5 shows in USC (e.g. 6000).
-4. Works on the free TradingView plan, because it doesn't send alerts. The app does that.
+### C. The AURA app (dashboard + cloud backup)
+Open **https://waizyk.github.io/aura/** → Add to Home screen. It shows whether the MT5 engine is online, the week's news, trades, lot sizes and the track record. When your PC is **off**, the cloud backup sends alerts every ~15 min (can be late). When the PC engine is **on**, cloud alerts are muted, so you never get doubles.
 
-### D. Keep it in sync
-Update `balance` in `config.json` (on GitHub: ✏️ → Commit) and in the indicator settings every week or so, so lot sizes stay right.
+### D. TradingView (charts only)
+Pine Editor → paste `AURA_Gold_Signals.pine` → Save → Add to chart → OANDA:XAUUSD on M5, M15 or D1.
+
+### E. Keep it in sync
+The EA reads your balance from MT5 automatically. For the cloud backup, update `balance` in `config.json` every week or so.
 
 ---
 
@@ -273,7 +315,7 @@ Update `balance` in `config.json` (on GitHub: ✏️ → Commit) and in the indi
 ## 11. Limitations (please read)
 - The backtest used gold **futures** data. Your broker's XAUUSD will differ slightly.
 - 2024–2026 was a strong gold bull market. Trend-following thrives in trends, and a long sideways market will hurt any trend system.
-- The M15 sample is only ~2.5 months (78 trades). Treat its stats as promising, not proven. The H1 results (200 trades, 2.4 years, held-out test) are the more trustworthy ones.
+- The M15 sample is only ~2.5 months (79 trades) and M5 only 60 days. Treat their stats as promising, not proven. D1 has 20 years but only ~80 trades, and it's been flat since 2020. The EA recalculates every track record from HFM's own history each time it starts.
 - Live results are usually worse than backtests because of slippage, spread widening at news and human error. That's why the "Realistic" growth preset halves the expectancy.
 - HFM's South African entity is FSCA-regulated, but always confirm the entity your account is under on the FSCA website. Never give anyone your MT5 password or let "account managers" trade for you.
 - Cent account spreads on gold can be a bit wider than on HFM's other accounts. The backtest assumed $0.35. If your spread is regularly above about $0.50, M15 results will suffer more than H1.

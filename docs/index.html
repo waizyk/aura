@@ -105,6 +105,15 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
     <div class="legend"><span style="--c:rgba(0,230,118,.55)">Best (NY open)</span><span style="--c:rgba(198,255,0,.35)">OK (London)</span><span style="--c:rgba(255,109,0,.4)">Weak (late NY)</span><span style="--c:#1c252f">Quiet (Asia)</span><span style="--c:#0c0f13">Market closed</span></div>
   </div>
 
+  <div class="card" id="liveCard">
+    <h2>Real-time engine <span id="livePill" class="pill neutral" style="margin-left:auto">-</span></h2>
+    <div class="note" id="liveNote" style="margin-top:0"></div>
+    <div id="newsBanner"></div>
+    <h2 style="margin-top:14px">USD news this week · SA time</h2>
+    <div id="newsList"><div class="empty">Loading the calendar…</div></div>
+    <div class="note">Forecast vs actual decides the move. Nobody knows the number before it's released. The MT5 engine warns you 60 / 15 / 5 min before, gives the breakout plan, then alerts the breakout the second it happens.</div>
+  </div>
+
   <div class="card" id="tradeCard">
     <h2>Live trade <span style="margin-left:auto;display:flex;gap:6px" id="tfSwitch"></span></h2>
     <div class="note" id="tfMeta" style="margin:-4px 0 10px"></div>
@@ -139,14 +148,14 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
       <div><label id="cBalLbl">Balance (USC)</label><input id="cBal" type="number" value="6000" inputmode="decimal"></div>
       <div><label>Stop-loss distance ($)</label><input id="cSl" type="number" value="16" step="0.1" inputmode="decimal"></div>
       <div><label>USD/ZAR</label><input id="cFx" type="number" value="16.64" step="0.01" inputmode="decimal"></div>
-      <div><label>Win rate (%)</label><input id="cW" type="number" value="31.5" step="0.5" inputmode="decimal"></div>
+      <div><label>Win rate (%)</label><input id="cW" type="number" value="32.9" step="0.5" inputmode="decimal"></div>
       <div><label>Avg win ÷ avg loss</label><input id="cB" type="number" value="2.8" step="0.1" inputmode="decimal"></div>
       <div><label>Kelly fraction</label><select id="cF"><option value="0.25" selected>¼ Kelly ✓</option><option value="0.5">½ Kelly (risky)</option><option value="1">Full (reckless)</option></select></div>
       <div><label>Max risk cap (%)</label><input id="cCap" type="number" value="2" step="0.25" inputmode="decimal"></div>
     </div>
     <div class="res" id="cOut"></div>
     <div class="note" id="cBalNote"></div>
-    <div class="note">Defaults use the backtested H1 numbers after spread: 31.5% wins, winners about 2.8× the size of losers. The stop distance in $ is shown in the indicator dashboard and in each alert.</div>
+    <div class="note">Defaults use the backtested M15 numbers after spread: 32.9% wins, winners about 2.8× the size of losers. The stop distance in $ is shown in the indicator dashboard and in each alert.</div>
   </div>
   <div class="card">
     <h2>How Kelly works (60 seconds)</h2>
@@ -174,7 +183,7 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
     </div>
     <div class="res" id="gOut"></div>
     <div id="gTable" style="margin-top:10px"></div>
-    <div class="note">Expectancy is the average R you make per trade after costs. The backtest showed +0.20R (H1) to +0.28R (M15). Live trading is usually worse (slippage, mistakes, missed trades), so "Realistic" halves it. Monthly deposits from your income matter more than anything else in the first 2 years.</div>
+    <div class="note">Expectancy is the average R you make per trade after costs. The backtest showed about +0.17R (M5) to +0.27R (M15) after spread. Live trading is usually worse (slippage, mistakes, missed trades), so "Realistic" halves it. Monthly deposits from your income matter more than anything else in the first 2 years.</div>
   </div>
 </section>
 
@@ -229,7 +238,7 @@ function sessionAt(d){
   if (ny.m>=8*60 && ny.m<12*60) return {k:'g', name:'New York open', pill:'BEST', cls:'buy', tip:'The most volume and the cleanest trends. This was the best window in testing. Trade now.'};
   if (ld.m>=7*60 && ld.m<11*60+30) return {k:'o', name:'London session', pill:'OK', cls:'gold', tip:'Good volume, but more fake-outs on gold than NY. Take only clean signals.'};
   if (ny.m>=12*60 && ny.m<17*60) return {k:'w', name:'Late New York', pill:'WEAK', cls:'warn', tip:'This is SA evening. Volume is fading and tested results were weak. Better to plan than trade.'};
-  return {k:'q', name:'Asia session', pill:'QUIET', cls:'neutral', tip:'Slower market. H1 set-and-forget trades are fine. Avoid scalping.'};
+  return {k:'q', name:'Asia session', pill:'QUIET', cls:'neutral', tip:'Slower market. Avoid M5 scalping. M15 signals only if they agree with the daily trend.'};
 }
 function nextBest(now){ for(let i=5;i<=7*24*60;i+=5){ const d=new Date(now.getTime()+i*60000); if(sessionAt(d).k==='g') return d } return null }
 const saFmt = new Intl.DateTimeFormat('en-ZA',{timeZone:'Africa/Johannesburg',hour:'2-digit',minute:'2-digit',hour12:false});
@@ -251,7 +260,7 @@ renderSession(); setInterval(renderSession, 30000);
 
 // ── data from the GitHub engine (static JSON files)
 const EMO = {BUY:'🟢',SELL:'🔴',TP1:'✅',TP2:'✅',TP:'🎯',SL:'🛑',BE:'⚪',EXIT:'🟡',REVERSE:'🔄',WARNING:'⚠️'};
-const TFL = {'15min':'M15','1h':'H1'};
+const TFL = {'5min':'M5','15min':'M15','1h':'H1','1day':'D1'};
 let STATE = null, EVENTS = [], tf = LS.get('tf','15min'), spot = null, sound = LS.get('sound', true), feedTf = LS.get('feedTf','all');
 let knownKeys = new Set(LS.get('known', []));
 function ago(iso){const s=Math.round((Date.now()-new Date(iso))/1000); if(s<60)return s+'s ago'; if(s<3600)return Math.round(s/60)+'m ago'; if(s<86400)return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'}
@@ -288,7 +297,7 @@ function render(){
   $$('#tfSwitch [data-tf]').forEach(b=>b.onclick=()=>{tf=b.dataset.tf; LS.set('tf',tf); render()});
   const S = STATE.timeframes[tf]; if (!S) return;
   const px = spot ?? S.last_price;
-  $('#tfMeta').innerHTML = `Gold ${spot?'<b>'+fmt(spot)+'</b> live':'<b>'+fmt(S.last_price)+'</b>'} · trend <b class="${S.trend==='UP'?'good':'bad'}">${S.trend}</b> (EMA 200) · last candle ${saTime(S.last_bar_close)} SA`;
+  $('#tfMeta').innerHTML = `Gold ${spot?'<b>'+fmt(spot)+'</b> live':'<b>'+fmt(S.last_price)+'</b>'} · trend <b class="${S.trend==='UP'?'good':'bad'}">${S.trend}</b> (EMA ${STATE.tf_settings?.[tf]?.ema_trend||200}) · last candle ${saTime(S.last_bar_close)} SA`;
   const o = S.position, b = $('#tradeBody');
   if (!o) {
     const nt = S.next_trade||{};
@@ -339,7 +348,26 @@ function render(){
   const cc = STATE.config;
   $('#eAcc').textContent = `HFM ${cc.account==='cent'?'Cent (USC)':cc.account.toUpperCase()} · balance ${Number(cc.balance).toLocaleString('en-US')} ${cc.account==='cent'?'USC':cc.account.toUpperCase()}`;
   $('#eFx').textContent = `${fmt(STATE.usdzar,4)} (${STATE.usdzar_source})`;
-  $('#eCfg').textContent = `${cc.timeframes.map(t=>TFL[t]).join(' + ')} · ${cc.rr}R target · exit: ${cc.exit_mode} · ¼-Kelly cap ${cc.max_risk_pct}% · session: ${cc.session}`;
+  const ts = STATE.tf_settings||{};
+  $('#eCfg').textContent = `${cc.timeframes.map(t=>`${TFL[t]} (EMA ${ts[t]?.ema_fast??9}/${ts[t]?.ema_slow??21}/${ts[t]?.ema_trend??200}, ${ts[t]?.rr??cc.rr}R)`).join(' · ')} · exit: ${cc.exit_mode} · ¼-Kelly cap ${cc.max_risk_pct}%`;
+  renderLive();
+}
+function renderLive(){
+  const L = STATE.live_engine||{}, pill = $('#livePill');
+  pill.className = 'pill ' + (L.online ? 'buy' : 'warn');
+  pill.textContent = L.online ? '⚡ MT5 LIVE' : '☁️ CLOUD BACKUP';
+  $('#liveNote').innerHTML = L.online
+    ? `Your PC engine is running (heartbeat ${ago(L.last_seen)}). Alerts come <b>instantly</b> from MT5 on HFM prices, and cloud alerts are muted.`
+    : `MT5 live engine is offline${L.last_seen ? ' (last seen ' + ago(L.last_seen) + ')' : ''}. Cloud backup alerts run about every 15 min and can be late. <b>Start MT5 with the AURA EA</b> for real-time signals and news.`;
+  const now = Date.now(), news = (STATE.news||[]).filter(n => new Date(n.time) > now - 3600e3);
+  const hot = news.find(n => n.impact==='High' && now >= new Date(n.time) - 30*60e3 && now <= +new Date(n.time) + 15*60e3);
+  $('#newsBanner').innerHTML = hot ? `<div class="advice" style="margin-top:10px;border-color:var(--amb)">⏸ NEWS WINDOW: ${hot.title}. No normal entries until ${saTime(new Date(+new Date(hot.time)+15*60e3).toISOString())} SA.</div>` : '';
+  if (!news.length) { $('#newsList').innerHTML = '<div class="empty">No USD high/medium-impact news left this week.</div>'; return; }
+  $('#newsList').innerHTML = news.slice(0,8).map(n => {
+    const t = new Date(n.time), mins = Math.round((t - now)/60000);
+    const when = mins > 0 ? (mins >= 1440 ? Math.floor(mins/1440)+'d' : mins >= 60 ? Math.floor(mins/60)+'h'+String(mins%60).padStart(2,'0') : mins+'m') : 'done';
+    return `<div class="row"><span><span class="pill ${n.impact==='High'?'sell':'neutral'}" style="font-size:10px;padding:2px 7px">${n.impact==='High'?'HIGH':'MED'}</span> ${n.title}<br><span class="meta" style="color:var(--mut);font-size:12px">${saTime(n.time)} SA${n.forecast?' · F '+n.forecast:''}${n.previous?' · P '+n.previous:''}</span></span><b style="font-size:13px;color:${mins>0&&mins<=60?'var(--amb)':'var(--mut)'}">${when}</b></div>`;
+  }).join('');
 }
 function feedItem(e){
   const dir = e.event==='BUY'?'buy':e.event==='SELL'?'sell':['TP','TP1','TP2'].includes(e.event)?'buy':e.event==='SL'?'sell':'warn';
