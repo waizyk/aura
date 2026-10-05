@@ -1,0 +1,18 @@
+{
+  "_help": "Edit these values, then commit. account: cent | zar | usd. balance: exactly as MT5 shows it (USC for cent).",
+  "account": "cent",
+  "balance": 6000,
+  "timeframes": ["15min", "1h"],
+  "symbol_label": "XAUUSD",
+  "rr": 3.0,
+  "sl_atr_buffer": 0.3,
+  "exit_mode": "hold",
+  "be_after_tp1": false,
+  "kelly_fraction": 0.25,
+  "max_risk_pct": 2.0,
+  "start_risk_pct": 1.0,
+  "session": "all",
+  "notify_warnings": true,
+  "notify_milestones": true,
+  "usdzar_fallback": 16.6
+}

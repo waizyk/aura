@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07090c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="icon" href="icon-192.png">
+<title>ACE OPS · Signals</title>
+<style>
+:root{--bg:#07090c;--card:#0f141a;--card2:#141b23;--line:#1f2a35;--txt:#e6edf3;--mut:#8b98a5;--gold:#ffc400;--gold2:#ffdd66;--grn:#00e676;--red:#ff4d5e;--amb:#ffab00;--blu:#4fc3f7}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:rgba(7,9,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header h1{font-size:17px;letter-spacing:.14em;margin:0;font-weight:800}
+header h1 span{color:var(--gold)}
+.dot{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mut)}
+.dot i{width:8px;height:8px;border-radius:50%;background:#555;display:inline-block}
+.dot.on i{background:var(--grn);box-shadow:0 0 8px var(--grn)}
+main{max-width:760px;margin:0 auto;padding:14px 14px 96px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.card h2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);margin:0 0 10px;font-weight:700;display:flex;align-items:center;gap:8px}
+.row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px dashed var(--line)}
+.row:last-child{border-bottom:0}
+.row b{font-variant-numeric:tabular-nums}
+.big{font-size:28px;font-weight:800;letter-spacing:.02em}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.06em}
+.buy{background:rgba(0,230,118,.15);color:var(--grn)}.sell{background:rgba(255,77,94,.15);color:var(--red)}
+.neutral{background:#1c252f;color:var(--mut)}.warn{background:rgba(255,171,0,.15);color:var(--amb)}.gold{background:rgba(255,196,0,.15);color:var(--gold)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.kpi{background:var(--card2);border-radius:12px;padding:10px 12px}
+.kpi small{display:block;color:var(--mut);font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.kpi b{font-size:18px;font-variant-numeric:tabular-nums}
+.levels{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:10px}
+.lv{background:var(--card2);border-radius:10px;padding:8px 6px;text-align:center}
+.lv small{display:block;font-size:10px;color:var(--mut);letter-spacing:.08em}
+.lv b{font-size:13px;font-variant-numeric:tabular-nums}
+.lv.hit{outline:1px solid var(--grn)}
+.advice{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--card2);font-weight:600}
+.feed .it{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--line)}
+.feed .it:last-child{border:0}
+.feed .ic{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;flex:none;background:var(--card2)}
+.feed .meta{color:var(--mut);font-size:12px}
+label{display:block;font-size:12px;color:var(--mut);margin:10px 0 4px;letter-spacing:.04em}
+input,select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card2);color:var(--txt);font-size:15px}
+input:focus,select:focus{outline:1px solid var(--gold)}
+button{font:inherit;cursor:pointer;border:0;border-radius:12px;padding:11px 14px;font-weight:700;background:var(--card2);color:var(--txt)}
+button.primary{background:var(--gold);color:#111}
+button.ghost{background:transparent;border:1px solid var(--line)}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.res{margin-top:12px;padding:12px;border-radius:12px;background:var(--card2)}
+.res .big{color:var(--gold)}
+.note{font-size:12.5px;color:var(--mut);margin-top:8px}
+.bad{color:var(--red)}.good{color:var(--grn)}.amb{color:var(--amb)}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:6;display:flex;background:rgba(10,13,17,.97);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;background:none;border-radius:0;padding:10px 4px 12px;color:var(--mut);font-size:11px;font-weight:600;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav button svg{width:22px;height:22px}
+nav button.act{color:var(--gold)}
+.tab{display:none}.tab.act{display:block}
+.bar{height:8px;border-radius:99px;background:linear-gradient(90deg,var(--red) 0 25%,#3a4652 25% 25.6%,var(--grn) 25.6% 100%);position:relative;margin:14px 0 4px}
+.bar i{position:absolute;top:-5px;width:4px;height:18px;border-radius:3px;background:#fff;box-shadow:0 0 6px #fff;transform:translateX(-2px);transition:left .4s}
+.barlbl{display:flex;justify-content:space-between;font-size:11px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:13px;font-variant-numeric:tabular-nums}
+td,th{padding:7px 6px;border-bottom:1px solid var(--line);text-align:right}
+td:first-child,th:first-child{text-align:left}
+th{color:var(--mut);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;word-break:break-all}
+.empty{color:var(--mut);text-align:center;padding:18px 0}
+.toast{position:fixed;left:50%;top:70px;transform:translateX(-50%) translateY(-20px);opacity:0;background:var(--gold);color:#111;font-weight:700;padding:10px 16px;border-radius:12px;transition:.3s;z-index:9;max-width:90vw}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.sessbar{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin-top:10px}
+.sessbar div{height:22px;border-radius:3px;background:#1c252f;position:relative}
+.sessbar div.g{background:rgba(0,230,118,.55)}.sessbar div.o{background:rgba(198,255,0,.35)}.sessbar div.w{background:rgba(255,109,0,.4)}.sessbar div.c{background:#0c0f13}
+.sessbar div.now{outline:2px solid #fff}
+.sesslbl{display:grid;grid-template-columns:repeat(4,1fr);font-size:10px;color:var(--mut);margin-top:3px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:11px;color:var(--mut);margin-top:8px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:-1px;background:var(--c)}
+</style>
+</head>
+<body>
+<header>
+  <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#0b0f14" stroke="#1f2a35"/><path d="M50 14 L80 52 A15 15 0 0 1 56 68 L62 84 H38 L44 68 A15 15 0 0 1 20 52 Z" fill="#ffc400"/><text x="50" y="62" font-family="Arial" font-weight="900" font-size="22" text-anchor="middle" fill="#0b0f14">A</text></svg>
+  <h1>ACE <span>OPS</span></h1>
+  <div class="dot" id="conn"><i></i><span>loading</span></div>
+</header>
+
+<main>
+<!-- ═════════ SIGNALS ═════════ -->
+<section class="tab act" id="t-signals">
+  <div class="card" id="sessCard">
+    <h2>Session · SA time <span id="saClock" class="pill neutral" style="margin-left:auto"></span></h2>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+      <div><div class="big" id="sessName">-</div><div class="note" id="sessTip" style="margin-top:2px"></div></div>
+      <span class="pill" id="sessPill">-</span>
+    </div>
+    <div class="sessbar" id="sessBar"></div>
+    <div class="sesslbl"><span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span></div>
+    <div class="legend"><span style="--c:rgba(0,230,118,.55)">Best (NY open)</span><span style="--c:rgba(198,255,0,.35)">OK (London)</span><span style="--c:rgba(255,109,0,.4)">Weak (late NY)</span><span style="--c:#1c252f">Quiet (Asia)</span><span style="--c:#0c0f13">Market closed</span></div>
+  </div>
+
+  <div class="card" id="tradeCard">
+    <h2>Live trade <span style="margin-left:auto;display:flex;gap:6px" id="tfSwitch"></span></h2>
+    <div class="note" id="tfMeta" style="margin:-4px 0 10px"></div>
+    <div id="tradeBody"><div class="empty">No open trade. Wait for the next ACE OPS signal.</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Engine track record · <span id="trTf">-</span></h2>
+    <div class="grid2">
+      <div class="kpi"><small>Closed trades</small><b id="sTrades">0</b></div>
+      <div class="kpi"><small>Win rate</small><b id="sWr">-</b></div>
+      <div class="kpi"><small>Avg win : loss</small><b id="sPay">-</b></div>
+      <div class="kpi"><small>Total</small><b id="sTot">-</b></div>
+      <div class="kpi"><small>Expectancy</small><b id="sExp">-</b></div>
+      <div class="kpi"><small>Kelly (full → ¼)</small><b id="sKel">-</b></div>
+    </div>
+    <div class="note" id="trNote">These stats come from the engine running the ACE OPS rules over recent history (the same way the TradingView dashboard does). Kelly needs at least 30 trades to mean anything.</div>
+  </div>
+
+  <div class="card feed">
+    <h2>Signal feed</h2>
+    <div class="btns" style="margin:-4px 0 6px" id="feedFilter"></div><div id="feed"><div class="empty">Loading…</div></div>
+  </div>
+</section>
+
+<!-- ═════════ CALCULATOR ═════════ -->
+<section class="tab" id="t-calc">
+  <div class="card">
+    <h2>Kelly lot-size calculator · gold</h2>
+    <div class="grid2">
+      <div><label>HFM account</label><select id="cAcc"><option value="cent">Cent (USC)</option><option value="zar">ZAR account</option><option value="usd">USD account</option></select></div>
+      <div><label id="cBalLbl">Balance (USC)</label><input id="cBal" type="number" value="6000" inputmode="decimal"></div>
+      <div><label>Stop-loss distance ($)</label><input id="cSl" type="number" value="16" step="0.1" inputmode="decimal"></div>
+      <div><label>USD/ZAR</label><input id="cFx" type="number" value="16.64" step="0.01" inputmode="decimal"></div>
+      <div><label>Win rate (%)</label><input id="cW" type="number" value="31.5" step="0.5" inputmode="decimal"></div>
+      <div><label>Avg win ÷ avg loss</label><input id="cB" type="number" value="2.8" step="0.1" inputmode="decimal"></div>
+      <div><label>Kelly fraction</label><select id="cF"><option value="0.25" selected>¼ Kelly ✓</option><option value="0.5">½ Kelly (risky)</option><option value="1">Full (reckless)</option></select></div>
+      <div><label>Max risk cap (%)</label><input id="cCap" type="number" value="2" step="0.25" inputmode="decimal"></div>
+    </div>
+    <div class="res" id="cOut"></div>
+    <div class="note" id="cBalNote"></div>
+    <div class="note">Defaults use the backtested H1 numbers after spread: 31.5% wins, winners about 2.8× the size of losers. The stop distance in $ is shown in the indicator dashboard and in each alert.</div>
+  </div>
+  <div class="card">
+    <h2>How Kelly works (60 seconds)</h2>
+    <p style="margin:0 0 8px"><b>Kelly % = W − (1 − W) ÷ B</b><br><span class="note">W = win rate, B = average win ÷ average loss</span></p>
+    <p class="note" style="margin:0">Example: W = 0.315, B = 2.8 → 0.315 − 0.685 ÷ 2.8 = <b>7.0%</b>. Full Kelly maximises growth in theory, but it swings 50%+ in practice and your W and B are only estimates. Pros bet ¼ Kelly (here about 1.75%) and cap risk at 2%. If Kelly comes out negative, the system has <b>no edge</b>: don't trade it.</p>
+  </div>
+</section>
+
+<!-- ═════════ GROWTH ═════════ -->
+<section class="tab" id="t-growth">
+  <div class="card">
+    <h2>Road to R1,000,000 · reality planner</h2>
+    <div class="grid2">
+      <div><label>Starting balance (R)</label><input id="gStart" type="number" value="1000" inputmode="decimal"></div>
+      <div><label>Monthly deposit (R)</label><input id="gDep" type="number" value="500" inputmode="decimal"></div>
+      <div><label>Risk per trade (%)</label><input id="gRisk" type="number" value="1.5" step="0.25" inputmode="decimal"></div>
+      <div><label>Trades per month</label><input id="gN" type="number" value="20" inputmode="decimal"></div>
+      <div><label>Expectancy (R per trade)</label><input id="gE" type="number" value="0.12" step="0.01" inputmode="decimal"></div>
+      <div><label>Goal (R)</label><input id="gGoal" type="number" value="1000000" inputmode="decimal"></div>
+    </div>
+    <div class="btns">
+      <button class="ghost" data-preset="cons">Conservative</button>
+      <button class="ghost" data-preset="real">Realistic</button>
+      <button class="ghost" data-preset="best">Best case (backtest)</button>
+    </div>
+    <div class="res" id="gOut"></div>
+    <div id="gTable" style="margin-top:10px"></div>
+    <div class="note">Expectancy is the average R you make per trade after costs. The backtest showed +0.20R (H1) to +0.28R (M15). Live trading is usually worse (slippage, mistakes, missed trades), so "Realistic" halves it. Monthly deposits from your income matter more than anything else in the first 2 years.</div>
+  </div>
+</section>
+
+<!-- ═════════ ENGINE ═════════ -->
+<section class="tab" id="t-setup">
+  <div class="card">
+    <h2>Engine status</h2>
+    <div class="row"><span>Last engine update</span><b id="eGen">-</b></div>
+    <div class="row"><span>Data source</span><b id="eSrc" style="text-align:right;max-width:60%">-</b></div>
+    <div class="row"><span>HFM account</span><b id="eAcc">-</b></div>
+    <div class="row"><span>USD/ZAR</span><b id="eFx">-</b></div>
+    <div class="row"><span>Settings</span><b id="eCfg" style="text-align:right;max-width:60%">-</b></div>
+    <div class="btns"><a id="lnkRun" target="_blank" rel="noopener"><button class="primary">▶ Run now / test phone</button></a><a id="lnkCfg" target="_blank" rel="noopener"><button class="ghost">✏️ Edit settings</button></a></div>
+    <div class="note">The engine runs free on GitHub Actions every 15 minutes, Sunday to Friday. GitHub can start runs a few minutes late at busy times, so always check "still enterable" before you trade.</div>
+  </div>
+  <div class="card">
+    <h2>Phone notifications (free)</h2>
+    <p style="margin:0 0 6px"><b>ntfy (easiest):</b> install the <b>ntfy</b> app (Play Store / App Store), tap <b>+</b> and subscribe to your secret topic name. Put the same name in the GitHub secret <code>NTFY_TOPIC</code>.</p>
+    <p style="margin:0 0 6px"><b>Telegram:</b> create a bot with @BotFather and add <code>TELEGRAM_BOT_TOKEN</code> + <code>TELEGRAM_CHAT_ID</code> as GitHub secrets.</p>
+    <div class="btns"><button class="ghost" id="btnNotif">Enable in-browser alerts</button><button class="ghost" id="btnSound">Sound: on</button></div>
+    <div class="note">In-browser alerts only fire while this page is open. ntfy and Telegram reach your phone even when it's locked.</div>
+  </div>
+</section>
+</main>
+
+<nav>
+  <button class="act" data-tab="signals"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>Signals</button>
+  <button data-tab="calc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2M14 11h2M8 15h2M14 15h2M8 19h2M14 19h2"/></svg>Lot size</button>
+  <button data-tab="growth"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>Growth</button>
+  <button data-tab="setup"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"/><path d="M12 6v6l4 2"/></svg>Engine</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const LS = { get:(k,d)=>{try{const v=localStorage.getItem('ace_'+k);return v===null?d:JSON.parse(v)}catch{return d}}, set:(k,v)=>{try{localStorage.setItem('ace_'+k,JSON.stringify(v))}catch{}} };
+const fmt = (x,d=2) => x===null||x===undefined||isNaN(x) ? '-' : Number(x).toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const R = x => 'R' + fmt(x, 2);
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('show'),2600)}
+
+// ── tabs
+$$('nav button').forEach(b=>b.onclick=()=>{ $$('nav button').forEach(x=>x.classList.toggle('act',x===b)); $$('.tab').forEach(t=>t.classList.toggle('act',t.id==='t-'+b.dataset.tab)); window.scrollTo(0,0); LS.set('tab',b.dataset.tab) });
+const lastTab = LS.get('tab','signals'); const tb = $(`nav button[data-tab="${lastTab}"]`); if (tb) tb.click();
+
+// ── sessions (DST-proof: computed in New York / London time)
+const tzParts = (d,tz) => { const p = new Intl.DateTimeFormat('en-US',{timeZone:tz,hour12:false,weekday:'short',hour:'2-digit',minute:'2-digit'}).formatToParts(d); const o={}; p.forEach(x=>o[x.type]=x.value); return { wd:o.weekday, m:(+o.hour%24)*60 + +o.minute } };
+function sessionAt(d){
+  const ny = tzParts(d,'America/New_York'), ld = tzParts(d,'Europe/London');
+  const closed = (ny.wd==='Sat') || (ny.wd==='Fri' && ny.m>=17*60) || (ny.wd==='Sun' && ny.m<18*60) || (ny.m>=17*60 && ny.m<18*60);
+  if (closed) return {k:'c', name:'Market closed', pill:'CLOSED', cls:'neutral', tip:'Gold is closed (weekend or the daily 1-hour break). Rest.'};
+  if (ny.m>=8*60 && ny.m<12*60) return {k:'g', name:'New York open', pill:'BEST', cls:'buy', tip:'The most volume and the cleanest trends. This was the best window in testing. Trade now.'};
+  if (ld.m>=7*60 && ld.m<11*60+30) return {k:'o', name:'London session', pill:'OK', cls:'gold', tip:'Good volume, but more fake-outs on gold than NY. Take only clean signals.'};
+  if (ny.m>=12*60 && ny.m<17*60) return {k:'w', name:'Late New York', pill:'WEAK', cls:'warn', tip:'This is SA evening. Volume is fading and tested results were weak. Better to plan than trade.'};
+  return {k:'q', name:'Asia session', pill:'QUIET', cls:'neutral', tip:'Slower market. H1 set-and-forget trades are fine. Avoid scalping.'};
+}
+function nextBest(now){ for(let i=5;i<=7*24*60;i+=5){ const d=new Date(now.getTime()+i*60000); if(sessionAt(d).k==='g') return d } return null }
+const saFmt = new Intl.DateTimeFormat('en-ZA',{timeZone:'Africa/Johannesburg',hour:'2-digit',minute:'2-digit',hour12:false});
+const saDay = new Intl.DateTimeFormat('en-ZA',{timeZone:'Africa/Johannesburg',weekday:'short'});
+function renderSession(){
+  const now=new Date(), s=sessionAt(now);
+  $('#saClock').textContent = saDay.format(now)+' '+saFmt.format(now);
+  $('#sessName').textContent = s.name; $('#sessPill').textContent = s.pill; $('#sessPill').className='pill '+s.cls;
+  let tip = s.tip;
+  if (s.k!=='g'){ const nb=nextBest(now); if(nb){ const mins=Math.round((nb-now)/60000); tip += ` Next NY open: ${saDay.format(nb)} ${saFmt.format(nb)} SA (in ${Math.floor(mins/60)}h ${mins%60}m).` } }
+  $('#sessTip').textContent = tip;
+  // 24h strip for today in SA time
+  const saMid = new Date(now); const saH = +new Intl.DateTimeFormat('en-US',{timeZone:'Africa/Johannesburg',hour:'2-digit',hour12:false}).format(now)%24;
+  const base = new Date(now.getTime() - (saH*60 + now.getMinutes())*60000);
+  $('#sessBar').innerHTML = Array.from({length:24},(_,h)=>{ const d=new Date(base.getTime()+h*3600000+30*60000); const k=sessionAt(d).k; return `<div class="${k}${h===saH?' now':''}" title="${String(h).padStart(2,'0')}:00 SA"></div>` }).join('');
+}
+renderSession(); setInterval(renderSession, 30000);
+
+
+// ── data from the GitHub engine (static JSON files)
+const EMO = {BUY:'🟢',SELL:'🔴',TP1:'✅',TP2:'✅',TP:'🎯',SL:'🛑',BE:'⚪',EXIT:'🟡',REVERSE:'🔄',WARNING:'⚠️'};
+const TFL = {'15min':'M15','1h':'H1'};
+let STATE = null, EVENTS = [], tf = LS.get('tf','15min'), spot = null, sound = LS.get('sound', true), feedTf = LS.get('feedTf','all');
+let knownKeys = new Set(LS.get('known', []));
+function ago(iso){const s=Math.round((Date.now()-new Date(iso))/1000); if(s<60)return s+'s ago'; if(s<3600)return Math.round(s/60)+'m ago'; if(s<86400)return Math.round(s/3600)+'h ago'; return Math.round(s/86400)+'d ago'}
+const saTime = iso => new Intl.DateTimeFormat('en-ZA',{timeZone:'Africa/Johannesburg',weekday:'short',day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(iso));
+const accName = a => a==='cent'?'cent lots':a==='zar'?'lots (ZAR acc)':a==='usd'?'lots (USD acc)':(a||'');
+const accRisk = s => (s.acct_ccy && s.acct_ccy!=='ZAR' && s.risk_acct!=null) ? `${fmt(s.risk_acct, s.acct_ccy==='USC'?0:2)} ${s.acct_ccy}` : '';
+
+async function getJSON(p){ const r = await fetch(p+'?t='+Date.now(), {cache:'no-store'}); if(!r.ok) throw new Error(p+' '+r.status); return r.json() }
+async function refresh(){
+  const c=$('#conn');
+  try {
+    const [st, sg] = await Promise.all([getJSON('data/state.json'), getJSON('data/signals.json')]);
+    STATE = st; EVENTS = sg.events || [];
+    const age = (Date.now()-new Date(st.generated))/60000;
+    c.classList.toggle('on', age < 75); c.querySelector('span').textContent = age < 75 ? 'engine live' : 'engine idle';
+    // in-page notifications for events we haven't seen on this device
+    const fresh = EVENTS.filter(e => !knownKeys.has(e.key) && (Date.now()-new Date(e.bar_close)) < 3*3600e3);
+    if (knownKeys.size) fresh.slice(0,3).forEach(notify);
+    EVENTS.forEach(e => knownKeys.add(e.key)); LS.set('known', [...knownKeys].slice(-1500));
+    render();
+  } catch (e) {
+    c.classList.remove('on'); c.querySelector('span').textContent = 'no data yet';
+    $('#tradeBody').innerHTML = '<div class="empty">No engine data yet. Run the GitHub Action once (Engine tab → Run now).</div>';
+    $('#feed').innerHTML = '<div class="empty">Waiting for the first engine run…</div>';
+  }
+}
+async function refreshSpot(){ try { const j = await (await fetch('https://api.gold-api.com/price/XAU',{cache:'no-store'})).json(); if (j.price) { spot = j.price; render() } } catch {} }
+
+function render(){
+  if (!STATE) return;
+  const tfs = Object.keys(STATE.timeframes||{});
+  if (!tfs.includes(tf)) tf = tfs[0];
+  $('#tfSwitch').innerHTML = tfs.map(t=>`<button class="pill ${t===tf?'gold':'neutral'}" style="border:0;padding:4px 10px" data-tf="${t}">${TFL[t]||t}</button>`).join('');
+  $$('#tfSwitch [data-tf]').forEach(b=>b.onclick=()=>{tf=b.dataset.tf; LS.set('tf',tf); render()});
+  const S = STATE.timeframes[tf]; if (!S) return;
+  const px = spot ?? S.last_price;
+  $('#tfMeta').innerHTML = `Gold ${spot?'<b>'+fmt(spot)+'</b> live':'<b>'+fmt(S.last_price)+'</b>'} · trend <b class="${S.trend==='UP'?'good':'bad'}">${S.trend}</b> (EMA 200) · last candle ${saTime(S.last_bar_close)} SA`;
+  const o = S.position, b = $('#tradeBody');
+  if (!o) {
+    const nt = S.next_trade||{};
+    b.innerHTML = `<div class="advice">⏳ ${S.advice}</div>
+      <div class="grid2" style="margin-top:10px"><div class="kpi"><small>Next risk</small><b>${R(nt.risk_zar)}</b> <span class="note">${fmt(nt.risk_pct)}%</span></div>
+      <div class="kpi"><small>Typical lot</small><b style="color:var(--gold)">${nt.typical_lots==null?'-':nt.typical_lots<0.01?'&lt;0.01':fmt(nt.typical_lots)}</b> <span class="note">${accName(STATE.config.account)}</span></div></div>`;
+  } else {
+    const isL = o.side==='LONG', risk = Math.abs(o.entry-(o.sl_orig??o.sl)), rDist = o.sl_dist || risk;
+    const rNow = (px - o.entry)/rDist*(isL?1:-1), rr = Math.abs(o.tp3-o.entry)/rDist;
+    const pct = Math.max(0,Math.min(100,(rNow+1)/(rr+1)*100));
+    const enter = o.still_enterable && rNow <= 0.25 && rNow >= -0.5;
+    const adv = o.advice.includes('warning') ? '⚠️ '+o.advice : o.tp2_hit ? '✅ TP2 hit. HOLD for the final target.' : o.tp1_hit ? '✅ TP1 hit. Trade is working, HOLD.' : '🟢 '+o.advice;
+    b.innerHTML = `
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span class="pill ${isL?'buy':'sell'}">${o.side}</span><b>${STATE.config.symbol_label}</b><span class="meta" style="color:var(--mut)">${TFL[tf]} · opened ${saTime(o.opened)} SA</span></div>
+      <div class="levels">
+        <div class="lv"><small>SL</small><b class="bad">${o.sl}</b></div>
+        <div class="lv"><small>ENTRY</small><b>${o.entry}</b></div>
+        <div class="lv ${o.tp1_hit?'hit':''}"><small>TP1</small><b>${o.tp1??'-'}</b></div>
+        <div class="lv ${o.tp2_hit?'hit':''}"><small>TP2</small><b>${o.tp2??'-'}</b></div>
+        <div class="lv"><small>TP ${fmt(rr,1)}R</small><b class="good">${o.tp3}</b></div>
+      </div>
+      <div class="bar" style="background:linear-gradient(90deg,var(--red) 0 ${100/(rr+1)}%,#3a4652 ${100/(rr+1)}% ${100/(rr+1)+0.6}%,var(--grn) ${100/(rr+1)+0.6}% 100%)"><i style="left:${pct}%"></i></div>
+      <div class="barlbl"><span>-1R</span><span>${rNow>=0?'+':''}${fmt(rNow)}R now</span><span>+${fmt(rr,1)}R</span></div>
+      <div class="grid2" style="margin-top:10px">
+        <div class="kpi"><small>Lot size</small><b style="color:var(--gold)">${o.no_edge?'skip':o.lots==null||o.lots<0.01?'&lt;0.01 skip':fmt(o.lots)} <span style="font-size:12px;color:var(--mut)">${accName(o.account)}</span></b></div>
+        <div class="kpi"><small>Risk</small><b>${R(o.risk_zar)} <span style="font-size:12px;color:var(--mut)">${fmt(o.risk_pct)}%</span></b>${accRisk(o)?`<div style="font-size:12px;color:var(--mut)">${accRisk(o)}</div>`:''}</div>
+      </div>
+      <div class="advice" style="margin-top:10px">${enter?'✅ <b>Still enterable</b>: price is near the entry.':'⛔ <b>Don\'t chase</b>: this trade is already running. If you\'re not in it, wait for the next signal.'}</div>
+      <div class="advice">${adv}</div>`;
+  }
+  const s = S.stats||{};
+  $('#trTf').textContent = `${TFL[tf]} · since ${new Date(S.from_).toLocaleDateString('en-ZA',{month:'short',year:'numeric'})}`;
+  $('#sTrades').textContent = s.trades ?? 0;
+  $('#sWr').textContent = s.win_rate==null?'-':fmt(s.win_rate*100,1)+'%';
+  $('#sPay').textContent = s.payoff?`${fmt(s.avg_win)}R : ${fmt(s.avg_loss)}R`:'-';
+  $('#sTot').innerHTML = s.trades?`<span class="${s.total_r>=0?'good':'bad'}">${s.total_r>=0?'+':''}${fmt(s.total_r,1)}R</span>`:'-';
+  $('#sExp').textContent = s.expectancy==null?'-':`${s.expectancy>=0?'+':''}${fmt(s.expectancy,3)}R`;
+  $('#sKel').innerHTML = s.kelly==null?'-':(s.no_edge?'<span class="bad">no edge</span>':`${fmt(s.kelly*100,1)}% → ${fmt(s.risk_pct,2)}%`);
+  // feed
+  const ft = ['all',...tfs];
+  $('#feedFilter').innerHTML = ft.map(t=>`<button class="pill ${t===feedTf?'gold':'neutral'}" style="border:0;padding:4px 10px" data-ft="${t}">${t==='all'?'All':TFL[t]}</button>`).join('');
+  $$('#feedFilter [data-ft]').forEach(b=>b.onclick=()=>{feedTf=b.dataset.ft; LS.set('feedTf',feedTf); render()});
+  const list = EVENTS.filter(e => feedTf==='all' || e.tf===feedTf).slice(0,60);
+  $('#feed').innerHTML = list.length ? list.map(feedItem).join('') : '<div class="empty">No events yet.</div>';
+  // engine tab
+  $('#eGen').textContent = `${saTime(STATE.generated)} SA (${ago(STATE.generated)})`;
+  $('#eSrc').textContent = Object.entries(STATE.sources||{}).map(([k,v])=>`${TFL[k]}: ${v}`).join(' · ') || '-';
+  const cc = STATE.config;
+  $('#eAcc').textContent = `HFM ${cc.account==='cent'?'Cent (USC)':cc.account.toUpperCase()} · balance ${Number(cc.balance).toLocaleString('en-US')} ${cc.account==='cent'?'USC':cc.account.toUpperCase()}`;
+  $('#eFx').textContent = `${fmt(STATE.usdzar,4)} (${STATE.usdzar_source})`;
+  $('#eCfg').textContent = `${cc.timeframes.map(t=>TFL[t]).join(' + ')} · ${cc.rr}R target · exit: ${cc.exit_mode} · ¼-Kelly cap ${cc.max_risk_pct}% · session: ${cc.session}`;
+}
+function feedItem(e){
+  const dir = e.event==='BUY'?'buy':e.event==='SELL'?'sell':['TP','TP1','TP2'].includes(e.event)?'buy':e.event==='SL'?'sell':'warn';
+  let body = '';
+  if (e.event==='BUY'||e.event==='SELL') body = `Entry <b>${e.entry}</b> · SL <b>${e.sl}</b> · TP <b>${e.tp3}</b><br>Lot <b>${e.lots??'-'}</b> ${accName(e.account)} · risk ${R(e.risk_zar)}${accRisk(e)?' = '+accRisk(e):''} (${fmt(e.risk_pct)}%)`;
+  else if (typeof e.r==='number') body = `Result <b class="${e.r>0?'good':'bad'}">${e.r>0?'+':''}${fmt(e.r)}R</b>`;
+  return `<div class="it"><div class="ic">${EMO[e.event]||'•'}</div><div style="flex:1"><div><span class="pill ${dir}">${e.event}</span> <b>${STATE?.config.symbol_label||'XAUUSD'}</b> <span class="meta">${TFL[e.tf]||e.tf}</span></div><div style="margin-top:4px;font-size:13.5px">${body}</div>${e.note?`<div class="meta" style="margin-top:2px">${e.note}</div>`:''}<div class="meta">${saTime(e.bar_close)} SA · ${ago(e.bar_close)}</div></div></div>`;
+}
+function beep(ev){ if(!sound) return; try{ const ctx=new (window.AudioContext||window.webkitAudioContext)(); const tones = ev==='SL'?[330,220]:ev==='SELL'?[660,440]:[523,784]; tones.forEach((f,i)=>{const o=ctx.createOscillator(),g=ctx.createGain();o.frequency.value=f;o.connect(g);g.connect(ctx.destination);g.gain.setValueAtTime(.18,ctx.currentTime+i*.18);g.gain.exponentialRampToValueAtTime(.001,ctx.currentTime+i*.18+.17);o.start(ctx.currentTime+i*.18);o.stop(ctx.currentTime+i*.18+.18)}) }catch{} }
+async function notify(e){
+  navigator.vibrate && navigator.vibrate([120,60,120]); beep(e.event); toast(`${EMO[e.event]||''} ${e.event} · ${TFL[e.tf]||''}`);
+  if (!('Notification' in window) || Notification.permission!=='granted') return;
+  const body = (e.event==='BUY'||e.event==='SELL') ? `Entry ${e.entry} · SL ${e.sl} · TP ${e.tp3} · Lot ${e.lots??'-'}` : (e.note||'');
+  try { const reg = await navigator.serviceWorker?.getRegistration(); if (reg) reg.showNotification(`ACE OPS · ${e.event} ${TFL[e.tf]||''}`,{body,icon:'icon-192.png',tag:e.key}); else new Notification(`ACE OPS · ${e.event}`,{body,icon:'icon-192.png'}); } catch {}
+}
+refresh(); refreshSpot(); setInterval(refresh, 60000); setInterval(refreshSpot, 30000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) { refresh(); refreshSpot() } });
+// ── calculator
+function calc(){
+  const balIn=+$('#cBal').value, acc=$('#cAcc').value, sl=+$('#cSl').value, fx=+$('#cFx').value, W=+$('#cW').value/100, B=+$('#cB').value, F=+$('#cF').value, cap=+$('#cCap').value;
+  const ccy = acc==='cent'?'USC':acc==='zar'?'ZAR':'USD', toZar = acc==='zar'?1:acc==='cent'?fx/100:fx, bal = balIn*toZar;
+  const inAcc = zar => acc==='zar' ? R(zar) : fmt(zar/toZar, acc==='cent'?0:2)+' '+ccy;
+  $('#cBalLbl').textContent = `Balance (${ccy}, as MT5 shows)`;
+  $('#cBalNote').innerHTML = acc==='zar' ? '' : `≈ <b>${R(bal)}</b> at USD/ZAR ${fmt(fx)}${acc==='cent'?' (100 USC = $1)':''}`;
+  const kelly = W - (1-W)/B, riskPct = kelly<=0 ? 0 : Math.min(kelly*F*100, cap), riskZar = bal*riskPct/100;
+  const contract = acc==='cent'?1:100, lossPerLot = sl*contract*fx, raw = riskZar/lossPerLot, lots = Math.floor(raw*100+1e-9)/100;
+  const minRisk = 0.01*lossPerLot, minPct = minRisk/bal*100;
+  const stdMin = 0.01*sl*100*fx;
+  let html = `<div class="grid2">
+    <div><small class="note">Full Kelly</small><div class="big" style="font-size:22px;color:${kelly>0?'var(--txt)':'var(--red)'}">${fmt(kelly*100,1)}%</div></div>
+    <div><small class="note">Risk this trade</small><div class="big" style="font-size:22px">${fmt(riskPct,2)}%</div><div class="note" style="margin:0">${R(riskZar)}${acc!=='zar'?' = '+inAcc(riskZar):''}</div></div></div>`;
+  if (kelly<=0) html += `<p class="bad" style="margin:10px 0 0"><b>NO EDGE.</b> With these numbers you lose money over time. Don't trade until the stats improve.</p>`;
+  else if (lots < 0.01) html += `<p class="amb" style="margin:10px 0 0"><b>Lot below 0.01.</b> The smallest trade (0.01) would risk ${R(minRisk)} = <b>${fmt(minPct,1)}%</b> of your account. ${acc!=='cent'?'Use your <b>HFM cent (USC) account</b>, or ':''}skip this trade or wait for a tighter stop.</p>`;
+  else html += `<div style="margin-top:10px"><small class="note">Lot size to enter in MT5</small><div class="big">${fmt(lots,2)} <span style="font-size:14px;color:var(--mut)">${acc==='cent'?'lots on your cent account':'lots on your '+ccy+' account'}</span></div><div class="note" style="margin:0">If SL hits you lose ≈ ${R(lots*lossPerLot)}${acc!=='zar'?' ('+inAcc(lots*lossPerLot)+')':''}. At 3R you win ≈ ${R(lots*lossPerLot*3)}${acc!=='zar'?' ('+inAcc(lots*lossPerLot*3)+')':''}.</div></div>`;
+  if (acc==='cent') html += `<p class="note">On your ZAR or USD account, 0.01 lot with this stop would risk ${R(stdMin)} (${fmt(stdMin/bal*100,1)}% of this balance). That's why the cent account is a must under about R20,000.</p>`;
+  else { const need = stdMin/(cap/100); html += `<p class="note">0.01 lot here risks ${R(stdMin)}. To keep that at or below ${fmt(cap,1)}% you need at least <b>${R(need)}</b> in this account.</p>`; }
+  $('#cOut').innerHTML = html;
+  LS.set('calc2',{bal:balIn,balZar:bal,acc,sl,fx,W:W*100,B,F,cap});
+}
+const saved = LS.get('calc2',null); if (saved){ $('#cBal').value=saved.bal; $('#cAcc').value=saved.acc; $('#cSl').value=saved.sl; $('#cFx').value=saved.fx; $('#cW').value=saved.W; $('#cB').value=saved.B; $('#cF').value=saved.F; $('#cCap').value=saved.cap }
+$$('#t-calc input,#t-calc select').forEach(e=>e.oninput=calc); calc();
+let calcPrefilled = !!saved;
+setInterval(()=>{ if (!calcPrefilled && STATE) { calcPrefilled = true; $('#cAcc').value = STATE.config.account; $('#cBal').value = STATE.config.balance; if (STATE.usdzar) $('#cFx').value = (+STATE.usdzar).toFixed(2); const S = STATE.timeframes[tf]; if (S?.position?.sl_dist) $('#cSl').value = S.position.sl_dist; calc(); } }, 1000);
+
+// ── growth planner
+const PRESETS = { cons:{risk:1,n:15,e:0.08}, real:{risk:1.5,n:20,e:0.12}, best:{risk:1.75,n:30,e:0.25} };
+$$('[data-preset]').forEach(b=>b.onclick=()=>{const p=PRESETS[b.dataset.preset]; $('#gRisk').value=p.risk; $('#gN').value=p.n; $('#gE').value=p.e; grow()});
+function grow(){
+  const start=+$('#gStart').value, dep=+$('#gDep').value, risk=+$('#gRisk').value/100, n=+$('#gN').value, e=+$('#gE').value, goal=+$('#gGoal').value;
+  const mRet = Math.pow(1+risk*e, n) - 1;
+  let bal=start, m=0, rows=[], depTot=start;
+  while (bal<goal && m<600){ m++; bal = bal*(1+mRet) + dep; depTot += dep; if (m%12===0 || bal>=goal) rows.push([m,bal,depTot]) }
+  const yrs = (m/12).toFixed(1);
+  const noDep = mRet>0 ? Math.log(goal/start)/Math.log(1+mRet) : Infinity;
+  $('#gOut').innerHTML = `<div class="grid2"><div><small class="note">Monthly growth</small><div class="big" style="font-size:22px">${fmt(mRet*100,1)}%</div></div>
+    <div><small class="note">Time to ${R(goal).replace('.00','')}</small><div class="big" style="font-size:22px">${m>=600?'50+ yrs':yrs+' yrs'}</div></div></div>
+    <p class="note">Without deposits: ${isFinite(noDep)?(noDep/12).toFixed(1)+' years':'never'}. Expect drawdowns of 8 to 10 losing R in a row along the way (backtest max: 8.8R).</p>`;
+  $('#gTable').innerHTML = `<table><tr><th>Month</th><th>Balance</th><th>You deposited</th><th>Trading profit</th></tr>${rows.slice(0,12).map(r=>`<tr><td>${r[0]}</td><td>${R(r[1]).replace(/\.\d\d$/,'')}</td><td>${R(r[2]).replace(/\.\d\d$/,'')}</td><td class="good">${R(r[1]-r[2]).replace(/\.\d\d$/,'')}</td></tr>`).join('')}</table>`;
+}
+$$('#t-growth input').forEach(e=>e.oninput=grow); grow();
+
+
+// ── engine tab links (work out the GitHub repo from the Pages URL)
+(function(){
+  const owner = location.hostname.endsWith('github.io') ? location.hostname.split('.')[0] : null;
+  const repo = location.pathname.split('/').filter(Boolean)[0];
+  const base = owner && repo ? `https://github.com/${owner}/${repo}` : null;
+  if (base) { $('#lnkRun').href = base + '/actions/workflows/ace-ops-signals.yml'; $('#lnkCfg').href = base + '/edit/main/config.json'; }
+  else { $('#lnkRun').onclick = $('#lnkCfg').onclick = e => { e.preventDefault(); toast('Links work once this is hosted on GitHub Pages') } }
+})();
+$('#btnSound').textContent = 'Sound: '+(sound?'on':'off');
+$('#btnSound').onclick = () => { sound=!sound; LS.set('sound',sound); $('#btnSound').textContent='Sound: '+(sound?'on':'off'); if(sound) beep('BUY') };
+$('#btnNotif').onclick = async () => { if(!('Notification' in window)) return toast('Not supported in this browser'); const p = await Notification.requestPermission(); toast(p==='granted'?'Browser alerts enabled ✅':'Blocked'); };
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script>
+</body>
+</html>
