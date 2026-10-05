@@ -1,0 +1,122 @@
+{
+ "generated": "2026-10-05T00:26:33.923526+00:00",
+ "session": {
+  "code": "QUIET",
+  "label": "Asia session"
+ },
+ "usdzar": 16.6586,
+ "usdzar_source": "open.er-api.com",
+ "sources": {
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -20.70 to spot",
+  "1h": "Yahoo \u00b7 gold futures (GC=F) shifted -20.70 to spot"
+ },
+ "config": {
+  "account": "cent",
+  "balance": 6000,
+  "timeframes": [
+   "15min",
+   "1h"
+  ],
+  "rr": 3.0,
+  "exit_mode": "hold",
+  "kelly_fraction": 0.25,
+  "max_risk_pct": 2.0,
+  "session": "all",
+  "symbol_label": "XAUUSD"
+ },
+ "timeframes": {
+  "15min": {
+   "tf": "15min",
+   "last_bar_close": "2026-10-05T00:15:00+00:00",
+   "last_price": 4156.3,
+   "atr": 6.82,
+   "ema_fast": 4152.37,
+   "ema_slow": 4152.91,
+   "ema_trend": 4174.94,
+   "trend": "DOWN",
+   "position": null,
+   "advice": "WAIT for a signal",
+   "stats": {
+    "trades": 79,
+    "win_rate": 0.3291,
+    "avg_win": 2.9131,
+    "avg_loss": 0.9758,
+    "payoff": 2.9853,
+    "kelly": 0.1044,
+    "kelly_ready": true,
+    "no_edge": false,
+    "risk_pct": 2.0,
+    "total_r": 24.0224,
+    "expectancy": 0.3041,
+    "max_dd": 8.0
+   },
+   "next_trade": {
+    "risk_pct": 2.0,
+    "risk_zar": 19.99,
+    "risk_acct": 120.0,
+    "typical_lots": 0.13,
+    "min_lot_pct": 0.1
+   },
+   "bars": 4496,
+   "from_": "2026-07-26T22:00:00+00:00"
+  },
+  "1h": {
+   "tf": "1h",
+   "last_bar_close": "2026-10-05T00:00:00+00:00",
+   "last_price": 4150.9,
+   "atr": 18.76,
+   "ema_fast": 4156.99,
+   "ema_slow": 4167.61,
+   "ema_trend": 4225.73,
+   "trend": "DOWN",
+   "position": {
+    "side": "SHORT",
+    "entry": 4135.4,
+    "sl": 4175.65,
+    "tp1": 4095.15,
+    "tp2": 4054.9,
+    "tp3": 4014.65,
+    "sl_dist": 40.25,
+    "lots": 0.02,
+    "risk_pct": 1.57,
+    "risk_zar": 15.71,
+    "risk_acct": 94.32,
+    "acct_ccy": "USC",
+    "account": "cent",
+    "min_lot_pct": 0.7,
+    "no_edge": false,
+    "opened": "2026-10-02T16:00:00+00:00",
+    "tp1_hit": false,
+    "tp2_hit": false,
+    "live_r": -0.39,
+    "bars_open": 56,
+    "still_enterable": false,
+    "advice": "HOLD: trend intact, let it run"
+   },
+   "advice": "HOLD: trend intact, let it run",
+   "stats": {
+    "trades": 208,
+    "win_rate": 0.2981,
+    "avg_win": 2.9435,
+    "avg_loss": 0.9863,
+    "payoff": 2.9844,
+    "kelly": 0.0629,
+    "kelly_ready": true,
+    "no_edge": false,
+    "risk_pct": 1.5721,
+    "total_r": 38.4996,
+    "expectancy": 0.1851,
+    "max_dd": 13.0
+   },
+   "next_trade": {
+    "risk_pct": 1.57,
+    "risk_zar": 15.71,
+    "risk_acct": 94.32,
+    "typical_lots": 0.03,
+    "min_lot_pct": 0.4
+   },
+   "bars": 13723,
+   "from_": "2024-05-12T22:00:00+00:00"
+  }
+ }
+}
