@@ -9,7 +9,7 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" href="icon-192.png">
-<title>ACE OPS · Signals</title>
+<title>AURA · Gold Signals</title>
 <style>
 :root{--bg:#07090c;--card:#0f141a;--card2:#141b23;--line:#1f2a35;--txt:#e6edf3;--mut:#8b98a5;--gold:#ffc400;--gold2:#ffdd66;--grn:#00e676;--red:#ff4d5e;--amb:#ffab00;--blu:#4fc3f7}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
@@ -17,6 +17,10 @@ html,body{margin:0;background:var(--bg);color:var(--txt);font:15px/1.45 system-u
 header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;background:rgba(7,9,12,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header h1{font-size:17px;letter-spacing:.14em;margin:0;font-weight:800}
 header h1 span{color:var(--gold)}
+.brand{display:flex;flex-direction:column;line-height:1.05}
+.brand small{font-size:10px;letter-spacing:.18em;color:var(--mut);font-weight:700;text-transform:uppercase}
+.credit{text-align:center;color:var(--mut);font-size:12px;line-height:1.6;padding:6px 0 4px;border-top:1px solid var(--line);margin-top:4px}
+.credit b{color:var(--gold);letter-spacing:.12em}
 .dot{margin-left:auto;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--mut)}
 .dot i{width:8px;height:8px;border-radius:50%;background:#555;display:inline-block}
 .dot.on i{background:var(--grn);box-shadow:0 0 8px var(--grn)}
@@ -82,8 +86,8 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
 </head>
 <body>
 <header>
-  <svg width="30" height="30" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#0b0f14" stroke="#1f2a35"/><path d="M50 14 L80 52 A15 15 0 0 1 56 68 L62 84 H38 L44 68 A15 15 0 0 1 20 52 Z" fill="#ffc400"/><text x="50" y="62" font-family="Arial" font-weight="900" font-size="22" text-anchor="middle" fill="#0b0f14">A</text></svg>
-  <h1>ACE <span>OPS</span></h1>
+  <svg width="32" height="32" viewBox="0 0 100 100" aria-hidden="true"><rect width="100" height="100" rx="22" fill="#0b0f14" stroke="#1f2a35"/><circle cx="50" cy="50" r="34" fill="none" stroke="#ffc400" stroke-opacity=".25" stroke-width="10"/><circle cx="50" cy="50" r="34" fill="none" stroke="#ffc400" stroke-width="3.5"/><circle cx="76" cy="28" r="5.5" fill="#ffdd66"/><text x="50" y="61" font-family="Arial,Helvetica,sans-serif" font-weight="900" font-size="31" text-anchor="middle" fill="#ffc400">Au</text></svg>
+  <div class="brand"><h1><span>AU</span>RA</h1><small>by ACE TECH</small></div>
   <div class="dot" id="conn"><i></i><span>loading</span></div>
 </header>
 
@@ -104,7 +108,7 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
   <div class="card" id="tradeCard">
     <h2>Live trade <span style="margin-left:auto;display:flex;gap:6px" id="tfSwitch"></span></h2>
     <div class="note" id="tfMeta" style="margin:-4px 0 10px"></div>
-    <div id="tradeBody"><div class="empty">No open trade. Wait for the next ACE OPS signal.</div></div>
+    <div id="tradeBody"><div class="empty">No open trade. Wait for the next AURA signal.</div></div>
   </div>
 
   <div class="card">
@@ -117,7 +121,7 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
       <div class="kpi"><small>Expectancy</small><b id="sExp">-</b></div>
       <div class="kpi"><small>Kelly (full → ¼)</small><b id="sKel">-</b></div>
     </div>
-    <div class="note" id="trNote">These stats come from the engine running the ACE OPS rules over recent history (the same way the TradingView dashboard does). Kelly needs at least 30 trades to mean anything.</div>
+    <div class="note" id="trNote">These stats come from the engine running the AURA rules over recent history (the same way the TradingView dashboard does). Kelly needs at least 30 trades to mean anything.</div>
   </div>
 
   <div class="card feed">
@@ -194,6 +198,7 @@ code{background:var(--card2);padding:2px 6px;border-radius:6px;font-size:12.5px;
     <div class="note">In-browser alerts only fire while this page is open. ntfy and Telegram reach your phone even when it's locked.</div>
   </div>
 </section>
+<div class="credit"><b>AURA</b> · Gold Signals<br>by <b>ACE TECH</b> · a product of <b>ACE OPS</b><br>Built by Ace Khan</div>
 </main>
 
 <nav>
@@ -348,7 +353,7 @@ async function notify(e){
   navigator.vibrate && navigator.vibrate([120,60,120]); beep(e.event); toast(`${EMO[e.event]||''} ${e.event} · ${TFL[e.tf]||''}`);
   if (!('Notification' in window) || Notification.permission!=='granted') return;
   const body = (e.event==='BUY'||e.event==='SELL') ? `Entry ${e.entry} · SL ${e.sl} · TP ${e.tp3} · Lot ${e.lots??'-'}` : (e.note||'');
-  try { const reg = await navigator.serviceWorker?.getRegistration(); if (reg) reg.showNotification(`ACE OPS · ${e.event} ${TFL[e.tf]||''}`,{body,icon:'icon-192.png',tag:e.key}); else new Notification(`ACE OPS · ${e.event}`,{body,icon:'icon-192.png'}); } catch {}
+  try { const reg = await navigator.serviceWorker?.getRegistration(); if (reg) reg.showNotification(`AURA · ${e.event} ${TFL[e.tf]||''}`,{body,icon:'icon-192.png',tag:e.key}); else new Notification(`AURA · ${e.event}`,{body,icon:'icon-192.png'}); } catch {}
 }
 refresh(); refreshSpot(); setInterval(refresh, 60000); setInterval(refreshSpot, 30000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) { refresh(); refreshSpot() } });
@@ -402,7 +407,7 @@ $$('#t-growth input').forEach(e=>e.oninput=grow); grow();
   const owner = location.hostname.endsWith('github.io') ? location.hostname.split('.')[0] : null;
   const repo = location.pathname.split('/').filter(Boolean)[0];
   const base = owner && repo ? `https://github.com/${owner}/${repo}` : null;
-  if (base) { $('#lnkRun').href = base + '/actions/workflows/ace-ops-signals.yml'; $('#lnkCfg').href = base + '/edit/main/config.json'; }
+  if (base) { $('#lnkRun').href = base + '/actions/workflows/aura-signals.yml'; $('#lnkCfg').href = base + '/edit/main/config.json'; }
   else { $('#lnkRun').onclick = $('#lnkCfg').onclick = e => { e.preventDefault(); toast('Links work once this is hosted on GitHub Pages') } }
 })();
 $('#btnSound').textContent = 'Sound: '+(sound?'on':'off');

@@ -1,4 +1,13 @@
-# ACE OPS · Serverless Gold Signals (100% free)
+# AURA · Gold Signals (100% free)
+
+**AURA by ACE TECH** · a product of **ACE OPS** · built by **Ace Khan**
+
+| | Your live links |
+|---|---|
+| 📱 App | https://waizyk.github.io/aura/ |
+| ⚙️ Settings | [`config.json`](config.json) |
+| ▶ Run / test | Actions → **AURA signals** → Run workflow |
+
 
 Everything runs on **your GitHub account**: no server, no monthly bill, no paid TradingView plan.
 
@@ -7,10 +16,10 @@ Everything runs on **your GitHub account**: no server, no monthly bill, no paid 
 ┌─────────────────┐   new signal?   ┌───────────┐   🔔 push (locked screen too)
 │ GitHub Actions  │ ──────────────► │ ntfy /    │ ─────────────────────────────►
 │ (free cron)     │                 │ Telegram  │
-│ runs ACE OPS    │                 └───────────┘
+│ runs AURA       │                 └───────────┘
 │ engine (Python) │   commits JSON   ┌───────────────────────────┐
-│                 │ ───────────────► │ GitHub Pages (free)       │  ◄── ACE OPS app on
-└────────┬────────┘                  │ yourname.github.io/ace-ops│      your home screen
+│                 │ ───────────────► │ GitHub Pages (free)       │  ◄── AURA app on
+└────────┬────────┘                  │ yourname.github.io/aura   │      your home screen
          │ free gold prices          └───────────────────────────┘
    Twelve Data (spot) / Yahoo
 ```
@@ -23,7 +32,7 @@ Everything runs on **your GitHub account**: no server, no monthly bill, no paid 
 | Phone push notifications | ntfy app and/or Telegram bot | **R0** |
 | Charts with the indicator | TradingView Basic (free; it just can't send alerts) | **R0** |
 
-> **Why not TradingView alerts?** On the free TradingView plan, indicators can't trigger alerts at all (only 3 simple price alerts are allowed), and webhooks need the paid Essential plan + 2FA. So this repo runs the ACE OPS rules itself, and you keep TradingView only for looking at charts.
+> **Why not TradingView alerts?** On the free TradingView plan, indicators can't trigger alerts at all (only 3 simple price alerts are allowed), and webhooks need the paid Essential plan + 2FA. So this repo runs the AURA rules itself, and you keep TradingView only for looking at charts.
 
 ---
 
@@ -31,15 +40,15 @@ Everything runs on **your GitHub account**: no server, no monthly bill, no paid 
 
 ### 1 · Create the repo
 1. Sign in at github.com → **+** (top right) → **New repository**.
-2. Name: `ace-ops` · Visibility: **Public** (required for free Pages + unlimited Actions minutes) → **Create repository**.
+2. Name: `aura` · Visibility: **Public** (required for free Pages + unlimited Actions minutes) → **Create repository**.
 3. Click **uploading an existing file** and drag in everything from this folder: `config.json`, `README.md`, `engine/`, `docs/`.
 4. The `.github` folder is often hidden by your computer, so create it by hand: **Add file → Create new file**, name it exactly
-   `.github/workflows/ace-ops-signals.yml`, paste the contents of that file from this package → **Commit changes**.
+   `.github/workflows/aura-signals.yml`, paste the contents of that file from this package → **Commit changes**.
 
 ### 2 · Get your free keys
 - **Twelve Data** (recommended, real spot gold prices that match HFM): sign up at twelvedata.com → Dashboard → copy your **API key**.
   *No key? It still works using Yahoo gold futures shifted to spot, but levels can differ from HFM by a dollar or two.*
-- **ntfy** (easiest phone push): install the **ntfy** app (Play Store / App Store) → **+** → subscribe to a topic name only you know, e.g. `aceops-thabo-7k2q9x`. Anyone who knows the name can read it, so make it random.
+- **ntfy** (easiest phone push): install the **ntfy** app (Play Store / App Store) → **+** → subscribe to a topic name only you know, e.g. `aura-thabo-7k2q9x`. Anyone who knows the name can read it, so make it random.
 - **Telegram** (optional, instead of or as well as ntfy): message **@BotFather** → `/newbot` → copy the token. Send your bot a message, then open `https://api.telegram.org/bot<TOKEN>/getUpdates` and copy the `"chat":{"id": …}` number.
 
 ### 3 · Add them as secrets (they stay private, even in a public repo)
@@ -57,11 +66,11 @@ Repo → **Settings → Actions → General → Workflow permissions** → **Rea
 
 ### 5 · Switch on the app (GitHub Pages)
 Repo → **Settings → Pages** → Source: **Deploy from a branch** → Branch **main**, folder **/docs** → Save.
-After a minute your app is live at **`https://<your-username>.github.io/ace-ops/`**.
+After a minute your app is live at **`https://<your-username>.github.io/aura/`**.
 
 ### 6 · First run + phone test
-Repo → **Actions** tab → (click *"I understand… enable"* if asked) → **ACE OPS signals** → **Run workflow** → keep "Send a test notification" ticked → **Run**.
-Within a minute your phone should get **"✅ ACE OPS test"** and **"✅ ACE OPS engine connected"**. After that it runs by itself every 15 minutes, Sunday to Friday.
+Repo → **Actions** tab → (click *"I understand… enable"* if asked) → **AURA signals** → **Run workflow** → keep "Send a test notification" ticked → **Run**.
+Within a minute your phone should get **"✅ AURA test"** and **"✅ AURA engine connected"**. After that it runs by itself every 15 minutes, Sunday to Friday.
 
 ### 7 · Install the app on your phone
 Open your Pages link → **Chrome:** ⋮ → *Add to Home screen* · **iPhone Safari:** Share → *Add to Home Screen*.
@@ -87,7 +96,7 @@ Edit **`config.json`** on GitHub (pencil icon) → Commit. The next run uses the
 
 ## What you'll receive
 ```
-🟢 ACE OPS · BUY · XAUUSD M15
+🟢 AURA · BUY · XAUUSD M15
 Entry: 4171.30
 SL: 4161.30  ($10.0 away)
 TP1: 4181.30  TP2: 4191.30
@@ -111,16 +120,19 @@ Then **✅ TP1 / ✅ TP2 / 🎯 TP / 🛑 SL / ⚠️ WARNING / 🔄 REVERSE** a
 - The engine's stats are a rolling backtest of the last ~2 months (M15) and ~10 months (H1) on the same rules. They're not a promise of future results.
 
 ## TradingView (charts only)
-Alerts come from **this app**, not TradingView. `ACE_OPS_Gold_Signals.pine` is a chart-only indicator that uses the same rules, so you can see the setups on your chart:
+Alerts come from **this app**, not TradingView. `AURA_Gold_Signals.pine` is a chart-only indicator that uses the same rules, so you can see the setups on your chart:
 Pine Editor → paste → Save → **Add to chart** → OANDA:XAUUSD, M15 or H1. It works on the free TradingView plan.
 
 ## Files
 ```
 config.json                          ← your settings
-engine/ace_ops_engine.py             ← signal engine (pure Python, no installs)
-.github/workflows/ace-ops-signals.yml← the free 15-minute timer
-docs/                                ← the ACE OPS app (GitHub Pages)
+engine/aura_engine.py             ← signal engine (pure Python, no installs)
+.github/workflows/aura-signals.yml   ← the free 15-minute timer
+docs/                                ← the AURA app (GitHub Pages)
 docs/data/state.json, signals.json   ← written by the engine
-ACE_OPS_Gold_Signals.pine            ← TradingView chart indicator (no alerts)
-ACE_OPS_Guide.md                     ← the ACE OPS trading playbook
+AURA_Gold_Signals.pine            ← TradingView chart indicator (no alerts)
+AURA_Playbook.md                     ← the AURA trading playbook
 ```
+
+---
+*AURA by ACE TECH · a product of ACE OPS · built by Ace Khan*

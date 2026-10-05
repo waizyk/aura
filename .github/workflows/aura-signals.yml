@@ -1,4 +1,4 @@
-name: ACE OPS signals
+name: AURA signals
 
 on:
   schedule:
@@ -15,7 +15,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: ace-ops-signals
+  group: aura-signals
   cancel-in-progress: false
 
 jobs:
@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Run ACE OPS engine
+      - name: Run AURA engine
         env:
           TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
@@ -33,17 +33,17 @@ jobs:
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
           PAGES_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/
           ACE_TEST_NOTIFY: ${{ github.event_name == 'workflow_dispatch' && inputs.test_notification && '1' || '0' }}
-        run: python3 engine/ace_ops_engine.py
+        run: python3 engine/aura_engine.py
 
       - name: Save results for the dashboard
         run: |
-          git config user.name "ACE OPS bot"
+          git config user.name "AURA bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/data
           if git diff --cached --quiet; then
             echo "No changes to save"
           else
-            git commit -m "ACE OPS update $(date -u +'%Y-%m-%d %H:%M') UTC"
+            git commit -m "AURA update $(date -u +'%Y-%m-%d %H:%M') UTC"
             git pull --rebase --autostash
             git push
           fi

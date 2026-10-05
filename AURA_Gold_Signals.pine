@@ -1,15 +1,16 @@
 //@version=6
 // ═══════════════════════════════════════════════════════════════════════════
-//  ACE OPS · Gold Signals v1.1 (chart edition)
+//  AURA · Gold Signals v1.2 (chart edition)
+//  AURA by ACE TECH · a product of ACE OPS · built by Ace Khan
 //  Trend-following entries with confirmed SL / TP, HOLD-vs-EXIT guidance,
 //  and Kelly-criterion lot sizing for HFM accounts (USC cent, ZAR or USD).
 //
-//  Alerts come from the ACE OPS app (GitHub engine), which uses the same rules.
+//  Alerts come from the AURA app (GitHub engine), which uses the same rules.
 //  Default settings were chosen from a backtest on gold (2 years of H1 and
-//  ~2.5 months of M15 data). See ACE_OPS_Guide.md for the numbers.
+//  ~2.5 months of M15 data). See AURA_Playbook.md for the numbers.
 //  Nothing here is financial advice. Past results do not guarantee future results.
 // ═══════════════════════════════════════════════════════════════════════════
-indicator("ACE OPS · Gold Signals", shorttitle="ACE OPS", overlay=true,
+indicator("AURA · Gold Signals by ACE TECH", shorttitle="AURA", overlay=true,
      max_labels_count=500, max_lines_count=500, max_boxes_count=500)
 
 // ───────────────────────────── INPUT GROUPS ─────────────────────────────────
@@ -420,7 +421,7 @@ plotshape(showWarn and evWarn, "Exit warning",     shape.labeldown, location.abo
 
 // ───────────────────────────── DASHBOARD ────────────────────────────────────
 tPos = tblPos == "Top right" ? position.top_right : tblPos == "Top left" ? position.top_left : tblPos == "Bottom right" ? position.bottom_right : position.bottom_left
-var table dash = table.new(tPos, 2, 16, bgcolor=color.new(#0b0f14, 10), border_color=color.new(#263238, 0), border_width=1, frame_color=color.new(#ffc400, 0), frame_width=1)
+var table dash = table.new(tPos, 2, 18, bgcolor=color.new(#0b0f14, 10), border_color=color.new(#263238, 0), border_width=1, frame_color=color.new(#ffc400, 0), frame_width=1)
 tSize = compactTbl ? size.tiny : size.small
 
 f_row(int r, string k, string v, color c) =>
@@ -430,8 +431,8 @@ f_row(int r, string k, string v, color c) =>
 f_px(float x) => na(x) ? "-" : str.tostring(x, format.mintick)
 
 if showTable and barstate.islast
-    table.clear(dash, 0, 0, 1, 15)
-    table.cell(dash, 0, 0, "ACE OPS", text_color=color.new(#ffc400, 0), text_size=tSize, bgcolor=color.new(#000000, 0))
+    table.clear(dash, 0, 0, 1, 17)
+    table.cell(dash, 0, 0, "AURA", text_color=color.new(#ffc400, 0), text_size=tSize, bgcolor=color.new(#000000, 0))
     table.cell(dash, 1, 0, syminfo.ticker + " · " + timeframe.period + " · " + accCcy, text_color=color.white, text_size=tSize, bgcolor=color.new(#000000, 0))
 
     string side = pos == 1 ? "LONG" : pos == -1 ? "SHORT" : "FLAT"
@@ -448,7 +449,7 @@ if showTable and barstate.islast
         f_row(row + 2, "TP1 / TP2", f_px(tp1) + " / " + f_px(tp2), color.new(#69f0ae, 0))
         f_row(row + 3, "Final TP (" + str.tostring(riskReward) + "R)", f_px(tp3), color.new(#00e676, 0))
         f_row(row + 4, "Open P/L", str.tostring(liveR, "+#.##;-#.##") + " R", liveR >= 0 ? color.new(#00e676, 0) : color.new(#ff1744, 0))
-        // Same rule as the ACE OPS app: within 2 candles of the signal and near the entry price
+        // Same rule as the AURA app: within 2 candles of the signal and near the entry price
         bool late = liveR > lateEntryR or liveR < -0.5 or (bar_index - entryBar) > 2
         f_row(row + 5, "Still enterable?", late ? "NO, already running, don't chase" : "YES, near entry", late ? color.new(#ffab00, 0) : color.new(#00e676, 0))
         string lotStr = noEdge ? "skip (no edge)" : na(lotsAtEntry) ? "-" : lotsAtEntry < 0.01 ? "< 0.01 (too small, skip)" : str.tostring(lotsAtEntry, "#.##") + (isCent ? " cent" : " std")
@@ -471,7 +472,12 @@ if showTable and barstate.islast
         string kTxt = na(kellyFull) ? "-" : str.tostring(kellyFull * 100, "#.#") + "% full → " + str.tostring(riskPctNow, "#.##") + "% used" + (kellyReady ? "" : " (warming up)")
         f_row(row + 4, "Kelly", kTxt, noEdge ? color.new(#ff1744, 0) : color.new(#ffc400, 0))
         f_row(row + 5, "Max drawdown", str.tostring(maxDdR, "#.#") + " R", color.new(#ff8a80, 0))
+        row += 6
+
+    // Credit line
+    table.cell(dash, 0, row, "by ACE TECH", text_color=color.new(#ffc400, 0), text_size=size.tiny, text_halign=text.align_left)
+    table.cell(dash, 1, row, "a product of ACE OPS · built by Ace Khan", text_color=color.new(#8b98a5, 0), text_size=size.tiny, text_halign=text.align_right)
 
 // ───────────────────────────── ALERTS ───────────────────────────────────────
-// Alerts are sent by the ACE OPS app (GitHub engine → ntfy / Telegram), not by TradingView.
+// Alerts are sent by the AURA app (GitHub engine → ntfy / Telegram), not by TradingView.
 // This script is for the chart only, so it works on the free TradingView plan.

@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """
-ACE OPS · Serverless signal engine
-==================================
+AURA · Gold signal engine
+=========================
+AURA by ACE TECH · a product of ACE OPS · built by Ace Khan
 Runs on GitHub Actions every 15 minutes (free). It:
   1. downloads closed gold candles (Twelve Data spot XAU/USD, or Yahoo futures shifted to spot),
-  2. runs EXACTLY the same rules as the ACE OPS TradingView indicator,
+  2. runs EXACTLY the same rules as the AURA TradingView indicator,
   3. sends NEW events to your phone (Telegram and/or ntfy),
   4. writes docs/data/state.json + signals.json for the GitHub Pages dashboard.
 
@@ -12,7 +13,7 @@ Pure Python standard library, so there's nothing to install.
 Secrets (set in GitHub → Settings → Secrets and variables → Actions):
   TWELVEDATA_API_KEY   (recommended, free: true spot XAU/USD)
   TELEGRAM_BOT_TOKEN + TELEGRAM_CHAT_ID   (optional)
-  NTFY_TOPIC           (optional, e.g. aceops-signals-8f3k2)
+  NTFY_TOPIC           (optional, e.g. aura-signals-8f3k2)
 """
 import json, math, os, sys, time, urllib.request, urllib.parse
 from datetime import datetime, timezone, timedelta
@@ -42,7 +43,7 @@ def http_json(url, data=None, headers=None, timeout=20):
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return json.loads(r.read().decode())
 
-def log(*a): print("[ACE OPS]", *a, flush=True)
+def log(*a): print("[AURA]", *a, flush=True)
 
 def load_json(path, default):
     try:
@@ -150,7 +151,7 @@ def lot_calc(cfg, usdzar, sl_dist, risk_pct):
     return dict(lots=lots, risk_zar=risk_zar, risk_acct=risk_zar / acc_to_zar, acct_ccy=acc_ccy,
                 min_lot_pct=min_lot_pct, balance_zar=balance_zar)
 
-# ───────────────────────────── the ACE OPS engine ───────────────────
+# ───────────────────────────── the AURA engine ──────────────────────
 def run_engine(bars, tf, cfg, usdzar):
     T = [b[0] for b in bars]; O = [b[1] for b in bars]; H = [b[2] for b in bars]; L = [b[3] for b in bars]; C = [b[4] for b in bars]
     n = len(bars); step = timedelta(minutes=TF_MIN[tf])
@@ -288,7 +289,7 @@ NTFY_TAGS = {"BUY": "green_circle", "SELL": "red_circle", "TP1": "white_check_ma
 def fmt_msg(e, cfg, snap, now):
     tfl = {"15min": "M15", "1h": "H1"}[e["tf"]]
     close_t = datetime.fromisoformat(e["bar_close"]); mins = int((now - close_t).total_seconds() // 60)
-    lines = [f"{EMOJI.get(e['event'], '•')} ACE OPS · {e['event']} · {cfg['symbol_label']} {tfl}"]
+    lines = [f"{EMOJI.get(e['event'], '•')} AURA · {e['event']} · {cfg['symbol_label']} {tfl}"]
     if e["event"] in ("BUY", "SELL"):
         unit = "cent lots" if e["account"] == "cent" else f"lots ({e['acct_ccy']} acc)"
         lots = "SKIP (Kelly: no edge)" if e.get("no_edge") else ("< 0.01, too small, SKIP" if not e["lots"] or e["lots"] < 0.01 else f"{e['lots']:.2f} {unit}")
@@ -318,9 +319,9 @@ def send_ntfy(text, event, url_click=None):
     topic = os.environ.get("NTFY_TOPIC", "").strip()
     if not topic: return False
     try:
-        h = {"Title": f"ACE OPS {event}", "Tags": NTFY_TAGS.get(event, "bell"),
+        h = {"Title": f"AURA {event}", "Tags": NTFY_TAGS.get(event, "bell"),
              "Priority": "high" if event in ("BUY", "SELL", "EXIT", "REVERSE") else "default", "User-Agent": UA}
-        if url_click: h["Click"] = url_click
+        if url_click: h["Click"] = url_click; h["Icon"] = url_click.rstrip("/") + "/icon-192.png"
         urllib.request.urlopen(urllib.request.Request(f"https://ntfy.sh/{topic}", data=text.encode(), headers=h), timeout=15); return True
     except Exception as ex: log("ntfy failed:", ex); return False
 
@@ -340,7 +341,7 @@ def main():
     seen = set(store["seen"])
 
     if os.environ.get("ACE_TEST_NOTIFY") == "1":
-        ok = notify("✅ ACE OPS test: your phone notifications are working.\nYou'll get BUY/SELL, TP, SL and warnings here.", "TEST")
+        ok = notify("✅ AURA test: your phone notifications are working.\nYou'll get BUY/SELL, TP, SL and warnings here.", "TEST")
         log("test notification sent:", ok)
 
     sess_code, sess_label = session_name(now)
@@ -368,7 +369,7 @@ def main():
         log(f"{tf}: {len(bars)} bars via {src} · last {snap['last_price']} · trades {snap['stats']['trades']} · pos {snap['position']['side'] if snap['position'] else 'FLAT'}")
 
     if first_run and snaps:
-        notify(f"✅ ACE OPS engine connected.\nWatching {cfg['symbol_label']} on {', '.join({'15min':'M15','1h':'H1'}[t] for t in snaps)}.\nAccount: HFM {cfg['account'].upper()} · balance {cfg['balance']:,}.\nYou'll be notified of new signals from now on.", "TEST")
+        notify(f"✅ AURA engine connected.\nWatching {cfg['symbol_label']} on {', '.join({'15min':'M15','1h':'H1'}[t] for t in snaps)}.\nAccount: HFM {cfg['account'].upper()} · balance {cfg['balance']:,}.\nYou'll be notified of new signals from now on.\nAURA by ACE TECH · a product of ACE OPS · built by Ace Khan", "TEST")
 
     # merge event history (newest first), keep last 300 for the dashboard
     merged = {e["key"]: e for e in store["events"]}

@@ -1,7 +1,7 @@
 {
-  "name": "ACE OPS Signals",
-  "short_name": "ACE OPS",
-  "description": "ACE OPS gold trading signals, risk and Kelly lot sizing",
+  "name": "AURA Gold Signals",
+  "short_name": "AURA",
+  "description": "AURA by ACE TECH, a product of ACE OPS. Gold signals, risk and Kelly lot sizing.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#07090c",

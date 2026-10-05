@@ -1,6 +1,8 @@
-# ACE OPS · Gold Trading Playbook
+# AURA · Gold Trading Playbook
 
-*Indicator: `pine/ACE_OPS_Gold_Signals.pine` · App: `app/` · Research: `research/`*
+**AURA by ACE TECH** · a product of **ACE OPS** · built by **Ace Khan**
+
+*Indicator: `AURA_Gold_Signals.pine` · App: https://waizyk.github.io/aura/ · Engine: `engine/aura_engine.py`*
 
 > Read this once fully, then keep the **Trade Routine** (section 5) open next to MT5 until you know it by heart.
 > Nothing here is financial advice. Trading leveraged CFDs can lose you all your money, quickly.
@@ -25,7 +27,7 @@ People who try to "skip" this by using big lots almost always blow the account, 
 3. **Compound for years.** Increase lot sizes as your balance grows; the Kelly calculator does this for you.
 4. **Grow your track record.** After 6–12 months of proven results you can apply for prop-firm funded accounts (e.g. a $10k–$100k account for a fee). That's the fastest *legitimate* way to trade bigger money.
 
-The **Growth** tab in the ACE OPS app lets you play with these numbers.
+The **Growth** tab in the AURA app lets you play with these numbers.
 
 ---
 
@@ -37,7 +39,7 @@ I didn't guess. I rebuilt the indicator's logic in Python and tested **8,640 set
 
 **Results (after a $0.35 spread cost per trade):**
 
-| | Your original | **ACE OPS** |
+| | Your original | **AURA** |
 |---|---|---|
 | Settings | EMA 5/13, SL = candle ± 0.5 ATR, 3R | **EMA 9/21 + EMA 200 trend filter**, SL = candle ± **0.3** ATR, 3R |
 | Trades per month (H1) | 28 | **7** (fewer, better) |
@@ -62,7 +64,7 @@ I didn't guess. I rebuilt the indicator's logic in Python and tested **8,640 set
 
 ---
 
-## 3. How the ACE OPS signal works
+## 3. How the AURA signal works
 
 **BUY** when ALL are true on a *closed* candle:
 1. Fast EMA (9) crosses **above** slow EMA (21)
@@ -167,7 +169,7 @@ Lots = Risk in Rand ÷ (SL distance in $ × ounces per lot × USD/ZAR)
 | 0.01 lot of gold = per $1 move | **1 US cent (~R0.17)** | $1 (~R16.60), booked in rand | $1 |
 | Smallest trade with a typical H1 stop ($16) | **~R2.66 = 0.27% of R1,000** ✓ | ~R266 = **27%** ✗ | ~R266 = **27%** ✗ |
 | Smallest trade with a typical M15 stop ($10) | **~R1.66 = 0.17%** ✓ | ~R166 = **17%** ✗ | ~R166 = **17%** ✗ |
-| Use it… | **NOW, for all ACE OPS gold trades** | Later, from ~R15,000–R20,000 | Optional, not needed |
+| Use it… | **NOW, for all AURA gold trades** | Later, from ~R15,000–R20,000 | Optional, not needed |
 
 **What to do:**
 1. Move your trading money (the R1,000) into the **USC cent account**: HFM **myWallet → Internal transfer**. R1,000 ≈ $60 ≈ **6,000 USC**. HFM may charge a small currency conversion fee, so move it once rather than back and forth.
@@ -235,22 +237,23 @@ Don't open new trades 30 min before or after these. Gold can move $30+ in second
 
 ## 9. Setup, step by step
 
-### A. TradingView indicator
-1. TradingView → **Pine Editor** → paste `ACE_OPS_Gold_Signals.pine` → **Save** → **Add to chart**.
-2. Open **XAUUSD, 15-minute**.
+### A. Phone alerts (from the AURA app, not TradingView)
+1. Install the free **ntfy** app (Play Store / App Store) → **+** → subscribe to your private AURA topic.
+2. That's it. The AURA engine checks gold every 15 minutes (Sun–Fri) and pushes BUY/SELL with entry, SL, TP and lot size, then TP / SL / warnings as the trade plays out.
+3. Optional: add a Telegram bot as well (see `README.md`).
+
+### B. The AURA app
+Open **https://waizyk.github.io/aura/** → Chrome ⋮ → **Add to Home screen** (iPhone: Share → Add to Home Screen).
+It shows the session clock, the live trade, lot sizes, the track record and the growth calculator.
+
+### C. TradingView indicator (charts only)
+1. TradingView → **Pine Editor** → paste `AURA_Gold_Signals.pine` → **Save** → **Add to chart**.
+2. Open **OANDA:XAUUSD, 15-minute** (or 1-hour).
 3. Settings → **4 · Account**: HFM account = **Cent (USC)**, balance = what MT5 shows in USC (e.g. 6000).
-4. Settings → **7 · ACE OPS app**: set a secret word (e.g. `aceops-7Hq2`).
+4. Works on the free TradingView plan, because it doesn't send alerts. The app does that.
 
-### B. Phone alerts: free option (start here)
-1. Alert ⏰ → Condition: **ACE OPS → ACE OPS · BUY** (repeat for SELL, Final TP, Stop loss, Exit warning).
-2. Tick **Notify in app**. Install the TradingView app and log in. Done: your phone buzzes on every signal.
-
-### C. Your own ACE OPS app (company-branded)
-1. Deploy the `app/` folder (see `app/README.md`). You get a URL like `https://aceops.up.railway.app`.
-2. TradingView alert → Condition: **ACE OPS → Any alert() function call** → tick **Webhook URL** → paste `https://<your-url>/webhook`.
-   *(Webhooks need a paid TradingView plan, Essential or higher, and 2-factor login switched on.)*
-3. On your phone, open your URL in Chrome/Safari → menu → **Add to Home screen**. It installs with the ACE OPS icon.
-4. Optional but recommended: connect a **Telegram bot** so alerts arrive even when the app is closed (instructions in `app/README.md`).
+### D. Keep it in sync
+Update `balance` in `config.json` (on GitHub: ✏️ → Commit) and in the indicator settings every week or so, so lot sizes stay right.
 
 ---
 
@@ -275,4 +278,5 @@ Don't open new trades 30 min before or after these. Gold can move $30+ in second
 - HFM's South African entity is FSCA-regulated, but always confirm the entity your account is under on the FSCA website. Never give anyone your MT5 password or let "account managers" trade for you.
 - Cent account spreads on gold can be a bit wider than on HFM's other accounts. The backtest assumed $0.35. If your spread is regularly above about $0.50, M15 results will suffer more than H1.
 
-*ACE OPS. Trade the plan, protect the account, compound the years.*
+*AURA by ACE TECH · a product of ACE OPS · built by Ace Khan.*
+*Trade the plan, protect the account, compound the years.*
