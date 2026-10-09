@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-08T21:33:44.815050+00:00",
+ "generated": "2026-10-09T01:27:24.777094+00:00",
  "session": {
-  "code": "CLOSED",
-  "label": "Market closed"
+  "code": "QUIET",
+  "label": "Asia session"
  },
- "usdzar": 16.6394,
+ "usdzar": 16.6154,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -23.80 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -23.80 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -23.80 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -19.00 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -19.00 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -19.00 to spot"
  },
  "config": {
   "account": "cent",
@@ -69,12 +69,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-08T21:04:59+00:00",
-   "last_price": 4134.5,
-   "atr": 2.09,
-   "ema_fast": 4134.2,
-   "ema_slow": 4132.21,
-   "ema_trend": 4171.5,
+   "last_bar_close": "2026-10-09T01:22:25+00:00",
+   "last_price": 4163.4,
+   "atr": 3.74,
+   "ema_fast": 4155.93,
+   "ema_slow": 4150.96,
+   "ema_trend": 4175.41,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -94,22 +94,22 @@
    },
    "next_trade": {
     "risk_pct": 0.8,
-    "risk_zar": 7.98,
+    "risk_zar": 7.97,
     "risk_acct": 47.95,
-    "typical_lots": 0.17,
-    "min_lot_pct": 0.0
+    "typical_lots": 0.09,
+    "min_lot_pct": 0.1
    },
-   "bars": 13625,
+   "bars": 13665,
    "from_": "2026-07-30T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-08T21:14:59+00:00",
-   "last_price": 4134.5,
-   "atr": 5.73,
-   "ema_fast": 4133.21,
-   "ema_slow": 4130.35,
-   "ema_trend": 4130.12,
+   "last_bar_close": "2026-10-09T01:15:00+00:00",
+   "last_price": 4161.7,
+   "atr": 6.43,
+   "ema_fast": 4151.29,
+   "ema_slow": 4145.67,
+   "ema_trend": 4136.56,
    "trend": "UP",
    "position": null,
    "advice": "WAIT for a signal",
@@ -129,22 +129,22 @@
    },
    "next_trade": {
     "risk_pct": 1.78,
-    "risk_zar": 17.82,
+    "risk_zar": 17.79,
     "risk_acct": 107.09,
-    "typical_lots": 0.14,
+    "typical_lots": 0.12,
     "min_lot_pct": 0.1
    },
-   "bars": 4557,
+   "bars": 4569,
    "from_": "2026-07-30T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-08T04:00:00+00:00",
-   "last_price": 4116.9,
+   "last_price": 4121.7,
    "atr": 93.43,
-   "ema_fast": 4176.25,
-   "ema_slow": 4251.12,
-   "ema_trend": 4305.56,
+   "ema_fast": 4181.05,
+   "ema_slow": 4255.92,
+   "ema_trend": 4310.36,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -164,7 +164,7 @@
    },
    "next_trade": {
     "risk_pct": 0.35,
-    "risk_zar": 3.53,
+    "risk_zar": 3.52,
     "risk_acct": 21.19,
     "typical_lots": 0.0,
     "min_lot_pct": 2.0
