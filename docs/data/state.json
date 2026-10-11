@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-11T04:00:51.276445+00:00",
+ "generated": "2026-10-11T10:44:34.778837+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -46,7 +46,85 @@
    "rr": 3.0
   }
  },
- "news": [],
+ "news": [
+  {
+   "title": "Core CPI m/m",
+   "impact": "High",
+   "time": "2026-10-14T12:30:00+00:00",
+   "forecast": "0.2%",
+   "previous": "0.3%"
+  },
+  {
+   "title": "Core CPI y/y",
+   "impact": "High",
+   "time": "2026-10-14T12:30:00+00:00",
+   "forecast": "2.5%",
+   "previous": "2.4%"
+  },
+  {
+   "title": "CPI m/m",
+   "impact": "High",
+   "time": "2026-10-14T12:30:00+00:00",
+   "forecast": "0.6%",
+   "previous": "0.4%"
+  },
+  {
+   "title": "CPI y/y",
+   "impact": "High",
+   "time": "2026-10-14T12:30:00+00:00",
+   "forecast": "3.6%",
+   "previous": "3.4%"
+  },
+  {
+   "title": "Core PPI m/m",
+   "impact": "High",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "0.3%",
+   "previous": "0.2%"
+  },
+  {
+   "title": "Core Retail Sales m/m",
+   "impact": "High",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "0.5%",
+   "previous": "1.4%"
+  },
+  {
+   "title": "PPI m/m",
+   "impact": "High",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "0.5%",
+   "previous": "0.4%"
+  },
+  {
+   "title": "Retail Sales m/m",
+   "impact": "High",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "0.3%",
+   "previous": "1.2%"
+  },
+  {
+   "title": "Philly Fed Manufacturing Index",
+   "impact": "Medium",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "26.5",
+   "previous": "37.8"
+  },
+  {
+   "title": "Unemployment Claims",
+   "impact": "Medium",
+   "time": "2026-10-15T12:30:00+00:00",
+   "forecast": "195K",
+   "previous": "197K"
+  },
+  {
+   "title": "Fed Chairman Warsh Speaks",
+   "impact": "High",
+   "time": "2026-10-16T03:30:00+00:00",
+   "forecast": null,
+   "previous": null
+  }
+ ],
  "live_engine": {
   "online": false,
   "last_seen": null
