@@ -1,6 +1,50 @@
 {
  "events": [
   {
+   "key": "15min|WARNING|2026-10-12T04:00:00+00:00",
+   "tf": "15min",
+   "event": "WARNING",
+   "bar_close": "2026-10-12T04:15:00+00:00",
+   "price": 4199.9,
+   "note": "HOLD (warning: closed past slow EMA)",
+   "notified": "2026-10-12T04:20:43.042577+00:00"
+  },
+  {
+   "key": "15min|BUY|2026-10-12T00:00:00+00:00",
+   "tf": "15min",
+   "event": "BUY",
+   "bar_close": "2026-10-12T00:15:00+00:00",
+   "price": 4207.7,
+   "note": "NEW TRADE: place SL and TP now, then HOLD",
+   "side": "LONG",
+   "entry": 4207.7,
+   "sl": 4187.46,
+   "tp1": 4227.94,
+   "tp2": 4248.19,
+   "tp3": 4268.43,
+   "sl_dist": 20.24,
+   "lots": 0.03,
+   "risk_pct": 1.09,
+   "risk_zar": 10.79,
+   "risk_acct": 65.34,
+   "acct_ccy": "USC",
+   "account": "cent",
+   "min_lot_pct": 0.3,
+   "no_edge": false,
+   "opened": "2026-10-12T00:15:00+00:00"
+  },
+  {
+   "key": "15min|SL|2026-10-11T23:45:00+00:00",
+   "tf": "15min",
+   "event": "SL",
+   "bar_close": "2026-10-12T00:00:00+00:00",
+   "price": 4192.3,
+   "r": -1.0,
+   "side": "LONG",
+   "entry": 4198.5,
+   "note": "Stop loss hit"
+  },
+  {
    "key": "15min|BUY|2026-10-11T23:30:00+00:00",
    "tf": "15min",
    "event": "BUY",
@@ -4093,33 +4137,6 @@
    "min_lot_pct": 0.2,
    "no_edge": false,
    "opened": "2026-09-21T14:15:00+00:00"
-  },
-  {
-   "key": "5min|TP|2026-09-21T14:05:00+00:00",
-   "tf": "5min",
-   "event": "TP",
-   "bar_close": "2026-09-21T14:10:00+00:00",
-   "price": 4346.9,
-   "r": 2.5,
-   "side": "SHORT",
-   "entry": 4357.9,
-   "note": "Final take profit hit"
-  },
-  {
-   "key": "5min|TP1|2026-09-21T14:00:00+00:00",
-   "tf": "5min",
-   "event": "TP1",
-   "bar_close": "2026-09-21T14:05:00+00:00",
-   "price": 4336.7,
-   "note": "TP1 reached: trade is working, keep holding"
-  },
-  {
-   "key": "5min|TP2|2026-09-21T14:00:00+00:00",
-   "tf": "5min",
-   "event": "TP2",
-   "bar_close": "2026-09-21T14:05:00+00:00",
-   "price": 4336.7,
-   "note": "TP2 reached: keep holding for the final target"
   }
  ],
  "seen": [
@@ -4174,6 +4191,7 @@
   "15min|BUY|2026-10-08T12:15:00+00:00",
   "15min|BUY|2026-10-09T13:45:00+00:00",
   "15min|BUY|2026-10-11T23:30:00+00:00",
+  "15min|BUY|2026-10-12T00:00:00+00:00",
   "15min|REVERSE|2026-08-18T14:00:00+00:00",
   "15min|REVERSE|2026-08-28T11:45:00+00:00",
   "15min|REVERSE|2026-09-04T00:00:00+00:00",
@@ -4284,6 +4302,7 @@
   "15min|SL|2026-10-08T13:00:00+00:00",
   "15min|SL|2026-10-08T16:15:00+00:00",
   "15min|SL|2026-10-09T14:15:00+00:00",
+  "15min|SL|2026-10-11T23:45:00+00:00",
   "15min|TP1|2026-07-29T17:00:00+00:00",
   "15min|TP1|2026-08-03T04:15:00+00:00",
   "15min|TP1|2026-08-04T11:45:00+00:00",
@@ -4491,6 +4510,7 @@
   "15min|WARNING|2026-10-07T23:00:00+00:00",
   "15min|WARNING|2026-10-07T23:30:00+00:00",
   "15min|WARNING|2026-10-08T00:00:00+00:00",
+  "15min|WARNING|2026-10-12T04:00:00+00:00",
   "1day|BUY|2017-11-17T05:00:00+00:00",
   "1day|BUY|2017-12-26T05:00:00+00:00",
   "1day|BUY|2018-02-13T05:00:00+00:00",
