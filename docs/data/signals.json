@@ -1,6 +1,22 @@
 {
  "events": [
   {
+   "key": "5min|WARNING|2026-10-14T18:05:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-10-14T18:10:00+00:00",
+   "price": 4086.8,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-10-14T17:20:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-10-14T17:25:00+00:00",
+   "price": 4087.3,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
    "key": "5min|SELL|2026-10-14T12:30:00+00:00",
    "tf": "5min",
    "event": "SELL",
@@ -4084,22 +4100,6 @@
    "side": "SHORT",
    "entry": 4268.6,
    "note": "Stop loss hit"
-  },
-  {
-   "key": "5min|WARNING|2026-09-24T16:10:00+00:00",
-   "tf": "5min",
-   "event": "WARNING",
-   "bar_close": "2026-09-24T16:15:00+00:00",
-   "price": 4265.7,
-   "note": "HOLD (warning: closed past slow EMA)"
-  },
-  {
-   "key": "5min|TP2|2026-09-24T15:10:00+00:00",
-   "tf": "5min",
-   "event": "TP2",
-   "bar_close": "2026-09-24T15:15:00+00:00",
-   "price": 4253.8,
-   "note": "TP2 reached: keep holding for the final target"
   }
  ],
  "seen": [
@@ -6152,6 +6152,8 @@
   "5min|WARNING|2026-10-12T16:55:00+00:00",
   "5min|WARNING|2026-10-12T17:05:00+00:00",
   "5min|WARNING|2026-10-14T00:35:00+00:00",
+  "5min|WARNING|2026-10-14T17:20:00+00:00",
+  "5min|WARNING|2026-10-14T18:05:00+00:00",
   "news|FOMC Meeting Minutes|2026-10-07T18:00:00+00:00"
  ]
 }
