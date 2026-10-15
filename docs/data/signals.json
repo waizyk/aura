@@ -12,12 +12,28 @@
    "note": "Final take profit hit"
   },
   {
+   "key": "5min|TP2|2026-10-15T06:05:00+00:00",
+   "tf": "5min",
+   "event": "TP2",
+   "bar_close": "2026-10-15T06:10:00+00:00",
+   "price": 4132.3,
+   "note": "TP2 reached: keep holding for the final target"
+  },
+  {
    "key": "5min|TP2|2026-10-15T06:00:00+00:00",
    "tf": "5min",
    "event": "TP2",
    "bar_close": "2026-10-15T06:05:00+00:00",
    "price": 4136.7,
    "note": "TP2 reached: keep holding for the final target"
+  },
+  {
+   "key": "5min|TP1|2026-10-15T05:50:00+00:00",
+   "tf": "5min",
+   "event": "TP1",
+   "bar_close": "2026-10-15T05:55:00+00:00",
+   "price": 4139.0,
+   "note": "TP1 reached: trade is working, keep holding"
   },
   {
    "key": "5min|WARNING|2026-10-15T05:35:00+00:00",
@@ -4046,38 +4062,6 @@
    "side": "SHORT",
    "entry": 4282.9,
    "note": "Final take profit hit"
-  },
-  {
-   "key": "5min|TP1|2026-09-25T03:45:00+00:00",
-   "tf": "5min",
-   "event": "TP1",
-   "bar_close": "2026-09-25T03:50:00+00:00",
-   "price": 4278.3,
-   "note": "TP1 reached: trade is working, keep holding"
-  },
-  {
-   "key": "5min|SELL|2026-09-25T03:30:00+00:00",
-   "tf": "5min",
-   "event": "SELL",
-   "bar_close": "2026-09-25T03:35:00+00:00",
-   "price": 4282.9,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "SHORT",
-   "entry": 4282.9,
-   "sl": 4286.0,
-   "tp1": 4279.81,
-   "tp2": 4276.71,
-   "tp3": 4275.16,
-   "sl_dist": 3.1,
-   "lots": 0.16,
-   "risk_pct": 0.84,
-   "risk_zar": 8.37,
-   "risk_acct": 50.24,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.1,
-   "no_edge": false,
-   "opened": "2026-09-25T03:35:00+00:00"
   }
  ],
  "seen": [
@@ -5923,6 +5907,7 @@
   "5min|TP1|2026-10-13T23:55:00+00:00",
   "5min|TP1|2026-10-14T01:00:00+00:00",
   "5min|TP1|2026-10-15T05:35:00+00:00",
+  "5min|TP1|2026-10-15T05:50:00+00:00",
   "5min|TP2|2026-08-07T05:55:00+00:00",
   "5min|TP2|2026-08-10T05:45:00+00:00",
   "5min|TP2|2026-08-10T15:50:00+00:00",
@@ -5990,6 +5975,7 @@
   "5min|TP2|2026-10-13T23:15:00+00:00",
   "5min|TP2|2026-10-14T01:15:00+00:00",
   "5min|TP2|2026-10-15T06:00:00+00:00",
+  "5min|TP2|2026-10-15T06:05:00+00:00",
   "5min|TP|2026-08-07T06:10:00+00:00",
   "5min|TP|2026-08-10T05:50:00+00:00",
   "5min|TP|2026-08-10T15:50:00+00:00",
