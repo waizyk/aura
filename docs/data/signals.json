@@ -1,6 +1,31 @@
 {
  "events": [
   {
+   "key": "15min|BUY|2026-10-18T22:00:00+00:00",
+   "tf": "15min",
+   "event": "BUY",
+   "bar_close": "2026-10-18T22:15:00+00:00",
+   "price": 4176.0,
+   "note": "NEW TRADE: place SL and TP now, then HOLD",
+   "side": "LONG",
+   "entry": 4176.0,
+   "sl": 4169.38,
+   "tp1": 4182.62,
+   "tp2": 4189.24,
+   "tp3": 4195.85,
+   "sl_dist": 6.62,
+   "lots": 0.08,
+   "risk_pct": 0.91,
+   "risk_zar": 9.0,
+   "risk_acct": 54.68,
+   "acct_ccy": "USC",
+   "account": "cent",
+   "min_lot_pct": 0.1,
+   "no_edge": false,
+   "opened": "2026-10-18T22:15:00+00:00",
+   "notified": "2026-10-18T23:11:23.745198+00:00"
+  },
+  {
    "key": "5min|SL|2026-10-16T19:50:00+00:00",
    "tf": "5min",
    "event": "SL",
@@ -4075,14 +4100,6 @@
    "bar_close": "2026-09-28T12:05:00+00:00",
    "price": 4161.1,
    "note": "HOLD (warning: closed past slow EMA)"
-  },
-  {
-   "key": "5min|WARNING|2026-09-28T11:25:00+00:00",
-   "tf": "5min",
-   "event": "WARNING",
-   "bar_close": "2026-09-28T11:30:00+00:00",
-   "price": 4159.2,
-   "note": "HOLD (warning: closed past slow EMA)"
   }
  ],
  "seen": [
@@ -4142,6 +4159,7 @@
   "15min|BUY|2026-10-15T18:00:00+00:00",
   "15min|BUY|2026-10-16T02:45:00+00:00",
   "15min|BUY|2026-10-16T14:00:00+00:00",
+  "15min|BUY|2026-10-18T22:00:00+00:00",
   "15min|REVERSE|2026-08-18T14:00:00+00:00",
   "15min|REVERSE|2026-08-28T11:45:00+00:00",
   "15min|REVERSE|2026-09-04T00:00:00+00:00",
