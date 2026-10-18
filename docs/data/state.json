@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-18T07:56:42.323895+00:00",
+ "generated": "2026-10-18T12:26:27.643271+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -7,7 +7,7 @@
  "usdzar": 16.4652,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -15.00 to spot",
+  "5min": "Yahoo \u00b7 gold futures (GC=F) (NOT shifted: levels may differ from HFM by ~$10-30)",
   "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -15.00 to spot",
   "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -15.00 to spot"
  },
@@ -91,11 +91,11 @@
   "5min": {
    "tf": "5min",
    "last_bar_close": "2026-10-16T21:04:59+00:00",
-   "last_price": 4166.1,
+   "last_price": 4181.1,
    "atr": 3.06,
-   "ema_fast": 4171.88,
-   "ema_slow": 4171.72,
-   "ema_trend": 4171.41,
+   "ema_fast": 4186.88,
+   "ema_slow": 4186.72,
+   "ema_trend": 4186.41,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
