@@ -1,6 +1,33 @@
 {
  "events": [
   {
+   "key": "5min|TP|2026-10-20T23:55:00+00:00",
+   "tf": "5min",
+   "event": "TP",
+   "bar_close": "2026-10-21T00:00:00+00:00",
+   "price": 4113.3,
+   "r": 2.5,
+   "side": "SHORT",
+   "entry": 4119.0,
+   "note": "Final take profit hit"
+  },
+  {
+   "key": "5min|TP1|2026-10-20T23:15:00+00:00",
+   "tf": "5min",
+   "event": "TP1",
+   "bar_close": "2026-10-20T23:20:00+00:00",
+   "price": 4115.8,
+   "note": "TP1 reached: trade is working, keep holding"
+  },
+  {
+   "key": "5min|TP2|2026-10-20T23:15:00+00:00",
+   "tf": "5min",
+   "event": "TP2",
+   "bar_close": "2026-10-20T23:20:00+00:00",
+   "price": 4115.8,
+   "note": "TP2 reached: keep holding for the final target"
+  },
+  {
    "key": "5min|SELL|2026-10-20T22:55:00+00:00",
    "tf": "5min",
    "event": "SELL",
@@ -134,6 +161,14 @@
    "side": "SHORT",
    "entry": 4112.7,
    "note": "Stop loss hit"
+  },
+  {
+   "key": "5min|WARNING|2026-10-20T12:15:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-10-20T12:20:00+00:00",
+   "price": 4120.4,
+   "note": "HOLD (warning: closed past slow EMA)"
   },
   {
    "key": "5min|SELL|2026-10-20T12:05:00+00:00",
@@ -3982,73 +4017,6 @@
    "bar_close": "2026-10-01T17:45:00+00:00",
    "price": 4186.8,
    "note": "TP1 reached: trade is working, keep holding"
-  },
-  {
-   "key": "15min|TP2|2026-10-01T17:30:00+00:00",
-   "tf": "15min",
-   "event": "TP2",
-   "bar_close": "2026-10-01T17:45:00+00:00",
-   "price": 4186.8,
-   "note": "TP2 reached: keep holding for the final target"
-  },
-  {
-   "key": "15min|BUY|2026-10-01T17:15:00+00:00",
-   "tf": "15min",
-   "event": "BUY",
-   "bar_close": "2026-10-01T17:30:00+00:00",
-   "price": 4182.4,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "LONG",
-   "entry": 4182.4,
-   "sl": 4176.4,
-   "tp1": 4188.4,
-   "tp2": 4194.39,
-   "tp3": 4200.39,
-   "sl_dist": 6.0,
-   "lots": 0.2,
-   "risk_pct": 2.0,
-   "risk_zar": 19.99,
-   "risk_acct": 120.0,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.1,
-   "no_edge": false,
-   "opened": "2026-10-01T17:30:00+00:00"
-  },
-  {
-   "key": "5min|SL|2026-10-01T17:00:00+00:00",
-   "tf": "5min",
-   "event": "SL",
-   "bar_close": "2026-10-01T17:05:00+00:00",
-   "price": 4170.1,
-   "r": -1.0,
-   "side": "SHORT",
-   "entry": 4164.2,
-   "note": "Stop loss hit"
-  },
-  {
-   "key": "1h|SELL|2026-10-01T16:00:00+00:00",
-   "tf": "1h",
-   "event": "SELL",
-   "bar_close": "2026-10-01T17:00:00+00:00",
-   "price": 4171.5,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "SHORT",
-   "entry": 4171.5,
-   "sl": 4191.14,
-   "tp1": 4151.87,
-   "tp2": 4132.23,
-   "tp3": 4112.6,
-   "sl_dist": 19.64,
-   "lots": 0.05,
-   "risk_pct": 1.67,
-   "risk_zar": 16.69,
-   "risk_acct": 100.19,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.3,
-   "no_edge": false,
-   "opened": "2026-10-01T17:00:00+00:00"
   }
  ],
  "seen": [
@@ -5955,6 +5923,7 @@
   "5min|TP1|2026-10-19T20:00:00+00:00",
   "5min|TP1|2026-10-20T05:25:00+00:00",
   "5min|TP1|2026-10-20T16:15:00+00:00",
+  "5min|TP1|2026-10-20T23:15:00+00:00",
   "5min|TP2|2026-08-07T05:55:00+00:00",
   "5min|TP2|2026-08-10T05:45:00+00:00",
   "5min|TP2|2026-08-10T15:50:00+00:00",
@@ -6029,6 +5998,7 @@
   "5min|TP2|2026-10-19T22:40:00+00:00",
   "5min|TP2|2026-10-20T05:35:00+00:00",
   "5min|TP2|2026-10-20T17:00:00+00:00",
+  "5min|TP2|2026-10-20T23:15:00+00:00",
   "5min|TP|2026-08-07T06:10:00+00:00",
   "5min|TP|2026-08-10T05:50:00+00:00",
   "5min|TP|2026-08-10T15:50:00+00:00",
@@ -6089,6 +6059,7 @@
   "5min|TP|2026-10-19T22:50:00+00:00",
   "5min|TP|2026-10-20T05:45:00+00:00",
   "5min|TP|2026-10-20T17:00:00+00:00",
+  "5min|TP|2026-10-20T23:55:00+00:00",
   "5min|WARNING|2026-08-07T02:40:00+00:00",
   "5min|WARNING|2026-08-09T23:30:00+00:00",
   "5min|WARNING|2026-08-11T10:15:00+00:00",
@@ -6193,6 +6164,7 @@
   "5min|WARNING|2026-10-19T07:45:00+00:00",
   "5min|WARNING|2026-10-19T22:00:00+00:00",
   "5min|WARNING|2026-10-19T22:25:00+00:00",
+  "5min|WARNING|2026-10-20T12:15:00+00:00",
   "news|Core PPI m/m|2026-10-15T12:30:00+00:00",
   "news|Core Retail Sales m/m|2026-10-15T12:30:00+00:00",
   "news|FOMC Meeting Minutes|2026-10-07T18:00:00+00:00",
