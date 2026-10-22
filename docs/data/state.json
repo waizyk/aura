@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-22T09:32:36.170316+00:00",
+ "generated": "2026-10-22T14:40:25.789050+00:00",
  "session": {
-  "code": "OK",
-  "label": "London session"
+  "code": "BEST",
+  "label": "New York open"
  },
  "usdzar": 16.3749,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -17.30 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -17.30 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -17.40 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -9.70 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -9.70 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -9.50 to spot"
  },
  "config": {
   "account": "cent",
@@ -48,13 +48,6 @@
  },
  "news": [
   {
-   "title": "Unemployment Claims",
-   "impact": "Medium",
-   "time": "2026-10-22T12:30:00+00:00",
-   "forecast": "200K",
-   "previous": "199K"
-  },
-  {
    "title": "Flash Manufacturing PMI",
    "impact": "Medium",
    "time": "2026-10-23T13:45:00+00:00",
@@ -90,47 +83,47 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-22T09:27:34+00:00",
-   "last_price": 4085.1,
-   "atr": 4.69,
-   "ema_fast": 4085.32,
-   "ema_slow": 4087.17,
-   "ema_trend": 4148.09,
+   "last_bar_close": "2026-10-22T14:35:24+00:00",
+   "last_price": 4058.7,
+   "atr": 6.77,
+   "ema_fast": 4062.05,
+   "ema_slow": 4070.4,
+   "ema_trend": 4151.81,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
    "stats": {
-    "trades": 123,
-    "win_rate": 0.3496,
-    "avg_win": 2.4011,
+    "trades": 125,
+    "win_rate": 0.36,
+    "avg_win": 2.403,
     "avg_loss": 1.0909,
-    "payoff": 2.2011,
-    "kelly": 0.0541,
+    "payoff": 2.2029,
+    "kelly": 0.0695,
     "kelly_ready": true,
     "no_edge": false,
-    "risk_pct": 1.3525,
-    "total_r": 15.9768,
-    "expectancy": 0.1299,
+    "risk_pct": 1.7368,
+    "total_r": 20.8683,
+    "expectancy": 0.1669,
     "max_dd": 18.8284
    },
    "next_trade": {
-    "risk_pct": 1.35,
-    "risk_zar": 13.29,
-    "risk_acct": 81.15,
-    "typical_lots": 0.13,
+    "risk_pct": 1.74,
+    "risk_zar": 17.06,
+    "risk_acct": 104.21,
+    "typical_lots": 0.11,
     "min_lot_pct": 0.1
    },
-   "bars": 13485,
+   "bars": 13547,
    "from_": "2026-08-13T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-22T09:30:00+00:00",
-   "last_price": 4086.2,
-   "atr": 8.95,
-   "ema_fast": 4087.55,
-   "ema_slow": 4091.07,
-   "ema_trend": 4121.91,
+   "last_bar_close": "2026-10-22T14:30:00+00:00",
+   "last_price": 4055.2,
+   "atr": 11.18,
+   "ema_fast": 4068.74,
+   "ema_slow": 4077.68,
+   "ema_trend": 4120.25,
    "trend": "DOWN",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
@@ -155,17 +148,17 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.2
    },
-   "bars": 4511,
+   "bars": 4531,
    "from_": "2026-08-13T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-22T04:00:00+00:00",
-   "last_price": 4132.6,
+   "last_price": 4140.5,
    "atr": 76.19,
-   "ema_fast": 4145.7,
-   "ema_slow": 4188.28,
-   "ema_trend": 4296.32,
+   "ema_fast": 4153.6,
+   "ema_slow": 4196.18,
+   "ema_trend": 4304.22,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
