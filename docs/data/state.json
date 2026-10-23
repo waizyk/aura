@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-23T15:21:10.459530+00:00",
+ "generated": "2026-10-23T19:26:36.102464+00:00",
  "session": {
-  "code": "BEST",
-  "label": "New York open"
+  "code": "WEAK",
+  "label": "Late New York"
  },
  "usdzar": 16.4953,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -6.40 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -6.50 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -6.50 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -11.60 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -11.60 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -11.60 to spot"
  },
  "config": {
   "account": "cent",
@@ -46,36 +46,7 @@
    "rr": 3.0
   }
  },
- "news": [
-  {
-   "title": "Flash Manufacturing PMI",
-   "impact": "Medium",
-   "time": "2026-10-23T13:45:00+00:00",
-   "forecast": "55.4",
-   "previous": "57.0"
-  },
-  {
-   "title": "Flash Services PMI",
-   "impact": "Medium",
-   "time": "2026-10-23T13:45:00+00:00",
-   "forecast": "57.9",
-   "previous": "58.7"
-  },
-  {
-   "title": "Revised UoM Consumer Sentiment",
-   "impact": "Medium",
-   "time": "2026-10-23T14:00:00+00:00",
-   "forecast": "46.3",
-   "previous": "46.3"
-  },
-  {
-   "title": "Revised UoM Inflation Expectations",
-   "impact": "Medium",
-   "time": "2026-10-23T14:00:00+00:00",
-   "forecast": null,
-   "previous": "4.7%"
-  }
- ],
+ "news": [],
  "live_engine": {
   "online": false,
   "last_seen": null
@@ -83,56 +54,56 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-23T15:16:07+00:00",
-   "last_price": 4001.3,
-   "atr": 7.05,
-   "ema_fast": 4006.79,
-   "ema_slow": 4016.16,
-   "ema_trend": 4129.17,
+   "last_bar_close": "2026-10-23T19:21:29+00:00",
+   "last_price": 3998.4,
+   "atr": 2.77,
+   "ema_fast": 3999.03,
+   "ema_slow": 4000.33,
+   "ema_trend": 4118.97,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
    "stats": {
-    "trades": 122,
-    "win_rate": 0.377,
-    "avg_win": 2.3956,
-    "avg_loss": 1.0922,
-    "payoff": 2.1935,
-    "kelly": 0.093,
+    "trades": 126,
+    "win_rate": 0.3571,
+    "avg_win": 2.403,
+    "avg_loss": 1.0908,
+    "payoff": 2.203,
+    "kelly": 0.0653,
     "kelly_ready": true,
     "no_edge": false,
-    "risk_pct": 2.0,
-    "total_r": 27.1954,
-    "expectancy": 0.2229,
-    "max_dd": 12.0542
+    "risk_pct": 1.6333,
+    "total_r": 19.7813,
+    "expectancy": 0.157,
+    "max_dd": 18.8284
    },
    "next_trade": {
-    "risk_pct": 2.0,
-    "risk_zar": 19.79,
-    "risk_acct": 120.0,
-    "typical_lots": 0.13,
-    "min_lot_pct": 0.2
+    "risk_pct": 1.63,
+    "risk_zar": 16.17,
+    "risk_acct": 98.0,
+    "typical_lots": 0.27,
+    "min_lot_pct": 0.1
    },
-   "bars": 13566,
+   "bars": 13604,
    "from_": "2026-08-14T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-23T15:15:00+00:00",
-   "last_price": 4003.4,
-   "atr": 10.91,
-   "ema_fast": 4013.6,
-   "ema_slow": 4021.45,
-   "ema_trend": 4066.08,
+   "last_bar_close": "2026-10-23T19:15:00+00:00",
+   "last_price": 3998.4,
+   "atr": 7.37,
+   "ema_fast": 4000.46,
+   "ema_slow": 4004.04,
+   "ema_trend": 4052.1,
    "trend": "DOWN",
    "position": {
     "side": "SHORT",
-    "entry": 4015.4,
-    "sl": 4032.95,
-    "tp1": 3997.85,
-    "tp2": 3980.3,
-    "tp3": 3962.75,
-    "sl_dist": 17.55,
+    "entry": 4010.1,
+    "sl": 4027.84,
+    "tp1": 3992.36,
+    "tp2": 3974.61,
+    "tp3": 3956.87,
+    "sl_dist": 17.74,
     "lots": 0.0,
     "risk_pct": 0.0,
     "risk_zar": 0.0,
@@ -144,25 +115,25 @@
     "opened": "2026-10-23T14:15:00+00:00",
     "tp1_hit": true,
     "tp2_hit": false,
-    "live_r": 0.68,
-    "bars_open": 4,
+    "live_r": 0.66,
+    "bars_open": 20,
     "still_enterable": false,
     "advice": "HOLD: trend intact, let it run"
    },
    "advice": "HOLD: trend intact, let it run",
    "stats": {
-    "trades": 85,
-    "win_rate": 0.2588,
+    "trades": 84,
+    "win_rate": 0.2619,
     "avg_win": 2.856,
     "avg_loss": 1.0339,
-    "payoff": 2.7624,
-    "kelly": -0.0095,
+    "payoff": 2.7625,
+    "kelly": -0.0053,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -2.3027,
-    "expectancy": -0.0271,
-    "max_dd": 21.1925
+    "total_r": -1.2666,
+    "expectancy": -0.0151,
+    "max_dd": 20.1291
    },
    "next_trade": {
     "risk_pct": 0.0,
@@ -171,17 +142,17 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.2
    },
-   "bars": 4534,
+   "bars": 4550,
    "from_": "2026-08-14T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-23T04:00:00+00:00",
-   "last_price": 4053.9,
+   "last_price": 4048.8,
    "atr": 79.85,
-   "ema_fast": 4136.06,
-   "ema_slow": 4185.98,
-   "ema_trend": 4304.7,
+   "ema_fast": 4130.96,
+   "ema_slow": 4180.88,
+   "ema_trend": 4299.6,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
