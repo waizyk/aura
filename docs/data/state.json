@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-25T03:12:46.037436+00:00",
+ "generated": "2026-10-25T08:25:04.071475+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -46,7 +46,71 @@
    "rr": 3.0
   }
  },
- "news": [],
+ "news": [
+  {
+   "title": "CB Consumer Confidence",
+   "impact": "Medium",
+   "time": "2026-10-27T14:00:00+00:00",
+   "forecast": "80.5",
+   "previous": "81.9"
+  },
+  {
+   "title": "Federal Funds Rate",
+   "impact": "High",
+   "time": "2026-10-28T18:00:00+00:00",
+   "forecast": "4.00%",
+   "previous": "4.00%"
+  },
+  {
+   "title": "FOMC Statement",
+   "impact": "High",
+   "time": "2026-10-28T18:00:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "FOMC Press Conference",
+   "impact": "High",
+   "time": "2026-10-28T18:30:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "Advance GDP q/q",
+   "impact": "High",
+   "time": "2026-10-29T12:30:00+00:00",
+   "forecast": "3.2%",
+   "previous": "1.5%"
+  },
+  {
+   "title": "Core PCE Price Index m/m",
+   "impact": "High",
+   "time": "2026-10-29T12:30:00+00:00",
+   "forecast": "0.3%",
+   "previous": "0.2%"
+  },
+  {
+   "title": "Advance GDP Price Index q/q",
+   "impact": "Medium",
+   "time": "2026-10-29T12:30:00+00:00",
+   "forecast": "3.5%",
+   "previous": "6.2%"
+  },
+  {
+   "title": "Unemployment Claims",
+   "impact": "Medium",
+   "time": "2026-10-29T12:30:00+00:00",
+   "forecast": "198K",
+   "previous": "194K"
+  },
+  {
+   "title": "Employment Cost Index q/q",
+   "impact": "Medium",
+   "time": "2026-10-30T12:30:00+00:00",
+   "forecast": "0.8%",
+   "previous": "0.9%"
+  }
+ ],
  "live_engine": {
   "online": false,
   "last_seen": null
@@ -54,12 +118,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-23T21:00:00+00:00",
+   "last_bar_close": "2026-10-23T21:04:58+00:00",
    "last_price": 3996.9,
-   "atr": 2.59,
-   "ema_fast": 3998.69,
-   "ema_slow": 3999.87,
-   "ema_trend": 4117.69,
+   "atr": 2.41,
+   "ema_fast": 3998.43,
+   "ema_slow": 3999.7,
+   "ema_trend": 4117.59,
    "trend": "DOWN",
    "position": {
     "side": "SHORT",
@@ -69,10 +133,10 @@
     "tp2": 3996.08,
     "tp3": 3994.88,
     "sl_dist": 2.41,
-    "lots": 0.4,
-    "risk_pct": 1.63,
-    "risk_zar": 16.25,
-    "risk_acct": 98.0,
+    "lots": 0.38,
+    "risk_pct": 1.55,
+    "risk_zar": 15.45,
+    "risk_acct": 93.18,
     "acct_ccy": "USC",
     "account": "cent",
     "min_lot_pct": 0.0,
@@ -87,37 +151,37 @@
    },
    "advice": "HOLD: trend intact, let it run",
    "stats": {
-    "trades": 126,
-    "win_rate": 0.3571,
-    "avg_win": 2.403,
-    "avg_loss": 1.0908,
-    "payoff": 2.203,
-    "kelly": 0.0653,
+    "trades": 124,
+    "win_rate": 0.3548,
+    "avg_win": 2.4035,
+    "avg_loss": 1.0905,
+    "payoff": 2.204,
+    "kelly": 0.0621,
     "kelly_ready": true,
     "no_edge": false,
-    "risk_pct": 1.6333,
-    "total_r": 19.7813,
-    "expectancy": 0.157,
+    "risk_pct": 1.553,
+    "total_r": 18.5142,
+    "expectancy": 0.1493,
     "max_dd": 18.8284
    },
    "next_trade": {
-    "risk_pct": 1.63,
-    "risk_zar": 16.25,
-    "risk_acct": 98.0,
+    "risk_pct": 1.55,
+    "risk_zar": 15.45,
+    "risk_acct": 93.18,
     "typical_lots": 0.29,
     "min_lot_pct": 0.1
    },
-   "bars": 13623,
-   "from_": "2026-08-14T04:00:00+00:00"
+   "bars": 13419,
+   "from_": "2026-08-16T22:10:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-23T21:00:00+00:00",
+   "last_bar_close": "2026-10-23T21:14:58+00:00",
    "last_price": 3996.9,
-   "atr": 5.98,
-   "ema_fast": 3999.26,
-   "ema_slow": 4002.01,
-   "ema_trend": 4049.11,
+   "atr": 5.56,
+   "ema_fast": 3998.79,
+   "ema_slow": 4001.54,
+   "ema_trend": 4048.59,
    "trend": "DOWN",
    "position": {
     "side": "SHORT",
@@ -145,17 +209,17 @@
    },
    "advice": "HOLD: trend intact, let it run",
    "stats": {
-    "trades": 84,
-    "win_rate": 0.2619,
+    "trades": 83,
+    "win_rate": 0.2651,
     "avg_win": 2.856,
-    "avg_loss": 1.0339,
-    "payoff": 2.7625,
-    "kelly": -0.0053,
+    "avg_loss": 1.0342,
+    "payoff": 2.7615,
+    "kelly": -0.0011,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -1.2666,
-    "expectancy": -0.0151,
+    "total_r": -0.2544,
+    "expectancy": -0.0031,
     "max_dd": 20.1291
    },
    "next_trade": {
@@ -165,8 +229,8 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.1
    },
-   "bars": 4557,
-   "from_": "2026-08-14T04:00:00+00:00"
+   "bars": 4489,
+   "from_": "2026-08-16T22:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
@@ -200,8 +264,8 @@
     "typical_lots": 0.0,
     "min_lot_pct": 1.7
    },
-   "bars": 2515,
-   "from_": "2016-10-24T04:00:00+00:00"
+   "bars": 2514,
+   "from_": "2016-10-25T04:00:00+00:00"
   }
  }
 }
