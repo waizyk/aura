@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-27T11:45:24.915163+00:00",
+ "generated": "2026-10-27T16:52:22.874160+00:00",
  "session": {
-  "code": "QUIET",
-  "label": "Asia session"
+  "code": "WEAK",
+  "label": "Late New York"
  },
  "usdzar": 16.6355,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) (NOT shifted: levels may differ from HFM by ~$10-30)",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -13.70 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -13.70 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -12.30 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -12.30 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -12.50 to spot"
  },
  "config": {
   "account": "cent",
@@ -47,13 +47,6 @@
   }
  },
  "news": [
-  {
-   "title": "CB Consumer Confidence",
-   "impact": "Medium",
-   "time": "2026-10-27T14:00:00+00:00",
-   "forecast": "81.2",
-   "previous": "81.9"
-  },
   {
    "title": "Federal Funds Rate",
    "impact": "High",
@@ -118,12 +111,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-27T11:40:14+00:00",
-   "last_price": 4024.5,
-   "atr": 3.81,
-   "ema_fast": 4021.99,
-   "ema_slow": 4017.64,
-   "ema_trend": 4096.18,
+   "last_bar_close": "2026-10-27T16:47:19+00:00",
+   "last_price": 4062.2,
+   "atr": 3.4,
+   "ema_fast": 4060.7,
+   "ema_slow": 4053.65,
+   "ema_trend": 4081.77,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -145,21 +138,21 @@
     "risk_pct": 0.76,
     "risk_zar": 7.57,
     "risk_acct": 45.51,
-    "typical_lots": 0.09,
+    "typical_lots": 0.1,
     "min_lot_pct": 0.1
    },
-   "bars": 13511,
+   "bars": 13572,
    "from_": "2026-08-18T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-27T11:45:00+00:00",
-   "last_price": 4010.4,
-   "atr": 6.81,
-   "ema_fast": 4005.25,
-   "ema_slow": 4003.36,
-   "ema_trend": 4017.38,
-   "trend": "DOWN",
+   "last_bar_close": "2026-10-27T16:45:00+00:00",
+   "last_price": 4061.8,
+   "atr": 7.51,
+   "ema_fast": 4056.68,
+   "ema_slow": 4043.34,
+   "ema_trend": 4023.04,
+   "trend": "UP",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
    "stats": {
@@ -181,19 +174,19 @@
     "risk_zar": 0.0,
     "risk_acct": 0.0,
     "typical_lots": 0.0,
-    "min_lot_pct": 0.1
+    "min_lot_pct": 0.2
    },
-   "bars": 4519,
+   "bars": 4539,
    "from_": "2026-08-18T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-27T04:00:00+00:00",
-   "last_price": 4024.7,
+   "last_price": 4025.9,
    "atr": 77.38,
-   "ema_fast": 4086.48,
-   "ema_slow": 4149.51,
-   "ema_trend": 4291.8,
+   "ema_fast": 4087.68,
+   "ema_slow": 4150.71,
+   "ema_trend": 4293.0,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
