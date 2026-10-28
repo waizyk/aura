@@ -1,15 +1,15 @@
 {
- "generated": "2026-10-28T18:39:11.086680+00:00",
+ "generated": "2026-10-28T22:51:58.946726+00:00",
  "session": {
-  "code": "WEAK",
-  "label": "Late New York"
+  "code": "QUIET",
+  "label": "Asia session"
  },
  "usdzar": 16.637,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted +5.70 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted +5.70 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted +6.10 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -14.40 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -14.40 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -14.40 to spot"
  },
  "config": {
   "account": "cent",
@@ -47,27 +47,6 @@
   }
  },
  "news": [
-  {
-   "title": "Federal Funds Rate",
-   "impact": "High",
-   "time": "2026-10-28T18:00:00+00:00",
-   "forecast": "4.00%",
-   "previous": "4.00%"
-  },
-  {
-   "title": "FOMC Statement",
-   "impact": "High",
-   "time": "2026-10-28T18:00:00+00:00",
-   "forecast": null,
-   "previous": null
-  },
-  {
-   "title": "FOMC Press Conference",
-   "impact": "High",
-   "time": "2026-10-28T18:30:00+00:00",
-   "forecast": null,
-   "previous": null
-  },
   {
    "title": "Advance GDP q/q",
    "impact": "High",
@@ -111,12 +90,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-28T18:34:07+00:00",
-   "last_price": 4055.5,
-   "atr": 4.03,
-   "ema_fast": 4055.09,
-   "ema_slow": 4057.67,
-   "ema_trend": 4092.76,
+   "last_bar_close": "2026-10-28T22:46:54+00:00",
+   "last_price": 4054.0,
+   "atr": 4.8,
+   "ema_fast": 4057.29,
+   "ema_slow": 4056.95,
+   "ema_trend": 4072.21,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -138,23 +117,46 @@
     "risk_pct": 0.48,
     "risk_zar": 4.82,
     "risk_acct": 28.99,
-    "typical_lots": 0.05,
+    "typical_lots": 0.04,
     "min_lot_pct": 0.1
    },
-   "bars": 13594,
+   "bars": 13633,
    "from_": "2026-08-19T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-28T18:30:00+00:00",
-   "last_price": 4055.1,
-   "atr": 6.02,
-   "ema_fast": 4057.39,
-   "ema_slow": 4060.27,
-   "ema_trend": 4057.15,
-   "trend": "DOWN",
-   "position": null,
-   "advice": "NO EDGE on this timeframe: don't trade it",
+   "last_bar_close": "2026-10-28T22:45:00+00:00",
+   "last_price": 4054.0,
+   "atr": 11.0,
+   "ema_fast": 4057.95,
+   "ema_slow": 4053.56,
+   "ema_trend": 4039.63,
+   "trend": "UP",
+   "position": {
+    "side": "LONG",
+    "entry": 4053.6,
+    "sl": 4036.28,
+    "tp1": 4070.92,
+    "tp2": 4088.25,
+    "tp3": 4105.57,
+    "sl_dist": 17.32,
+    "lots": 0.0,
+    "risk_pct": 0.0,
+    "risk_zar": 0.0,
+    "risk_acct": 0.0,
+    "acct_ccy": "USC",
+    "account": "cent",
+    "min_lot_pct": 0.3,
+    "no_edge": true,
+    "opened": "2026-10-28T19:30:00+00:00",
+    "tp1_hit": true,
+    "tp2_hit": false,
+    "live_r": 0.02,
+    "bars_open": 13,
+    "still_enterable": false,
+    "advice": "HOLD: pullback inside trend"
+   },
+   "advice": "HOLD: pullback inside trend",
    "stats": {
     "trades": 85,
     "win_rate": 0.2471,
@@ -174,19 +176,19 @@
     "risk_zar": 0.0,
     "risk_acct": 0.0,
     "typical_lots": 0.0,
-    "min_lot_pct": 0.1
+    "min_lot_pct": 0.2
    },
-   "bars": 4546,
+   "bars": 4559,
    "from_": "2026-08-19T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-28T04:00:00+00:00",
-   "last_price": 4080.7,
+   "last_price": 4060.2,
    "atr": 77.41,
-   "ema_fast": 4101.17,
-   "ema_slow": 4161.26,
-   "ema_trend": 4309.3,
+   "ema_fast": 4080.67,
+   "ema_slow": 4140.76,
+   "ema_trend": 4288.8,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
