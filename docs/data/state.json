@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-01T04:25:51.865827+00:00",
+ "generated": "2026-11-01T11:25:55.942682+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -46,7 +46,78 @@
    "rr": 3.0
   }
  },
- "news": [],
+ "news": [
+  {
+   "title": "ISM Manufacturing PMI",
+   "impact": "Medium",
+   "time": "2026-11-02T15:00:00+00:00",
+   "forecast": "54.7",
+   "previous": "54.5"
+  },
+  {
+   "title": "JOLTS Job Openings",
+   "impact": "Medium",
+   "time": "2026-11-03T15:00:00+00:00",
+   "forecast": "7.11M",
+   "previous": "7.08M"
+  },
+  {
+   "title": "Congressional Elections",
+   "impact": "High",
+   "time": "2026-11-03T15:16:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "ISM Services PMI",
+   "impact": "Medium",
+   "time": "2026-11-04T15:00:00+00:00",
+   "forecast": "54.9",
+   "previous": "54.9"
+  },
+  {
+   "title": "Unemployment Claims",
+   "impact": "Medium",
+   "time": "2026-11-05T13:30:00+00:00",
+   "forecast": "197K",
+   "previous": "194K"
+  },
+  {
+   "title": "Average Hourly Earnings m/m",
+   "impact": "High",
+   "time": "2026-11-06T13:30:00+00:00",
+   "forecast": "0.3%",
+   "previous": "0.1%"
+  },
+  {
+   "title": "Non-Farm Employment Change",
+   "impact": "High",
+   "time": "2026-11-06T13:30:00+00:00",
+   "forecast": "63K",
+   "previous": "29K"
+  },
+  {
+   "title": "Unemployment Rate",
+   "impact": "High",
+   "time": "2026-11-06T13:30:00+00:00",
+   "forecast": "4.2%",
+   "previous": "4.2%"
+  },
+  {
+   "title": "Prelim UoM Consumer Sentiment",
+   "impact": "Medium",
+   "time": "2026-11-06T15:00:00+00:00",
+   "forecast": "47.8",
+   "previous": "46.3"
+  },
+  {
+   "title": "Prelim UoM Inflation Expectations",
+   "impact": "Medium",
+   "time": "2026-11-06T15:00:00+00:00",
+   "forecast": null,
+   "previous": "4.7%"
+  }
+ ],
  "live_engine": {
   "online": false,
   "last_seen": null
@@ -57,34 +128,34 @@
    "last_bar_close": "2026-10-30T21:04:59+00:00",
    "last_price": 3876.4,
    "atr": 4.62,
-   "ema_fast": 3867.42,
-   "ema_slow": 3868.47,
-   "ema_trend": 4032.4,
+   "ema_fast": 3867.43,
+   "ema_slow": 3868.48,
+   "ema_trend": 4032.27,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
    "stats": {
-    "trades": 133,
-    "win_rate": 0.3383,
-    "avg_win": 2.398,
-    "avg_loss": 1.0887,
-    "payoff": 2.2026,
-    "kelly": 0.0379,
+    "trades": 136,
+    "win_rate": 0.3235,
+    "avg_win": 2.4055,
+    "avg_loss": 1.0861,
+    "payoff": 2.2148,
+    "kelly": 0.0181,
     "kelly_ready": true,
     "no_edge": false,
-    "risk_pct": 0.9487,
-    "total_r": 12.1021,
-    "expectancy": 0.091,
-    "max_dd": 14.0205
+    "risk_pct": 0.4525,
+    "total_r": 5.9213,
+    "expectancy": 0.0435,
+    "max_dd": 16.0248
    },
    "next_trade": {
-    "risk_pct": 0.95,
-    "risk_zar": 9.49,
-    "risk_acct": 56.92,
-    "typical_lots": 0.09,
+    "risk_pct": 0.45,
+    "risk_zar": 4.53,
+    "risk_acct": 27.15,
+    "typical_lots": 0.04,
     "min_lot_pct": 0.1
    },
-   "bars": 13427,
+   "bars": 13420,
    "from_": "2026-08-23T22:10:00+00:00"
   },
   "15min": {
@@ -92,25 +163,25 @@
    "last_bar_close": "2026-10-30T21:14:59+00:00",
    "last_price": 3876.4,
    "atr": 8.5,
-   "ema_fast": 3869.86,
-   "ema_slow": 3876.42,
+   "ema_fast": 3869.87,
+   "ema_slow": 3876.44,
    "ema_trend": 3968.86,
    "trend": "DOWN",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
    "stats": {
-    "trades": 85,
-    "win_rate": 0.2353,
-    "avg_win": 2.844,
+    "trades": 84,
+    "win_rate": 0.2381,
+    "avg_win": 2.8441,
     "avg_loss": 1.036,
-    "payoff": 2.7452,
-    "kelly": -0.0433,
+    "payoff": 2.7453,
+    "kelly": -0.0394,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -10.4582,
-    "expectancy": -0.123,
-    "max_dd": 25.5672
+    "total_r": -9.4219,
+    "expectancy": -0.1122,
+    "max_dd": 24.5035
    },
    "next_trade": {
     "risk_pct": 0.0,
