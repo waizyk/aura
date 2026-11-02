@@ -1,15 +1,15 @@
 {
- "generated": "2026-11-01T21:11:13.422796+00:00",
+ "generated": "2026-11-02T00:44:05.353466+00:00",
  "session": {
-  "code": "CLOSED",
-  "label": "Market closed"
+  "code": "QUIET",
+  "label": "Asia session"
  },
  "usdzar": 16.6721,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -22.50 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -22.50 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -22.50 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -8.70 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -8.70 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -8.70 to spot"
  },
  "config": {
   "account": "cent",
@@ -51,7 +51,7 @@
    "title": "ISM Manufacturing PMI",
    "impact": "Medium",
    "time": "2026-11-02T15:00:00+00:00",
-   "forecast": "54.7",
+   "forecast": "54.5",
    "previous": "54.5"
   },
   {
@@ -125,12 +125,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-10-30T21:04:59+00:00",
-   "last_price": 3876.4,
-   "atr": 4.62,
-   "ema_fast": 3867.42,
-   "ema_slow": 3868.47,
-   "ema_trend": 4032.4,
+   "last_bar_close": "2026-11-02T00:39:01+00:00",
+   "last_price": 3896.4,
+   "atr": 4.07,
+   "ema_fast": 3897.49,
+   "ema_slow": 3892.85,
+   "ema_trend": 4044.13,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -152,20 +152,20 @@
     "risk_pct": 0.95,
     "risk_zar": 9.49,
     "risk_acct": 56.92,
-    "typical_lots": 0.09,
+    "typical_lots": 0.1,
     "min_lot_pct": 0.1
    },
-   "bars": 13427,
+   "bars": 13444,
    "from_": "2026-08-23T22:10:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-10-30T21:14:59+00:00",
-   "last_price": 3876.4,
-   "atr": 8.5,
-   "ema_fast": 3869.86,
-   "ema_slow": 3876.42,
-   "ema_trend": 3968.86,
+   "last_bar_close": "2026-11-02T00:30:00+00:00",
+   "last_price": 3899.5,
+   "atr": 8.17,
+   "ema_fast": 3894.7,
+   "ema_slow": 3894.01,
+   "ema_trend": 3978.64,
    "trend": "DOWN",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
@@ -190,17 +190,17 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.2
    },
-   "bars": 4489,
+   "bars": 4494,
    "from_": "2026-08-23T22:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-10-31T04:00:00+00:00",
-   "last_price": 3876.4,
+   "last_price": 3890.2,
    "atr": 81.38,
-   "ema_fast": 4017.58,
-   "ema_slow": 4091.35,
-   "ema_trend": 4271.54,
+   "ema_fast": 4031.38,
+   "ema_slow": 4105.15,
+   "ema_trend": 4285.34,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
