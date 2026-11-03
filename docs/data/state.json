@@ -1,15 +1,15 @@
 {
- "generated": "2026-11-02T23:47:37.882579+00:00",
+ "generated": "2026-11-03T05:22:36.304343+00:00",
  "session": {
   "code": "QUIET",
   "label": "Asia session"
  },
- "usdzar": 16.6943,
+ "usdzar": 16.6134,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -9.10 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -9.10 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -9.10 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -8.80 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -8.80 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -8.80 to spot"
  },
  "config": {
   "account": "cent",
@@ -118,82 +118,82 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-11-02T23:42:30+00:00",
-   "last_price": 3946.7,
-   "atr": 2.37,
-   "ema_fast": 3946.38,
-   "ema_slow": 3947.21,
-   "ema_trend": 4020.35,
+   "last_bar_close": "2026-11-03T05:17:29+00:00",
+   "last_price": 3926.9,
+   "atr": 4.32,
+   "ema_fast": 3933.94,
+   "ema_slow": 3941.17,
+   "ema_trend": 4017.49,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
    "stats": {
     "trades": 134,
-    "win_rate": 0.3358,
-    "avg_win": 2.3948,
-    "avg_loss": 1.0899,
-    "payoff": 2.1974,
-    "kelly": 0.0336,
+    "win_rate": 0.3284,
+    "avg_win": 2.4025,
+    "avg_loss": 1.0924,
+    "payoff": 2.1992,
+    "kelly": 0.023,
     "kelly_ready": true,
     "no_edge": false,
-    "risk_pct": 0.839,
-    "total_r": 10.7694,
-    "expectancy": 0.0804,
-    "max_dd": 14.0205
+    "risk_pct": 0.5738,
+    "total_r": 7.3894,
+    "expectancy": 0.0551,
+    "max_dd": 14.2822
    },
    "next_trade": {
-    "risk_pct": 0.84,
-    "risk_zar": 8.4,
-    "risk_acct": 50.34,
-    "typical_lots": 0.16,
+    "risk_pct": 0.57,
+    "risk_zar": 5.72,
+    "risk_acct": 34.43,
+    "typical_lots": 0.06,
     "min_lot_pct": 0.1
    },
-   "bars": 13639,
-   "from_": "2026-08-24T04:00:00+00:00"
+   "bars": 13408,
+   "from_": "2026-08-25T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-11-02T23:45:00+00:00",
-   "last_price": 3946.6,
-   "atr": 5.88,
-   "ema_fast": 3946.6,
-   "ema_slow": 3947.82,
-   "ema_trend": 3949.46,
+   "last_bar_close": "2026-11-03T05:15:00+00:00",
+   "last_price": 3928.5,
+   "atr": 7.68,
+   "ema_fast": 3939.88,
+   "ema_slow": 3944.95,
+   "ema_trend": 3949.38,
    "trend": "DOWN",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
    "stats": {
     "trades": 85,
-    "win_rate": 0.2353,
-    "avg_win": 2.844,
-    "avg_loss": 1.0361,
-    "payoff": 2.7449,
-    "kelly": -0.0433,
+    "win_rate": 0.2235,
+    "avg_win": 2.8386,
+    "avg_loss": 1.0366,
+    "payoff": 2.7385,
+    "kelly": -0.06,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -10.4655,
-    "expectancy": -0.1231,
-    "max_dd": 26.6025
+    "total_r": -14.4794,
+    "expectancy": -0.1703,
+    "max_dd": 27.6419
    },
    "next_trade": {
     "risk_pct": 0.0,
     "risk_zar": 0.0,
     "risk_acct": 0.0,
     "typical_lots": 0.0,
-    "min_lot_pct": 0.1
+    "min_lot_pct": 0.2
    },
-   "bars": 4559,
-   "from_": "2026-08-24T04:00:00+00:00"
+   "bars": 4484,
+   "from_": "2026-08-25T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
-   "last_bar_close": "2026-10-31T04:00:00+00:00",
-   "last_price": 3889.8,
-   "atr": 81.38,
-   "ema_fast": 4030.98,
-   "ema_slow": 4104.75,
-   "ema_trend": 4284.94,
+   "last_bar_close": "2026-11-03T05:00:00+00:00",
+   "last_price": 3960.8,
+   "atr": 82.12,
+   "ema_fast": 4017.19,
+   "ema_slow": 4091.94,
+   "ema_trend": 4282.02,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -213,13 +213,13 @@
    },
    "next_trade": {
     "risk_pct": 0.35,
-    "risk_zar": 3.54,
+    "risk_zar": 3.52,
     "risk_acct": 21.19,
     "typical_lots": 0.0,
     "min_lot_pct": 1.8
    },
    "bars": 2513,
-   "from_": "2016-11-02T04:00:00+00:00"
+   "from_": "2016-11-03T04:00:00+00:00"
   }
  }
 }
