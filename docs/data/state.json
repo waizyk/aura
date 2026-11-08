@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-08T11:26:49.215807+00:00",
+ "generated": "2026-11-08T17:10:52.581849+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -7,7 +7,7 @@
  "usdzar": 16.5155,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted -2.80 to spot",
+  "5min": "Yahoo \u00b7 gold futures (GC=F) (NOT shifted: levels may differ from HFM by ~$10-30)",
   "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -2.80 to spot",
   "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -2.80 to spot"
  },
@@ -98,19 +98,19 @@
   "5min": {
    "tf": "5min",
    "last_bar_close": "2026-11-06T22:04:59+00:00",
-   "last_price": 4072.1,
+   "last_price": 4074.9,
    "atr": 2.81,
-   "ema_fast": 4072.25,
-   "ema_slow": 4071.57,
-   "ema_trend": 4041.15,
+   "ema_fast": 4075.05,
+   "ema_slow": 4074.37,
+   "ema_trend": 4043.95,
    "trend": "UP",
    "position": {
     "side": "LONG",
-    "entry": 4066.2,
-    "sl": 4058.46,
-    "tp1": 4073.94,
-    "tp2": 4081.68,
-    "tp3": 4085.55,
+    "entry": 4069.0,
+    "sl": 4061.26,
+    "tp1": 4076.74,
+    "tp2": 4084.48,
+    "tp3": 4088.35,
     "sl_dist": 7.74,
     "lots": 0.0,
     "risk_pct": 0.0,
