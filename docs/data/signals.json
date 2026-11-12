@@ -1,6 +1,38 @@
 {
  "events": [
   {
+   "key": "5min|TP1|2026-11-12T02:40:00+00:00",
+   "tf": "5min",
+   "event": "TP1",
+   "bar_close": "2026-11-12T02:45:00+00:00",
+   "price": 3979.1,
+   "note": "TP1 reached: trade is working, keep holding"
+  },
+  {
+   "key": "5min|SELL|2026-11-12T02:30:00+00:00",
+   "tf": "5min",
+   "event": "SELL",
+   "bar_close": "2026-11-12T02:35:00+00:00",
+   "price": 3985.6,
+   "note": "SIGNAL, but Kelly says NO EDGE: skip",
+   "side": "SHORT",
+   "entry": 3985.6,
+   "sl": 3992.99,
+   "tp1": 3978.21,
+   "tp2": 3970.81,
+   "tp3": 3967.12,
+   "sl_dist": 7.39,
+   "lots": 0.0,
+   "risk_pct": 0.0,
+   "risk_zar": 0.0,
+   "risk_acct": 0.0,
+   "acct_ccy": "USC",
+   "account": "cent",
+   "min_lot_pct": 0.1,
+   "no_edge": true,
+   "opened": "2026-11-12T02:35:00+00:00"
+  },
+  {
    "key": "5min|TP|2026-11-11T12:55:00+00:00",
    "tf": "5min",
    "event": "TP",
@@ -4038,27 +4070,6 @@
    "price": 4126.0,
    "note": "HOLD (warning: closed past slow EMA)",
    "notified": "2026-10-20T23:25:06.742542+00:00"
-  },
-  {
-   "key": "5min|TP2|2026-10-20T17:00:00+00:00",
-   "tf": "5min",
-   "event": "TP2",
-   "bar_close": "2026-10-20T17:05:00+00:00",
-   "price": 4117.3,
-   "note": "TP2 reached: keep holding for the final target",
-   "notified": "2026-10-20T17:11:13.407717+00:00"
-  },
-  {
-   "key": "5min|TP|2026-10-20T17:00:00+00:00",
-   "tf": "5min",
-   "event": "TP",
-   "bar_close": "2026-10-20T17:05:00+00:00",
-   "price": 4117.3,
-   "r": 2.5,
-   "side": "SHORT",
-   "entry": 4126.8,
-   "note": "Final take profit hit",
-   "notified": "2026-10-20T17:11:13.407717+00:00"
   }
  ],
  "seen": [
@@ -5958,6 +5969,7 @@
   "5min|SELL|2026-11-10T19:35:00+00:00",
   "5min|SELL|2026-11-11T01:10:00+00:00",
   "5min|SELL|2026-11-11T09:10:00+00:00",
+  "5min|SELL|2026-11-12T02:30:00+00:00",
   "5min|SL|2026-08-06T19:15:00+00:00",
   "5min|SL|2026-08-06T23:25:00+00:00",
   "5min|SL|2026-08-09T23:55:00+00:00",
@@ -6253,6 +6265,7 @@
   "5min|TP1|2026-11-09T11:15:00+00:00",
   "5min|TP1|2026-11-09T20:15:00+00:00",
   "5min|TP1|2026-11-11T09:20:00+00:00",
+  "5min|TP1|2026-11-12T02:40:00+00:00",
   "5min|TP2|2026-08-07T05:55:00+00:00",
   "5min|TP2|2026-08-10T05:45:00+00:00",
   "5min|TP2|2026-08-10T15:50:00+00:00",
