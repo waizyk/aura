@@ -1,6 +1,95 @@
 {
  "events": [
   {
+   "key": "5min|WARNING|2026-11-13T21:20:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T21:25:00+00:00",
+   "price": 3877.95,
+   "note": "HOLD (warning: closed past slow EMA)",
+   "notified": "2026-11-13T21:38:28.643431+00:00"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T20:50:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T20:55:00+00:00",
+   "price": 3879.85,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T20:20:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T20:25:00+00:00",
+   "price": 3876.75,
+   "note": "HOLD (warning: rejection confirmed)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T20:05:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T20:10:00+00:00",
+   "price": 3876.85,
+   "note": "HOLD (warning: rejection confirmed)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T18:10:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T18:15:00+00:00",
+   "price": 3884.65,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T17:35:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T17:40:00+00:00",
+   "price": 3886.65,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T17:05:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T17:10:00+00:00",
+   "price": 3885.75,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T16:40:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T16:45:00+00:00",
+   "price": 3884.55,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T16:30:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T16:35:00+00:00",
+   "price": 3884.85,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T16:05:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T16:10:00+00:00",
+   "price": 3878.95,
+   "note": "HOLD (warning: rejection confirmed)"
+  },
+  {
+   "key": "5min|TP2|2026-11-13T16:00:00+00:00",
+   "tf": "5min",
+   "event": "TP2",
+   "bar_close": "2026-11-13T16:05:00+00:00",
+   "price": 3873.05,
+   "note": "TP2 reached: keep holding for the final target"
+  },
+  {
    "key": "5min|WARNING|2026-11-13T15:10:00+00:00",
    "tf": "5min",
    "event": "WARNING",
@@ -8,6 +97,14 @@
    "price": 3890.3,
    "note": "HOLD (warning: closed past slow EMA)",
    "notified": "2026-11-13T15:34:39.259622+00:00"
+  },
+  {
+   "key": "5min|WARNING|2026-11-13T14:30:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T14:35:00+00:00",
+   "price": 3894.05,
+   "note": "HOLD (warning: closed past slow EMA)"
   },
   {
    "key": "5min|WARNING|2026-11-13T14:25:00+00:00",
@@ -3813,160 +3910,6 @@
    "side": "SHORT",
    "entry": 4127.0,
    "note": "Final take profit hit"
-  },
-  {
-   "key": "15min|TP2|2026-10-22T00:15:00+00:00",
-   "tf": "15min",
-   "event": "TP2",
-   "bar_close": "2026-10-22T00:30:00+00:00",
-   "price": 4122.9,
-   "note": "TP2 reached: keep holding for the final target"
-  },
-  {
-   "key": "5min|TP2|2026-10-22T00:20:00+00:00",
-   "tf": "5min",
-   "event": "TP2",
-   "bar_close": "2026-10-22T00:25:00+00:00",
-   "price": 4117.5,
-   "note": "TP2 reached: keep holding for the final target"
-  },
-  {
-   "key": "15min|TP1|2026-10-21T23:30:00+00:00",
-   "tf": "15min",
-   "event": "TP1",
-   "bar_close": "2026-10-21T23:45:00+00:00",
-   "price": 4123.0,
-   "note": "TP1 reached: trade is working, keep holding",
-   "notified": "2026-10-22T00:01:18.039410+00:00"
-  },
-  {
-   "key": "5min|TP1|2026-10-21T23:35:00+00:00",
-   "tf": "5min",
-   "event": "TP1",
-   "bar_close": "2026-10-21T23:40:00+00:00",
-   "price": 4122.2,
-   "note": "TP1 reached: trade is working, keep holding",
-   "notified": "2026-10-22T00:01:18.039410+00:00"
-  },
-  {
-   "key": "15min|SELL|2026-10-21T23:00:00+00:00",
-   "tf": "15min",
-   "event": "SELL",
-   "bar_close": "2026-10-21T23:15:00+00:00",
-   "price": 4126.4,
-   "note": "SIGNAL, but Kelly says NO EDGE: skip",
-   "side": "SHORT",
-   "entry": 4126.4,
-   "sl": 4131.53,
-   "tp1": 4121.27,
-   "tp2": 4116.14,
-   "tp3": 4111.0,
-   "sl_dist": 5.13,
-   "lots": 0.0,
-   "risk_pct": 0.0,
-   "risk_zar": 0.0,
-   "risk_acct": 0.0,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.1,
-   "no_edge": true,
-   "opened": "2026-10-21T23:15:00+00:00",
-   "notified": "2026-10-22T00:01:18.039410+00:00"
-  },
-  {
-   "key": "5min|TP2|2026-10-21T23:05:00+00:00",
-   "tf": "5min",
-   "event": "TP2",
-   "bar_close": "2026-10-21T23:10:00+00:00",
-   "price": 4130.8,
-   "note": "TP2 reached: keep holding for the final target"
-  },
-  {
-   "key": "5min|TP|2026-10-21T23:05:00+00:00",
-   "tf": "5min",
-   "event": "TP",
-   "bar_close": "2026-10-21T23:10:00+00:00",
-   "price": 4130.8,
-   "r": 2.5,
-   "side": "SHORT",
-   "entry": 4135.3,
-   "note": "Final take profit hit"
-  },
-  {
-   "key": "5min|SELL|2026-10-21T23:00:00+00:00",
-   "tf": "5min",
-   "event": "SELL",
-   "bar_close": "2026-10-21T23:05:00+00:00",
-   "price": 4125.7,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "SHORT",
-   "entry": 4125.7,
-   "sl": 4130.52,
-   "tp1": 4120.88,
-   "tp2": 4116.06,
-   "tp3": 4113.65,
-   "sl_dist": 4.82,
-   "lots": 0.16,
-   "risk_pct": 1.35,
-   "risk_zar": 13.28,
-   "risk_acct": 80.99,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.1,
-   "no_edge": false,
-   "opened": "2026-10-21T23:05:00+00:00"
-  },
-  {
-   "key": "5min|TP1|2026-10-21T23:00:00+00:00",
-   "tf": "5min",
-   "event": "TP1",
-   "bar_close": "2026-10-21T23:05:00+00:00",
-   "price": 4131.5,
-   "note": "TP1 reached: trade is working, keep holding"
-  },
-  {
-   "key": "5min|SELL|2026-10-21T22:55:00+00:00",
-   "tf": "5min",
-   "event": "SELL",
-   "bar_close": "2026-10-21T23:00:00+00:00",
-   "price": 4135.3,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "SHORT",
-   "entry": 4135.3,
-   "sl": 4137.26,
-   "tp1": 4133.34,
-   "tp2": 4131.38,
-   "tp3": 4130.4,
-   "sl_dist": 1.96,
-   "lots": 0.57,
-   "risk_pct": 1.86,
-   "risk_zar": 18.31,
-   "risk_acct": 111.84,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.0,
-   "no_edge": false,
-   "opened": "2026-10-21T23:00:00+00:00"
-  },
-  {
-   "key": "15min|SL|2026-10-21T20:45:00+00:00",
-   "tf": "15min",
-   "event": "SL",
-   "bar_close": "2026-10-21T21:00:00+00:00",
-   "price": 4142.3,
-   "r": -1.0,
-   "side": "SHORT",
-   "entry": 4114.0,
-   "note": "Stop loss hit",
-   "notified": "2026-10-21T21:15:28.628236+00:00"
-  },
-  {
-   "key": "15min|WARNING|2026-10-21T19:30:00+00:00",
-   "tf": "15min",
-   "event": "WARNING",
-   "bar_close": "2026-10-21T19:45:00+00:00",
-   "price": 4134.2,
-   "note": "HOLD (warning: closed past slow EMA)"
   }
  ],
  "seen": [
@@ -6275,6 +6218,7 @@
   "5min|TP2|2026-11-11T12:30:00+00:00",
   "5min|TP2|2026-11-12T06:45:00+00:00",
   "5min|TP2|2026-11-13T06:40:00+00:00",
+  "5min|TP2|2026-11-13T16:00:00+00:00",
   "5min|TP|2026-08-07T06:10:00+00:00",
   "5min|TP|2026-08-10T05:50:00+00:00",
   "5min|TP|2026-08-10T15:50:00+00:00",
@@ -6522,7 +6466,18 @@
   "5min|WARNING|2026-11-13T12:20:00+00:00",
   "5min|WARNING|2026-11-13T13:30:00+00:00",
   "5min|WARNING|2026-11-13T14:25:00+00:00",
+  "5min|WARNING|2026-11-13T14:30:00+00:00",
   "5min|WARNING|2026-11-13T15:10:00+00:00",
+  "5min|WARNING|2026-11-13T16:05:00+00:00",
+  "5min|WARNING|2026-11-13T16:30:00+00:00",
+  "5min|WARNING|2026-11-13T16:40:00+00:00",
+  "5min|WARNING|2026-11-13T17:05:00+00:00",
+  "5min|WARNING|2026-11-13T17:35:00+00:00",
+  "5min|WARNING|2026-11-13T18:10:00+00:00",
+  "5min|WARNING|2026-11-13T20:05:00+00:00",
+  "5min|WARNING|2026-11-13T20:20:00+00:00",
+  "5min|WARNING|2026-11-13T20:50:00+00:00",
+  "5min|WARNING|2026-11-13T21:20:00+00:00",
   "news|Core PPI m/m|2026-10-15T12:30:00+00:00",
   "news|Core Retail Sales m/m|2026-10-15T12:30:00+00:00",
   "news|FOMC Meeting Minutes|2026-10-07T18:00:00+00:00",
