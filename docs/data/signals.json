@@ -1,6 +1,14 @@
 {
  "events": [
   {
+   "key": "5min|WARNING|2026-11-13T21:40:00+00:00",
+   "tf": "5min",
+   "event": "WARNING",
+   "bar_close": "2026-11-13T21:45:00+00:00",
+   "price": 3880.7,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
    "key": "5min|WARNING|2026-11-13T21:20:00+00:00",
    "tf": "5min",
    "event": "WARNING",
@@ -3899,17 +3907,6 @@
    "side": "SHORT",
    "entry": 4132.0,
    "note": "Final take profit hit"
-  },
-  {
-   "key": "5min|TP|2026-10-22T00:30:00+00:00",
-   "tf": "5min",
-   "event": "TP",
-   "bar_close": "2026-10-22T00:35:00+00:00",
-   "price": 4114.9,
-   "r": 2.5,
-   "side": "SHORT",
-   "entry": 4127.0,
-   "note": "Final take profit hit"
   }
  ],
  "seen": [
@@ -6478,6 +6475,7 @@
   "5min|WARNING|2026-11-13T20:20:00+00:00",
   "5min|WARNING|2026-11-13T20:50:00+00:00",
   "5min|WARNING|2026-11-13T21:20:00+00:00",
+  "5min|WARNING|2026-11-13T21:40:00+00:00",
   "news|Core PPI m/m|2026-10-15T12:30:00+00:00",
   "news|Core Retail Sales m/m|2026-10-15T12:30:00+00:00",
   "news|FOMC Meeting Minutes|2026-10-07T18:00:00+00:00",
