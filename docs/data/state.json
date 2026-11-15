@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-15T12:29:13.700253+00:00",
+ "generated": "2026-11-15T19:02:03.104166+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -46,7 +46,71 @@
    "rr": 3.0
   }
  },
- "news": [],
+ "news": [
+  {
+   "title": "Fed Chairman Warsh Speaks",
+   "impact": "High",
+   "time": "2026-11-16T17:00:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "Core Retail Sales m/m",
+   "impact": "High",
+   "time": "2026-11-17T13:30:00+00:00",
+   "forecast": "0.4%",
+   "previous": "0.9%"
+  },
+  {
+   "title": "Retail Sales m/m",
+   "impact": "High",
+   "time": "2026-11-17T13:30:00+00:00",
+   "forecast": "0.2%",
+   "previous": "0.8%"
+  },
+  {
+   "title": "FOMC Meeting Minutes",
+   "impact": "High",
+   "time": "2026-11-18T19:00:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "Philly Fed Manufacturing Index",
+   "impact": "Medium",
+   "time": "2026-11-19T13:30:00+00:00",
+   "forecast": "19.2",
+   "previous": "20.9"
+  },
+  {
+   "title": "Unemployment Claims",
+   "impact": "Medium",
+   "time": "2026-11-19T13:30:00+00:00",
+   "forecast": "199K",
+   "previous": "200K"
+  },
+  {
+   "title": "FOMC Member Waller Speaks",
+   "impact": "Medium",
+   "time": "2026-11-20T13:25:00+00:00",
+   "forecast": null,
+   "previous": null
+  },
+  {
+   "title": "Revised UoM Consumer Sentiment",
+   "impact": "Medium",
+   "time": "2026-11-20T15:00:00+00:00",
+   "forecast": "52.1",
+   "previous": "51.0"
+  },
+  {
+   "title": "Revised UoM Inflation Expectations",
+   "impact": "Medium",
+   "time": "2026-11-20T15:00:00+00:00",
+   "forecast": null,
+   "previous": "4.3%"
+  }
+ ],
  "live_engine": {
   "online": false,
   "last_seen": null
@@ -56,10 +120,10 @@
    "tf": "5min",
    "last_bar_close": "2026-11-13T22:04:59+00:00",
    "last_price": 3887.6,
-   "atr": 3.6,
-   "ema_fast": 3883.06,
-   "ema_slow": 3882.5,
-   "ema_trend": 4006.69,
+   "atr": 3.56,
+   "ema_fast": 3883.05,
+   "ema_slow": 3882.48,
+   "ema_trend": 4006.77,
    "trend": "DOWN",
    "position": {
     "side": "SHORT",
@@ -87,18 +151,18 @@
    },
    "advice": "HOLD (warning: closed past slow EMA)",
    "stats": {
-    "trades": 142,
-    "win_rate": 0.3099,
-    "avg_win": 2.4056,
-    "avg_loss": 1.0843,
-    "payoff": 2.2186,
-    "kelly": -0.0012,
+    "trades": 138,
+    "win_rate": 0.3116,
+    "avg_win": 2.396,
+    "avg_loss": 1.0861,
+    "payoff": 2.206,
+    "kelly": -0.0005,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -0.4131,
-    "expectancy": -0.0029,
-    "max_dd": 14.9301
+    "total_r": -0.1527,
+    "expectancy": -0.0011,
+    "max_dd": 16.0309
    },
    "next_trade": {
     "risk_pct": 0.0,
@@ -107,33 +171,33 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.1
    },
-   "bars": 13426,
+   "bars": 13427,
    "from_": "2026-09-08T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
    "last_bar_close": "2026-11-13T22:14:59+00:00",
    "last_price": 3887.6,
-   "atr": 6.27,
-   "ema_fast": 3883.56,
-   "ema_slow": 3884.38,
-   "ema_trend": 3928.01,
+   "atr": 6.23,
+   "ema_fast": 3883.51,
+   "ema_slow": 3884.34,
+   "ema_trend": 3928.0,
    "trend": "DOWN",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
    "stats": {
-    "trades": 80,
-    "win_rate": 0.1875,
-    "avg_win": 2.9573,
-    "avg_loss": 1.0399,
-    "payoff": 2.8439,
-    "kelly": -0.0982,
+    "trades": 81,
+    "win_rate": 0.1852,
+    "avg_win": 2.9574,
+    "avg_loss": 1.0403,
+    "payoff": 2.8429,
+    "kelly": -0.1014,
     "kelly_ready": true,
     "no_edge": true,
     "risk_pct": 0.0,
-    "total_r": -23.232,
-    "expectancy": -0.2904,
-    "max_dd": 31.8926
+    "total_r": -24.2979,
+    "expectancy": -0.3,
+    "max_dd": 32.956
    },
    "next_trade": {
     "risk_pct": 0.0,
