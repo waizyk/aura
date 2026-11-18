@@ -1,6 +1,31 @@
 {
  "events": [
   {
+   "key": "5min|SELL|2026-11-18T10:20:00+00:00",
+   "tf": "5min",
+   "event": "SELL",
+   "bar_close": "2026-11-18T10:25:00+00:00",
+   "price": 3771.4,
+   "note": "NEW TRADE: place SL and TP now, then HOLD",
+   "side": "SHORT",
+   "entry": 3771.4,
+   "sl": 3774.77,
+   "tp1": 3768.03,
+   "tp2": 3764.67,
+   "tp3": 3762.99,
+   "sl_dist": 3.37,
+   "lots": 0.05,
+   "risk_pct": 0.31,
+   "risk_zar": 3.16,
+   "risk_acct": 18.65,
+   "acct_ccy": "USC",
+   "account": "cent",
+   "min_lot_pct": 0.1,
+   "no_edge": false,
+   "opened": "2026-11-18T10:25:00+00:00",
+   "notified": "2026-11-18T10:38:10.288087+00:00"
+  },
+  {
    "key": "5min|TP|2026-11-18T00:10:00+00:00",
    "tf": "5min",
    "event": "TP",
@@ -3896,14 +3921,6 @@
    "bar_close": "2026-10-26T23:50:00+00:00",
    "price": 4008.8,
    "note": "TP2 reached: keep holding for the final target"
-  },
-  {
-   "key": "5min|WARNING|2026-10-26T20:45:00+00:00",
-   "tf": "5min",
-   "event": "WARNING",
-   "bar_close": "2026-10-26T20:50:00+00:00",
-   "price": 4017.4,
-   "note": "HOLD (warning: closed past slow EMA)"
   }
  ],
  "seen": [
@@ -5831,6 +5848,7 @@
   "5min|SELL|2026-11-17T12:30:00+00:00",
   "5min|SELL|2026-11-17T17:50:00+00:00",
   "5min|SELL|2026-11-17T23:30:00+00:00",
+  "5min|SELL|2026-11-18T10:20:00+00:00",
   "5min|SL|2026-08-06T19:15:00+00:00",
   "5min|SL|2026-08-06T23:25:00+00:00",
   "5min|SL|2026-08-09T23:55:00+00:00",
