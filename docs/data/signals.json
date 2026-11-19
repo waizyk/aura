@@ -1,6 +1,14 @@
 {
  "events": [
   {
+   "key": "15min|WARNING|2026-11-18T23:00:00+00:00",
+   "tf": "15min",
+   "event": "WARNING",
+   "bar_close": "2026-11-18T23:15:00+00:00",
+   "price": 3740.8,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
    "key": "15min|TP2|2026-11-18T17:45:00+00:00",
    "tf": "15min",
    "event": "TP2",
@@ -3892,17 +3900,6 @@
    "min_lot_pct": 0.1,
    "no_edge": false,
    "opened": "2026-10-27T05:10:00+00:00"
-  },
-  {
-   "key": "15min|SL|2026-10-27T03:30:00+00:00",
-   "tf": "15min",
-   "event": "SL",
-   "bar_close": "2026-10-27T03:45:00+00:00",
-   "price": 4024.3,
-   "r": -1.0,
-   "side": "SHORT",
-   "entry": 4016.7,
-   "note": "Stop loss hit"
   }
  ],
  "seen": [
@@ -4466,6 +4463,7 @@
   "15min|WARNING|2026-11-10T06:15:00+00:00",
   "15min|WARNING|2026-11-10T06:45:00+00:00",
   "15min|WARNING|2026-11-11T01:15:00+00:00",
+  "15min|WARNING|2026-11-18T23:00:00+00:00",
   "1day|BUY|2017-11-17T05:00:00+00:00",
   "1day|BUY|2017-12-26T05:00:00+00:00",
   "1day|BUY|2018-02-13T05:00:00+00:00",

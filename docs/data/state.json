@@ -1,15 +1,15 @@
 {
- "generated": "2026-11-18T19:04:01.476863+00:00",
+ "generated": "2026-11-19T01:12:31.973214+00:00",
  "session": {
-  "code": "WEAK",
-  "label": "Late New York"
+  "code": "QUIET",
+  "label": "Asia session"
  },
- "usdzar": 16.9265,
+ "usdzar": 17.2413,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted +0.22 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted -0.08 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -0.08 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted +4.90 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted +4.80 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted +4.80 to spot"
  },
  "config": {
   "account": "cent",
@@ -48,13 +48,6 @@
  },
  "news": [
   {
-   "title": "FOMC Meeting Minutes",
-   "impact": "High",
-   "time": "2026-11-18T19:00:00+00:00",
-   "forecast": null,
-   "previous": null
-  },
-  {
    "title": "Philly Fed Manufacturing Index",
    "impact": "Medium",
    "time": "2026-11-19T13:30:00+00:00",
@@ -90,12 +83,12 @@
  "timeframes": {
   "5min": {
    "tf": "5min",
-   "last_bar_close": "2026-11-18T18:58:53+00:00",
-   "last_price": 3740.12,
-   "atr": 4.33,
-   "ema_fast": 3742.15,
-   "ema_slow": 3745.97,
-   "ema_trend": 3923.18,
+   "last_bar_close": "2026-11-19T01:07:30+00:00",
+   "last_price": 3755.9,
+   "atr": 4.22,
+   "ema_fast": 3754.25,
+   "ema_slow": 3748.14,
+   "ema_trend": 3918.42,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -115,30 +108,30 @@
    },
    "next_trade": {
     "risk_pct": 0.62,
-    "risk_zar": 6.35,
+    "risk_zar": 6.46,
     "risk_acct": 37.49,
     "typical_lots": 0.06,
     "min_lot_pct": 0.1
    },
-   "bars": 13665,
+   "bars": 13727,
    "from_": "2026-09-10T04:00:00+00:00"
   },
   "15min": {
    "tf": "15min",
-   "last_bar_close": "2026-11-18T19:00:00+00:00",
-   "last_price": 3740.62,
-   "atr": 9.39,
-   "ema_fast": 3743.85,
-   "ema_slow": 3751.47,
-   "ema_trend": 3820.39,
+   "last_bar_close": "2026-11-19T01:00:00+00:00",
+   "last_price": 3759.3,
+   "atr": 8.12,
+   "ema_fast": 3749.18,
+   "ema_slow": 3745.85,
+   "ema_trend": 3809.81,
    "trend": "DOWN",
    "position": {
     "side": "SHORT",
-    "entry": 3761.32,
-    "sl": 3776.09,
-    "tp1": 3746.55,
-    "tp2": 3731.79,
-    "tp3": 3717.02,
+    "entry": 3766.2,
+    "sl": 3780.97,
+    "tp1": 3751.43,
+    "tp2": 3736.67,
+    "tp3": 3721.9,
     "sl_dist": 14.77,
     "lots": 0.0,
     "risk_pct": 0.0,
@@ -151,12 +144,12 @@
     "opened": "2026-11-18T15:15:00+00:00",
     "tp1_hit": true,
     "tp2_hit": true,
-    "live_r": 1.4,
-    "bars_open": 15,
+    "live_r": 0.47,
+    "bars_open": 39,
     "still_enterable": false,
-    "advice": "HOLD: trend intact, let it run"
+    "advice": "HOLD (warning: closed past slow EMA)"
    },
-   "advice": "HOLD: trend intact, let it run",
+   "advice": "HOLD (warning: closed past slow EMA)",
    "stats": {
     "trades": 77,
     "win_rate": 0.1688,
@@ -178,17 +171,17 @@
     "typical_lots": 0.0,
     "min_lot_pct": 0.2
    },
-   "bars": 4568,
+   "bars": 4588,
    "from_": "2026-09-10T04:00:00+00:00"
   },
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-11-18T05:00:00+00:00",
-   "last_price": 3864.12,
+   "last_price": 3869.0,
    "atr": 87.59,
-   "ema_fast": 3940.83,
-   "ema_slow": 4011.0,
-   "ema_trend": 4258.65,
+   "ema_fast": 3945.71,
+   "ema_slow": 4015.88,
+   "ema_trend": 4263.53,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -208,7 +201,7 @@
    },
    "next_trade": {
     "risk_pct": 0.35,
-    "risk_zar": 3.59,
+    "risk_zar": 3.65,
     "risk_acct": 21.19,
     "typical_lots": 0.0,
     "min_lot_pct": 1.9
