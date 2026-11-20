@@ -63,6 +63,14 @@
    "note": "Stop loss hit"
   },
   {
+   "key": "15min|WARNING|2026-11-20T13:45:00+00:00",
+   "tf": "15min",
+   "event": "WARNING",
+   "bar_close": "2026-11-20T14:00:00+00:00",
+   "price": 3573.5,
+   "note": "HOLD (warning: closed past slow EMA)"
+  },
+  {
    "key": "15min|SELL|2026-11-20T13:15:00+00:00",
    "tf": "15min",
    "event": "SELL",
@@ -3897,30 +3905,6 @@
    "side": "SHORT",
    "entry": 4051.4,
    "note": "Stop loss hit"
-  },
-  {
-   "key": "5min|SELL|2026-10-28T22:45:00+00:00",
-   "tf": "5min",
-   "event": "SELL",
-   "bar_close": "2026-10-28T22:50:00+00:00",
-   "price": 4051.4,
-   "note": "NEW TRADE: place SL and TP now, then HOLD",
-   "side": "SHORT",
-   "entry": 4051.4,
-   "sl": 4054.72,
-   "tp1": 4048.08,
-   "tp2": 4044.76,
-   "tp3": 4043.1,
-   "sl_dist": 3.32,
-   "lots": 0.08,
-   "risk_pct": 0.48,
-   "risk_zar": 4.82,
-   "risk_acct": 28.99,
-   "acct_ccy": "USC",
-   "account": "cent",
-   "min_lot_pct": 0.1,
-   "no_edge": false,
-   "opened": "2026-10-28T22:50:00+00:00"
   }
  ],
  "seen": [
@@ -4496,6 +4480,7 @@
   "15min|WARNING|2026-11-18T23:00:00+00:00",
   "15min|WARNING|2026-11-19T05:15:00+00:00",
   "15min|WARNING|2026-11-19T10:30:00+00:00",
+  "15min|WARNING|2026-11-20T13:45:00+00:00",
   "1day|BUY|2017-11-17T05:00:00+00:00",
   "1day|BUY|2017-12-26T05:00:00+00:00",
   "1day|BUY|2018-02-13T05:00:00+00:00",
