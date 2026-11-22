@@ -1,5 +1,5 @@
 {
- "generated": "2026-11-22T05:04:56.886318+00:00",
+ "generated": "2026-11-22T13:20:06.931238+00:00",
  "session": {
   "code": "CLOSED",
   "label": "Market closed"
@@ -46,7 +46,57 @@
    "rr": 3.0
   }
  },
- "news": [],
+ "news": [
+  {
+   "title": "Flash Manufacturing PMI",
+   "impact": "Medium",
+   "time": "2026-11-23T14:45:00+00:00",
+   "forecast": "54.5",
+   "previous": "56.0"
+  },
+  {
+   "title": "Flash Services PMI",
+   "impact": "Medium",
+   "time": "2026-11-23T14:45:00+00:00",
+   "forecast": "55.6",
+   "previous": "57.9"
+  },
+  {
+   "title": "CB Consumer Confidence",
+   "impact": "Medium",
+   "time": "2026-11-24T15:00:00+00:00",
+   "forecast": "92.1",
+   "previous": "91.7"
+  },
+  {
+   "title": "Core PCE Price Index m/m",
+   "impact": "High",
+   "time": "2026-11-25T13:30:00+00:00",
+   "forecast": "0.3%",
+   "previous": "0.3%"
+  },
+  {
+   "title": "Prelim GDP q/q",
+   "impact": "High",
+   "time": "2026-11-25T13:30:00+00:00",
+   "forecast": "3.5%",
+   "previous": "3.4%"
+  },
+  {
+   "title": "Prelim GDP Price Index q/q",
+   "impact": "Medium",
+   "time": "2026-11-25T13:30:00+00:00",
+   "forecast": "2.3%",
+   "previous": "2.3%"
+  },
+  {
+   "title": "Unemployment Claims",
+   "impact": "Medium",
+   "time": "2026-11-25T13:30:00+00:00",
+   "forecast": "201K",
+   "previous": "203K"
+  }
+ ],
  "live_engine": {
   "online": false,
   "last_seen": null
