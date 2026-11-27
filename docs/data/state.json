@@ -1,15 +1,15 @@
 {
- "generated": "2026-11-27T02:41:48.572915+00:00",
+ "generated": "2026-11-27T11:25:16.198787+00:00",
  "session": {
-  "code": "QUIET",
-  "label": "Asia session"
+  "code": "OK",
+  "label": "London session"
  },
  "usdzar": 17.5364,
  "usdzar_source": "open.er-api.com",
  "sources": {
-  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted +7.20 to spot",
-  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted +7.20 to spot",
-  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -20.40 to spot"
+  "5min": "Yahoo \u00b7 gold futures (GC=F) shifted +52.10 to spot",
+  "15min": "Yahoo \u00b7 gold futures (GC=F) shifted +52.10 to spot",
+  "1day": "Yahoo \u00b7 gold futures (GC=F) shifted -29.70 to spot"
  },
  "config": {
   "account": "cent",
@@ -55,11 +55,11 @@
   "5min": {
    "tf": "5min",
    "last_bar_close": "2026-11-26T05:00:00+00:00",
-   "last_price": 3627.6,
+   "last_price": 3672.5,
    "atr": 5.34,
-   "ema_fast": 3625.26,
-   "ema_slow": 3619.71,
-   "ema_trend": 3700.39,
+   "ema_fast": 3670.16,
+   "ema_slow": 3664.61,
+   "ema_trend": 3745.29,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
@@ -90,11 +90,11 @@
   "15min": {
    "tf": "15min",
    "last_bar_close": "2026-11-26T05:00:00+00:00",
-   "last_price": 3627.6,
+   "last_price": 3672.5,
    "atr": 13.55,
-   "ema_fast": 3622.05,
-   "ema_slow": 3614.58,
-   "ema_trend": 3586.52,
+   "ema_fast": 3666.95,
+   "ema_slow": 3659.48,
+   "ema_trend": 3631.42,
    "trend": "UP",
    "position": null,
    "advice": "NO EDGE on this timeframe: don't trade it",
@@ -125,11 +125,11 @@
   "1day": {
    "tf": "1day",
    "last_bar_close": "2026-11-26T05:00:00+00:00",
-   "last_price": 3515.4,
+   "last_price": 3506.1,
    "atr": 112.21,
-   "ema_fast": 3664.25,
-   "ema_slow": 3814.06,
-   "ema_trend": 4200.8,
+   "ema_fast": 3654.95,
+   "ema_slow": 3804.76,
+   "ema_trend": 4191.5,
    "trend": "DOWN",
    "position": null,
    "advice": "WAIT for a signal",
